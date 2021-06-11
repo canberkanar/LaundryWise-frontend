@@ -185,12 +185,12 @@ function MovieListComponent(props) {
         <div className={classes.movieListRoot}>
             <div className={classes.movieListHeader}>
                 <Typography variant="h4" align="center">
-                    Welcome to the Movie Database App!
+                    Welcome to the LaundryWise App!
                 </Typography>
                 <Divider className={classes.headerDivider} />
                 <Typography align="center">
-                    Here is a list of movies in our database. If you are logged
-                    in you can add, alter and delete the movies here. You can
+                    Here is a list of machines in our database. If you are logged
+                    in you can add, alter and delete the machines here. You can
                     register or log in by clicking on the icon in the top right.
                 </Typography>
             </div>
