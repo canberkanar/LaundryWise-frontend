@@ -1,6 +1,6 @@
-# seba-master-movie-frontend application
+# laundrywise-frontend application
 
-Movie database app example application based on React. Backend can be found [here](https://github.com/sebischair/seba-master-movie-backend)
+LaundryWise application based on React. Backend can be found [here](https://gitlab.lrz.de/seba-master-2021/team-39/backend.git)
 
 ## Prerequisites
 
