@@ -4,6 +4,8 @@ import SignUpView from "./views/SignUpView";
 import MovieDetailsView from "./views/MovieDetailsView";
 import MachineManagementView from "./views/MachineManagement";
 import MainMenu from "./views/MainMenu";
+import UsageStatistics from "./views/UsageStatistics";
+import RevenueStatistics from "./views/RevenueStatistics";
 
 // routes within the movie database example app
 // used for routing
@@ -33,6 +35,14 @@ const routes = [
     {
         path: "/mainMenu",
         component: MainMenu,
+    },
+    {
+        path: "/usageStatistics",
+        component: UsageStatistics,
+    },
+    {
+        path: "/revenueStatistics",
+        component: RevenueStatistics,
     }
 ];
 
