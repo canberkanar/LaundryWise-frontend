@@ -25,7 +25,7 @@ function KebabMenu(props) {
     const classes = useStyles();
 
     const user = useSelector((state) => {
-        // return the currnetly logged in user from redux store
+        // return the currently logged in user from redux store
         return state.user;
     });
 
@@ -47,6 +47,10 @@ function KebabMenu(props) {
 
     const onClickMachineManagement = () => {
         props.history.push("/machineManagement");
+    }
+
+    const onClickMainMenu = () => {
+        props.history.push("/mainMenu");
     }
 
     return (
@@ -91,6 +95,12 @@ function KebabMenu(props) {
 
             <MenuItem
                 key = "test" onClick={onClickMachineManagement}> Machine Management
+            </MenuItem>
+            <MenuItem
+                key = "main-menu" onClick={onClickMainMenu}
+                className={classes.menuitem}
+            > Main Menu
+
             </MenuItem>
         </Menu>
     );
