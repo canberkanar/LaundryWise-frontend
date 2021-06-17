@@ -53,6 +53,14 @@ function KebabMenu(props) {
         props.history.push("/mainMenu");
     }
 
+    function onClickUsageStatistics() {
+        props.history.push("/usageStatistics");
+    }
+
+    function onClickRevenueStatistics() {
+        props.history.push("/revenueStatistics");
+    }
+
     return (
         <Menu
             open={props.open}
@@ -98,9 +106,21 @@ function KebabMenu(props) {
             </MenuItem>
             <MenuItem
                 key = "main-menu" onClick={onClickMainMenu}
-                className={classes.menuitem}
-            > Main Menu
+                className={classes.menuitem}>
 
+                Main Menu
+            </MenuItem>
+            <MenuItem
+                key = "usage-statistics" onClick={onClickUsageStatistics}
+                className={classes.menuitem}>
+
+                Usage Statistics
+            </MenuItem>
+            <MenuItem
+                key = "revenue-statistics" onClick={onClickRevenueStatistics}
+                className={classes.menuitem}>
+
+                Revenue Statistics
             </MenuItem>
         </Menu>
     );
