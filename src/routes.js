@@ -29,10 +29,12 @@ const routes = [
     {
         path: "/machineManagement",
         component: MachineManagementView,
+        exact: true
     },
     {
         path: "/mainMenu",
         component: MainMenu,
+        exact: true
     }
 ];
 
