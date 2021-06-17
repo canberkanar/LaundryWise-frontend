@@ -1,3 +1,7 @@
+/**
+ * @author canberk.anar
+ */
+
 import RoomInfoComponent from "../components/RoomInfoComponent";
 import WorkingHoursComponent from "../components/WorkingHoursComponent";
 import AnnouncementsComponent from "../components/AnnouncementsComponent";
