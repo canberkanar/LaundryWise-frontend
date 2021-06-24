@@ -4,7 +4,7 @@ import {
     Grid,
     Typography,
     FormControlLabel,
-    Switch,
+    Switch, Button,
 
 } from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function MenuInfoComponent(props) {
+function MenuStatsComponent(props) {
     const classes = useStyles();
     const user = useSelector((state) => state.user);
 
@@ -53,28 +53,30 @@ function MenuInfoComponent(props) {
             <Paper className={classes.signUpPaper} component="form">
                 <div className={classes.signUpRow}>
 
-                    <Grid id="LaundryRoomInfoGrid" container>
-
-                        <Grid>
-                            <Typography align="left">
-                                JVS Arriott Hotel's Laundry Rooms
-                            </Typography>
-
-                            <br/>
-                            <MenuRoomInfoComponent
-                                isLoggedIn={!!user.user}
-                                isAdmin={!!user.user ? user.user.role === "admin" : false}
-                            />
-
-                            <br/>
-                            <MenuRoomInfoComponent
-                                isLoggedIn={!!user.user}
-                                isAdmin={!!user.user ? user.user.role === "admin" : false}
-                            />
-
-                        </Grid>
-
-                    </Grid>
+                    {/*<Button variant="contained"> Usage Statistics </Button>*/}
+                    {props.isAdmin ? (
+                        <Button
+                            // onClick={}
+                            variant="contained"
+                            color="primary"
+                            className={classes.roomSettingsButton}
+                        >
+                            Usage Statistics
+                        </Button>
+                    ) : null}
+                    <br/>
+                    <br/>
+                    {/*<Button variant="contained"> Revenue Statistics </Button>*/}
+                    {props.isAdmin ? (
+                        <Button
+                            // onClick={}
+                            variant="contained"
+                            color="primary"
+                            className={classes.roomSettingsButton}
+                        >
+                            Revenue Statistics
+                        </Button>
+                    ) : null}
 
                 </div>
             </Paper>
@@ -82,4 +84,4 @@ function MenuInfoComponent(props) {
     );
 }
 
-export default MenuInfoComponent;
+export default MenuStatsComponent;

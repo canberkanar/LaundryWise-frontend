@@ -3,12 +3,15 @@ import { Helmet } from 'react-helmet';
 import RoomInfoComponent from "../components/RoomInfoComponent";
 import WorkingHoursComponent from "../components/WorkingHoursComponent";
 import AnnouncementsComponent from "../components/AnnouncementsComponent";
-import {connect} from "react-redux";
+import {connect, useSelector} from "react-redux";
 import {withRouter} from "react-router-dom";
 import MenuInfoComponent from "../components/MenuInfoComponent";
 import React from "react";
+import MenuStatsComponent from "../components/MenuStatsComponent";
 
 function MainMenu() {
+
+    const user = useSelector((state) => state.user);
 
     return (
         <div>
@@ -19,15 +22,19 @@ function MainMenu() {
             <br/>
             <Grid container id="LaundryRoomsGrid">
                 <Grid item xs={10} id="RoomPanelGrid">
-                    <MenuInfoComponent/>
+                    <MenuInfoComponent
+                        isLoggedIn={!!user.user}
+                        isAdmin={!!user.user ? user.user.role === "admin" : false}
+                    />
                 </Grid>
                 <br/>
                 <Grid item xs={2} id="StatisticsGrid">
 
-                    <Button variant="contained"> Usage Statistics </Button>
-                    <br/>
-                    <br/>
-                    <Button variant="contained"> Revenue Statistics </Button>
+                    <MenuStatsComponent
+                        isLoggedIn={!!user.user}
+                        isAdmin={!!user.user ? user.user.role === "admin" : false}
+                    />
+
 
                 </Grid>
             </Grid>
