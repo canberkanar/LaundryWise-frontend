@@ -7,6 +7,7 @@ import WorkingHoursComponent from "../components/WorkingHoursComponent";
 import AnnouncementsComponent from "../components/AnnouncementsComponent";
 import {Grid} from "@material-ui/core";
 import { Helmet } from 'react-helmet';
+import {connect} from "react-redux";
 
 function MachineManagement() {
 
@@ -32,4 +33,6 @@ function MachineManagement() {
     );
 }
 
-export default MachineManagement;
+// export default MachineManagement;
+export default connect()(MachineManagement);
+

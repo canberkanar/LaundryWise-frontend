@@ -64,12 +64,16 @@ function MenuInfoComponent(props) {
                             <MenuRoomInfoComponent
                                 isLoggedIn={!!user.user}
                                 isAdmin={!!user.user ? user.user.role === "admin" : false}
+                                onMachineManagementClick={props.onMachineManagementClick}
+                                onRoomManagementClick={props.onRoomManagementClick}
                             />
 
                             <br/>
                             <MenuRoomInfoComponent
                                 isLoggedIn={!!user.user}
                                 isAdmin={!!user.user ? user.user.role === "admin" : false}
+                                onMachineManagementClick={props.onMachineManagementClick}
+                                onRoomManagementClick={props.onRoomManagementClick}
                             />
 
                         </Grid>

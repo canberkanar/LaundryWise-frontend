@@ -76,19 +76,19 @@ function MenuRoomInfoComponent(props) {
                                 {/*<Button variant="contained"> Room Setings </Button>*/}
                                 {props.isAdmin ? (
                                     <Button
-                                        // onClick={}
+                                        onClick={props.onRoomManagementClick}
                                         variant="contained"
                                         color="primary"
                                         className={classes.roomSettingsButton}
                                     >
-                                        Room Setings
+                                        Room Settings
                                     </Button>
                                 ) : null}
                                 <br/>
                                 {/*<Button variant="contained"> Machine Settings </Button>*/}
                                 {props.isAdmin ? (
                                     <Button
-                                        // onClick={}
+                                        onClick={props.onMachineManagementClick}
                                         variant="contained"
                                         color="primary"
                                         className={classes.machineSettingsButton}

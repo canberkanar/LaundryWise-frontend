@@ -9,9 +9,26 @@ import MenuInfoComponent from "../components/MenuInfoComponent";
 import React from "react";
 import MenuStatsComponent from "../components/MenuStatsComponent";
 
-function MainMenu() {
+function MainMenu(props) {
 
     const user = useSelector((state) => state.user);
+
+    const onMachineManagementClick = () => {
+        // navigate to an empty mask for entering details of the new movie
+        props.history.push("/machineManagement");
+    };
+    const onUsageStatsClick = () => {
+        // navigate to an empty mask for entering details of the new movie
+        props.history.push("/usageStatistics");
+    };
+    const onRevenueStatsClick = () => {
+        // navigate to an empty mask for entering details of the new movie
+        props.history.push("/revenueStatistics");
+    };
+    const onRoomManagementClick = () => {
+        // navigate to an empty mask for entering details of the new movie
+        props.history.push("/roomManagement");
+    };
 
     return (
         <div>
@@ -25,6 +42,8 @@ function MainMenu() {
                     <MenuInfoComponent
                         isLoggedIn={!!user.user}
                         isAdmin={!!user.user ? user.user.role === "admin" : false}
+                        onMachineManagementClick={onMachineManagementClick}
+                        onRoomManagementClick={onRoomManagementClick}
                     />
                 </Grid>
                 <br/>
@@ -33,6 +52,8 @@ function MainMenu() {
                     <MenuStatsComponent
                         isLoggedIn={!!user.user}
                         isAdmin={!!user.user ? user.user.role === "admin" : false}
+                        onUsageStatsClick={onUsageStatsClick}
+                        onRevenueStatsClick={onRevenueStatsClick}
                     />
 
 
@@ -42,5 +63,6 @@ function MainMenu() {
     );
 }
 
-export default MainMenu;
+// export default MainMenu;
+export default connect()(MainMenu);
 // export default connect()(withRouter(UserLoginView));

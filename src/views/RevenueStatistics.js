@@ -1,4 +1,4 @@
-import {Grid} from "@material-ui/core";
+import {Grid, Paper} from "@material-ui/core";
 import { Helmet } from 'react-helmet';
 import RoomInfoComponent from "../components/RoomInfoComponent";
 import WorkingHoursComponent from "../components/WorkingHoursComponent";
@@ -15,10 +15,15 @@ function RevenueStatistics() {
             </Helmet>
 
             <br/>
+            <Paper>
+                <h1>Revenue Statistics</h1>
+            </Paper>
 
         </div>
     );
 }
 
-export default RevenueStatistics;
+// export default RevenueStatistics;
+export default connect()(RevenueStatistics);
+
 // export default connect()(withRouter(UserLoginView));

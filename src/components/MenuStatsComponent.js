@@ -56,7 +56,7 @@ function MenuStatsComponent(props) {
                     {/*<Button variant="contained"> Usage Statistics </Button>*/}
                     {props.isAdmin ? (
                         <Button
-                            // onClick={}
+                            onClick={props.onUsageStatsClick}
                             variant="contained"
                             color="primary"
                             className={classes.roomSettingsButton}
@@ -69,7 +69,7 @@ function MenuStatsComponent(props) {
                     {/*<Button variant="contained"> Revenue Statistics </Button>*/}
                     {props.isAdmin ? (
                         <Button
-                            // onClick={}
+                            onClick={props.onRevenueStatsClick}
                             variant="contained"
                             color="primary"
                             className={classes.roomSettingsButton}
