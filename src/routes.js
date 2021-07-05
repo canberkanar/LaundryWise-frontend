@@ -8,6 +8,7 @@ import UsageStatistics from "./views/UsageStatistics";
 import RevenueStatistics from "./views/RevenueStatistics";
 import RoomManagement from "./views/RoomManagement";
 import AdminRoomReservationsView from "./views/AdminRoomReservationsView";
+import ReserveView from "./views/ReserveView";
 
 // routes within the movie database example app
 // used for routing
@@ -69,6 +70,12 @@ const routes = [
     {
         path: "/admin/laundryroom/:id",
         component: AdminRoomReservationsView,
+        exact: true,
+
+    },
+    {
+        path: "/reserve/:id",
+        component: ReserveView,
         exact: true,
 
     },

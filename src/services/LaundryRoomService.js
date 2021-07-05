@@ -6,13 +6,22 @@ import HttpService from "./HttpService";
 
 export default class LaundryRoomService {
     static baseURL() {
-        return "http://localhost:4000/laundryroom";
+        return "http://localhost:4000/laundryroom/filter";
     }
 
-    static getLaundryRoom(id) {
+    static getLaundryRoom(id, type, date) {
         return new Promise(async (resolve, reject) => {
+            let url = `${LaundryRoomService.baseURL()}/?id=${id}`
+
+             if(type) {
+                 url = url + "&machineType=" + `${type}`;
+             }
+             if(date) {
+                url = url + "&beginningDateToPullReservations=" + `${date}`;
+             }
+
             HttpService.get(
-                `${LaundryRoomService.baseURL()}/${id}`,
+                url,
                 function (data) {
                     if (data !== undefined || Object.keys(data).length !== 0) {
                         resolve(data);

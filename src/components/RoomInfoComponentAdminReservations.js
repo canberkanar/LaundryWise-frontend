@@ -47,14 +47,6 @@ const useStyles = makeStyles((theme) => ({
 
 function RoomInfoComponentAdminReservations(props) {
     const classes = useStyles();
-    const user = useSelector((state) => state.user);
-
-    let roomName, roomAddress
-
-    if (props.laundryroom) {
-        roomName = props.laundryroom.name;
-        roomAddress = props.laundryroom.address;
-    }
 
     return (
         <div className={classes.usersignUpRoot}>
@@ -62,22 +54,15 @@ function RoomInfoComponentAdminReservations(props) {
                 <div className={classes.signUpRow}>
 
                     <Grid id="LaundryRoomInfoGrid" container>
-
                         <Grid item xs={6}>
-                            <Typography align="left">
-                                {roomName}
-                            </Typography>
-                            <Typography> {roomAddress} </Typography>
+                            <Typography align="left"> {props.laundryroom.name} </Typography>
+                            <Typography> {props.laundryroom.address} </Typography>
                         </Grid>
-
-                        {/*isAdmin must be fed in from parent view as parameter*/}
-                        {/*isAdmin={!!user.user ? user.user.role === "admin" : false}*/}
-
                     </Grid>
                 </div>
             </Paper>
         </div>
-);
+    );
 }
 
 // attributes of props and their type

@@ -65,6 +65,10 @@ function KebabMenu(props) {
         props.history.push("/admin/laundryroom/60e04e770625c02fc850bf1a");
     }
 
+    const onClickReserve = () => {
+        props.history.push("/reserve/60e04e770625c02fc850bf1a");
+    }
+
     return (
         <Menu
             open={props.open}
@@ -129,6 +133,11 @@ function KebabMenu(props) {
                 key = "admin-room-reservations" onClick={onClickAdminRoomReservations}
                 className={classes.menuitem}>
                 Room Reservations (Admin)
+            </MenuItem>
+            <MenuItem
+                key = "reserve" onClick={onClickReserve}
+                className={classes.menuitem}>
+                Reserve
             </MenuItem>
         </Menu>
     );

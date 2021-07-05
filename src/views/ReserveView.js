@@ -14,8 +14,9 @@ import RoomInfoComponentAdminReservations from "../components/RoomInfoComponentA
 import Loading from "../components/Loading";
 import ReservationFilterComponent from "../components/ReservationFilterComponent";
 import AdminSchedulerComponent from "../components/AdminSchedulerComponent";
+import ReserveSchedulerComponent from "../components/ReserveSchedulerComponent";
 
-function AdminRoomReservationsView(props) {
+function ReserveView(props) {
 
     const selectedLaundryRoom = useSelector((state) => state.selectedLaundryRoom);
     const [selectedMachineType, setSelectedMachineType] = useState("washer");
@@ -54,8 +55,8 @@ function AdminRoomReservationsView(props) {
                 </Grid>
                 <br/>
                 <Grid container id="AdminReservationSchedulingGrid">
-                    <Grid item id="AdminSchedulerField" >
-                        <AdminSchedulerComponent laundryroom={selectedLaundryRoom.laundryroom} selectedDate={selectedDate}/>
+                    <Grid xs={8} item id="AdminSchedulerField" >
+                        <ReserveSchedulerComponent laundryroom={selectedLaundryRoom.laundryroom} selectedDate={selectedDate}/>
                     </Grid>
                 </Grid>
             </div>
@@ -65,6 +66,6 @@ function AdminRoomReservationsView(props) {
 // export default AdminRoomReservationsView;
 // connect() establishes allows the usage of redux functionality
 export default connect(null, {getLaundryRoom})(
-    AdminRoomReservationsView
+    ReserveView
 );
 
