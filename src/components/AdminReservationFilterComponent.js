@@ -14,7 +14,7 @@ import {
     Radio,
     RadioGroup
 } from "@material-ui/core";
-import {KeyboardDatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
+import {KeyboardDatePicker, MuiPickersUtilsProvider, TimePicker} from "@material-ui/pickers";
 import React from "react";
 import {makeStyles} from "@material-ui/core/styles";
 
@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function ReservationFilterComponent(props) {
+function AdminReservationFilterComponent(props) {
 
     const classes = useStyles();
 
@@ -59,8 +59,6 @@ function ReservationFilterComponent(props) {
     const handleDateChange = (date) => {
         props.passSelectedDateToParent(date);
     };
-
-    const minDate = new Date();
 
     return (
         <div className={classes.usersignUpRoot}>
@@ -80,6 +78,7 @@ function ReservationFilterComponent(props) {
                             </Grid>
 
                             <Grid item xs={7} id="ActiveTimeInterval">
+
                                 <KeyboardDatePicker
                                     margin="normal"
                                     id="time-from"
@@ -89,16 +88,14 @@ function ReservationFilterComponent(props) {
                                     KeyboardButtonProps={{
                                         'aria-label': 'change time',
                                     }}
-                                    minDate={minDate}
-                                    disablePast
+                                    min
                                 />
                             </Grid>
                         </Grid>
                     </MuiPickersUtilsProvider>
                 </div>
             </Paper></div>
-    )
-        ;
+    );
 }
 
-export default ReservationFilterComponent;
+export default AdminReservationFilterComponent;

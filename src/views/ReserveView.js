@@ -12,9 +12,8 @@ import React, {useEffect, useState} from "react";
 import {getLaundryRoom} from "../redux/actions";
 import RoomInfoComponentAdminReservations from "../components/RoomInfoComponentAdminReservations";
 import Loading from "../components/Loading";
-import ReservationFilterComponent from "../components/ReservationFilterComponent";
-import AdminSchedulerComponent from "../components/AdminSchedulerComponent";
 import ReserveSchedulerComponent from "../components/ReserveSchedulerComponent";
+import ReservationFilterComponent from "../components/ReservationFilterComponent";
 
 function ReserveView(props) {
 

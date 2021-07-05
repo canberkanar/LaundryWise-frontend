@@ -12,7 +12,7 @@ import React, {useEffect, useState} from "react";
 import {getLaundryRoom} from "../redux/actions";
 import RoomInfoComponentAdminReservations from "../components/RoomInfoComponentAdminReservations";
 import Loading from "../components/Loading";
-import ReservationFilterComponent from "../components/ReservationFilterComponent";
+import AdminReservationFilterComponent from "../components/AdminReservationFilterComponent";
 import AdminSchedulerComponent from "../components/AdminSchedulerComponent";
 
 function AdminRoomReservationsView(props) {
@@ -47,7 +47,7 @@ function AdminRoomReservationsView(props) {
                     </Grid>
                     <br/>
                     <Grid item xs={5} id="ReservationFilterGrid">
-                        <ReservationFilterComponent selectedMachineType={selectedMachineType} selectedDate={selectedDate}
+                        <AdminReservationFilterComponent selectedMachineType={selectedMachineType} selectedDate={selectedDate}
                                                     passSelectedMachineTypeToParent={setSelectedMachineType} passSelectedDateToParent={setSelectedDate}
                         />
                     </Grid>
