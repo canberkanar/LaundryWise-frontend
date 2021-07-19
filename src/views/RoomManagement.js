@@ -8,19 +8,23 @@ import AnnouncementsComponent from "../components/AnnouncementsComponent";
 import {Grid, Paper} from "@material-ui/core";
 import { Helmet } from 'react-helmet';
 import {connect} from "react-redux";
+import MachineInRoomInfoComponent from "../components/MachineInRoomInfoComponent";
+import {useState} from "react";
 
-function RoomManagement() {
-
+function RoomManagement(props) {
+    const [selectedMachineType, setSelectedMachineType] = useState("washer");
     return (
         <div>
             <Helmet>
-                <title>LaundryWise | Room Management</title>
+                <title>LaundryWise | Room Machine Management</title>
             </Helmet>
+            <Grid container id="MachineInRoom">
+                <Grid item xs={12} id="RoomInfoGrid">
+                    <MachineInRoomInfoComponent selectedMachineType={selectedMachineType} passSelectedMachineTypeToParent={setSelectedMachineType}/>
+                    <br/>
 
-            <br/>
-            <Paper>
-                <h1>Room Management</h1>
-            </Paper>
+                </Grid>
+            </Grid>
         </div>
     );
 }
