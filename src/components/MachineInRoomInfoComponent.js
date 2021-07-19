@@ -62,7 +62,7 @@ function MachineInRoomInfoComponent(props) {
                             </Typography>
                             <Typography>Address</Typography>
                         </Grid>
-
+                        <br/><br/><br/><br/><br/><br/>
                         {/*isAdmin must be fed in from parent view as parameter*/}
                         {/*isAdmin={!!user.user ? user.user.role === "admin" : false}*/}
                         <Grid id="LaundryRoomActiveGrid" container xs={6}>
