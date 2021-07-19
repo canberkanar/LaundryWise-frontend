@@ -12,6 +12,7 @@
         "@material-ui/lab": "^4.0.0-alpha.57",
         "@material-ui/pickers": "^3.2.10",
         "@reduxjs/toolkit": "^1.4.0",
+        "axios": "^0.21.1",
         "bcryptjs": "^2.4.3",
         "date-fns": "^2.16.1",
         "jsonwebtoken": "^8.5.1",

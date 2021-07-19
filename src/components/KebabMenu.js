@@ -66,7 +66,7 @@ function KebabMenu(props) {
     }
 
     const onClickReserve = () => {
-        props.history.push("/reserve/60e04e770625c02fc850bf1a");
+        props.history.push("/reserve/60f48d5f240f7f049053b676");
     }
 
     return (

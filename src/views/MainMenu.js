@@ -6,8 +6,10 @@ import AnnouncementsComponent from "../components/AnnouncementsComponent";
 import {connect, useSelector} from "react-redux";
 import {withRouter} from "react-router-dom";
 import MenuInfoComponent from "../components/MenuInfoComponent";
-import React from "react";
+import React, {useEffect} from "react";
 import MenuStatsComponent from "../components/MenuStatsComponent";
+import LaundryRoomService from "../services/LaundryRoomService";
+
 
 function MainMenu(props) {
 
@@ -29,7 +31,13 @@ function MainMenu(props) {
         // navigate to an empty mask for entering details of the new movie
         props.history.push("/roomManagement");
     };
-
+    useEffect(() => {
+        async function fetchMyAPI() {
+            const response = await LaundryRoomService.getAllLaundryRooms();
+            console.log(response);
+        }
+        fetchMyAPI()
+    }, []);
     return (
         <div>
             <Helmet>
