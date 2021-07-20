@@ -3,6 +3,7 @@
  */
 
 import LaundryRoomService from "../../services/LaundryRoomService";
+import MovieService from "../../services/MovieService";
 
 export const getLaundryRoom = (id, machineType, date) => {
     function onSuccess(laundryroom) {
@@ -21,5 +22,30 @@ export const getLaundryRoom = (id, machineType, date) => {
         }
     };
 };
+
+export function getLaundryRooms() {
+    // when the backend call was successfull and the movies are retrieved
+    // in the dispatcher the movies will be added to the global state
+    function onSuccess(laundryRooms) {
+        return { type: "GETLAUNDRYROOMS_SUCCESS", laundryRooms: laundryRooms };
+    }
+    // when the backend call was failed
+    function onFailure(error) {
+        // error handling
+        console.log("failed to get the laundryRooms", error);
+    }
+
+    return async (dispatch) => {
+        try {
+            // ask for the movies in the backend
+            let laundryRooms = await LaundryRoomService.getLaundryRooms();
+            console.log(laundryRooms);
+            // call onSuccess in context of redux
+            dispatch(onSuccess(laundryRooms));
+        } catch (e) {
+            onFailure(e);
+        }
+    };
+}
 
 

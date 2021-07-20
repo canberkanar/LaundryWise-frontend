@@ -9,10 +9,13 @@ import MenuInfoComponent from "../components/MenuInfoComponent";
 import React, {useEffect} from "react";
 import MenuStatsComponent from "../components/MenuStatsComponent";
 import LaundryRoomService from "../services/LaundryRoomService";
+import {getLaundryRooms, getMovies} from "../redux/actions";
 
 
 function MainMenu(props) {
 
+    let getLaundryRooms= props.laundryRooms;
+    console.log(getLaundryRooms);
     const user = useSelector((state) => state.user);
 
     const onMachineManagementClick = () => {
@@ -31,13 +34,19 @@ function MainMenu(props) {
         // navigate to an empty mask for entering details of the new movie
         props.history.push("/roomManagement");
     };
+
+
     useEffect(() => {
-        async function fetchMyAPI() {
-            const response = await LaundryRoomService.getAllLaundryRooms();
-            console.log(response);
-        }
-        fetchMyAPI()
+        // load movies when the page is loaded or the movies have changed.
+        console.log(loadLaundryRooms());
+
     }, []);
+
+    const loadLaundryRooms = async () => {
+        // trigger the redux action getMovies
+        props.dispatch(getLaundryRooms());
+    };
+
     return (
         <div>
             <Helmet>
@@ -72,5 +81,5 @@ function MainMenu(props) {
 }
 
 // export default MainMenu;
-export default connect()(MainMenu);
+export default connect(null,{getLaundryRooms})(MainMenu);
 // export default connect()(withRouter(UserLoginView));
