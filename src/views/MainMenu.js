@@ -1,17 +1,18 @@
-import {Button, Grid} from "@material-ui/core";
+import {Button, Grid, TextareaAutosize, Typography} from "@material-ui/core";
 import { Helmet } from 'react-helmet';
 import {connect, useSelector} from "react-redux";
 import MenuInfoComponent from "../components/MenuInfoComponent";
 import React, {useEffect} from "react";
 import MenuStatsComponent from "../components/MenuStatsComponent";
 import {getLaundryRooms} from "../redux/actions";
+import Loading from "../components/Loading";
 
 
 function MainMenu(props) {
 
     const user = useSelector((state) => state.user);
     const allLaundryRooms = useSelector((state) => state.allLaundryRooms);
-
+    let {match, getLaundryRooms} = props;
 
     const onMachineManagementClick = () => {
         // navigate to an empty mask for entering details of the new movie
@@ -30,28 +31,16 @@ function MainMenu(props) {
         props.history.push("/roomManagement");
     };
 
-
-    let {getLaundryRooms} = props;
-
     useEffect(() => {
         // trigger room load from backend
         getLaundryRooms();
-        console.log(allLaundryRooms.laundryRooms);
-        console.log("HELLO");
-    }, [allLaundryRooms.laundryRooms]);
+    }, []);
 
-    const loadLaundryRooms = async () => {
-        // trigger the redux action getMovies
-        let lr = getLaundryRooms();
-        console.log(lr);
-    };
-
-    return (
+    return (!allLaundryRooms.laundryRooms && !allLaundryRooms.error ? <Loading/> :
         <div>
             <Helmet>
                 <title>LaundryWise | Main Menu</title>
             </Helmet>
-
             <br/>
             <Grid container id="LaundryRoomsGrid">
                 <Grid item xs={10} id="RoomPanelGrid">
@@ -60,6 +49,8 @@ function MainMenu(props) {
                         isAdmin={!!user.user ? user.user.role === "admin" : false}
                         onMachineManagementClick={onMachineManagementClick}
                         onRoomManagementClick={onRoomManagementClick}
+                        laundryRooms = {allLaundryRooms.laundryRooms}
+
                     />
                 </Grid>
                 <br/>
@@ -79,9 +70,6 @@ function MainMenu(props) {
     );
 }
 
-// export default MainMenu;
-// export default connect(null,{getLaundryRooms})(MainMenu);
-// export default connect()(withRouter(UserLoginView));
 export default connect(null, {getLaundryRooms})(
     MainMenu
 );

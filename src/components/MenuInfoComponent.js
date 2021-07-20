@@ -1,18 +1,14 @@
 import React, {useEffect} from "react";
+import {getLaundryRooms} from "../redux/actions";
+import Loading from "../components/Loading";
 import {
     Paper,
     Grid,
     Typography,
-    FormControlLabel,
-    Switch,
-
 } from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
-
-import {useSelector} from "react-redux";
-import RoomInfoComponent from "./RoomInfoComponent";
+import {connect, useSelector} from "react-redux";
 import MenuRoomInfoComponent from "./MenuRoomInfoComponent";
-
 const useStyles = makeStyles((theme) => ({
     usersignUpRoot: {
         margin: "auto",
@@ -41,13 +37,19 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-
 function MenuInfoComponent(props) {
+
     const classes = useStyles();
     const user = useSelector((state) => state.user);
+    const allLaundryRooms = useSelector((state) => state.allLaundryRooms);
+    let {match, getLaundryRooms} = props;
 
+    useEffect(() => {
+        // trigger room load from backend
+        getLaundryRooms();
+    }, []);
 
-    return (
+    return (!allLaundryRooms.laundryRooms && !allLaundryRooms.error ? <Loading/> :
 
         <div className={classes.usersignUpRoot}>
             <Paper className={classes.signUpPaper} component="form">
@@ -57,7 +59,7 @@ function MenuInfoComponent(props) {
 
                         <Grid>
                             <Typography align="left">
-                                JVS Arriott Hotel's Laundry Rooms
+                                {allLaundryRooms.laundryRooms[1].name}
                             </Typography>
 
                             <br/>
@@ -86,4 +88,6 @@ function MenuInfoComponent(props) {
     );
 }
 
-export default MenuInfoComponent;
+export default connect(null, {getLaundryRooms})(
+    MenuInfoComponent
+);
