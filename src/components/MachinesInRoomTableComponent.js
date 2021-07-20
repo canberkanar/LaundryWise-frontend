@@ -1,7 +1,13 @@
 import * as React from 'react';
 import { DataGrid } from '@material-ui/data-grid';
+import {IconButton, TableCell} from "@material-ui/core";
+
+function DeleteForeverIcon() {
+    return null;
+}
 
 function MachinesInRoomTableComponent(props) {
+
     const columns = [
         { field: 'id', headerName: 'Machine # In Room', width: 200 },
         { field: 'firstName', headerName: 'Price', width: 200},
@@ -27,9 +33,17 @@ function MachinesInRoomTableComponent(props) {
     ];
 
     return (
+        <React.Fragment>
         <div style={{ height: 600, width: '100%' }}>
-            <DataGrid rows={rows} columns={columns} pageSize={5} checkboxSelection />
+            <DataGrid rows={rows} columns={columns} pageSize={5} />
         </div>
+            <TableCell align="right">
+                <IconButton
+                    color="inherit">
+                    <DeleteForeverIcon/>
+                </IconButton>
+            </TableCell>
+            </React.Fragment>
     );
 }
 
