@@ -27,7 +27,7 @@ function AdminRoomReservationsView(props) {
     useEffect(() => {
         // get id of laundry room from URL
         let roomId = match.params.id;
-
+        console.log(roomId);
         // trigger room load from backend
         getLaundryRoom(roomId, selectedMachineType, selectedDate);
     }, [match.params, selectedMachineType, selectedDate]);

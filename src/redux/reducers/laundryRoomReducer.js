@@ -2,7 +2,7 @@
  * @author canberk.anar
  */
 
-export default function selectedLaundryRoom(state = {}, action) {
+export function selectedLaundryRoom(state = {}, action) {
     switch (action.type) {
         case "GETLAUNDRYROOM_SUCCESS":
             return { laundryroom: action.laundryroom };
@@ -12,3 +12,13 @@ export default function selectedLaundryRoom(state = {}, action) {
             return { laundryroom: action.laundryroom };
     }
 }
+
+export function allLaundryRooms(state = {}, action) {
+    switch (action.type) {
+        case "GETLAUNDRYROOMS_SUCCESS":
+            return { laundryRooms: action.laundryRooms };
+        default:
+            return { laundryRooms: action.laundryRooms };
+    }
+}
+
