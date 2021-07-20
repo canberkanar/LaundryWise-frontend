@@ -1,16 +1,10 @@
 import {Button, Grid} from "@material-ui/core";
 import { Helmet } from 'react-helmet';
-import RoomInfoComponent from "../components/RoomInfoComponent";
-import WorkingHoursComponent from "../components/WorkingHoursComponent";
-import AnnouncementsComponent from "../components/AnnouncementsComponent";
-import {connect, useDispatch, useSelector} from "react-redux";
-import {withRouter} from "react-router-dom";
+import {connect, useSelector} from "react-redux";
 import MenuInfoComponent from "../components/MenuInfoComponent";
 import React, {useEffect} from "react";
 import MenuStatsComponent from "../components/MenuStatsComponent";
-import LaundryRoomService from "../services/LaundryRoomService";
-import {getLaundryRoom, getLaundryRooms, getMovies} from "../redux/actions";
-import {allLaundryRooms} from "../redux/reducers/laundryRoomReducer";
+import {getLaundryRooms} from "../redux/actions";
 
 
 function MainMenu(props) {
