@@ -4,7 +4,7 @@ import {connect, useSelector} from "react-redux";
 import MenuInfoComponent from "../components/MenuInfoComponent";
 import React, {useEffect} from "react";
 import MenuStatsComponent from "../components/MenuStatsComponent";
-import {getLaundryRooms} from "../redux/actions";
+import {getLaundryRooms, getRoom} from "../redux/actions";
 import Loading from "../components/Loading";
 
 
@@ -12,7 +12,8 @@ function MainMenu(props) {
 
     const user = useSelector((state) => state.user);
     const allLaundryRooms = useSelector((state) => state.allLaundryRooms);
-    let {match, getLaundryRooms} = props;
+    const theRoom = useSelector((state) => state.getRoom)
+    let {match, getLaundryRooms, getRoom} = props;
 
     const onMachineManagementClick = () => {
         // navigate to an empty mask for entering details of the new movie
@@ -26,7 +27,10 @@ function MainMenu(props) {
         // navigate to an empty mask for entering details of the new movie
         props.history.push("/revenueStatistics");
     };
-    const onRoomManagementClick = () => {
+    const onRoomManagementClick = (xroom) => {
+
+        console.log(xroom);
+        getRoom(xroom);
         // navigate to an empty mask for entering details of the new movie
         props.history.push("/roomManagement");
     };
@@ -70,6 +74,6 @@ function MainMenu(props) {
     );
 }
 
-export default connect(null, {getLaundryRooms})(
+export default connect(null, {getLaundryRooms, getRoom})(
     MainMenu
 );
