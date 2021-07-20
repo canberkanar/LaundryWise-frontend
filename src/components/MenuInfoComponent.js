@@ -4,7 +4,7 @@ import Loading from "../components/Loading";
 import {
     Paper,
     Grid,
-    Typography,
+    Typography, TableContainer, TableHead, Table, TableBody, TextField, TableRow, TableCell,
 } from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import {connect, useSelector} from "react-redux";
@@ -42,7 +42,15 @@ function MenuInfoComponent(props) {
     const classes = useStyles();
     const user = useSelector((state) => state.user);
     const allLaundryRooms = useSelector((state) => state.allLaundryRooms);
+    const LR = useSelector((state) => state.allLaundryRooms.laundryRooms);
     let {match, getLaundryRooms} = props;
+    console.log(LR);
+    const item = LR.map((name,address) => {
+        return <div>
+            <h2>{name}</h2>
+            <p>{address}</p>
+            </div>
+    })
 
     useEffect(() => {
         // trigger room load from backend
@@ -58,25 +66,43 @@ function MenuInfoComponent(props) {
                     <Grid id="LaundryRoomInfoGrid" container>
 
                         <Grid>
-                            <Typography align="left">
-                                {allLaundryRooms.laundryRooms[1].name}
-                            </Typography>
+                            <TableContainer>
+                                <Table>
+                                    <TableHead>
+                                        <TableRow>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        {LR.map((item, index) => {
+                                            return (
+                                                <MenuRoomInfoComponent
+                                                    isLoggedIn={!!user.user}
+                                                    isAdmin={!!user.user ? user.user.role === "admin" : false}
+                                                    onMachineManagementClick={props.onMachineManagementClick}
+                                                    onRoomManagementClick={props.onRoomManagementClick}
+                                                    room={item}
+                                                />
+                                            );
+                                        })}
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
 
-                            <br/>
-                            <MenuRoomInfoComponent
-                                isLoggedIn={!!user.user}
-                                isAdmin={!!user.user ? user.user.role === "admin" : false}
-                                onMachineManagementClick={props.onMachineManagementClick}
-                                onRoomManagementClick={props.onRoomManagementClick}
-                            />
+                            {/*<br/>*/}
+                            {/*<MenuRoomInfoComponent*/}
+                            {/*    isLoggedIn={!!user.user}*/}
+                            {/*    isAdmin={!!user.user ? user.user.role === "admin" : false}*/}
+                            {/*    onMachineManagementClick={props.onMachineManagementClick}*/}
+                            {/*    onRoomManagementClick={props.onRoomManagementClick}*/}
+                            {/*/>*/}
 
-                            <br/>
-                            <MenuRoomInfoComponent
-                                isLoggedIn={!!user.user}
-                                isAdmin={!!user.user ? user.user.role === "admin" : false}
-                                onMachineManagementClick={props.onMachineManagementClick}
-                                onRoomManagementClick={props.onRoomManagementClick}
-                            />
+                            {/*<br/>*/}
+                            {/*<MenuRoomInfoComponent*/}
+                            {/*    isLoggedIn={!!user.user}*/}
+                            {/*    isAdmin={!!user.user ? user.user.role === "admin" : false}*/}
+                            {/*    onMachineManagementClick={props.onMachineManagementClick}*/}
+                            {/*    onRoomManagementClick={props.onRoomManagementClick}*/}
+                            {/*/>*/}
 
                         </Grid>
 
