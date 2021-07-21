@@ -4,7 +4,7 @@ import Loading from "../components/Loading";
 import {
     Paper,
     Grid,
-    Typography, TableContainer, TableHead, Table, TableBody, TextField, TableRow, TableCell,
+    TableContainer, TableHead, Table, TableBody, TableRow, Button,
 } from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import {connect, useSelector} from "react-redux";
@@ -44,20 +44,23 @@ function MenuInfoComponent(props) {
     const allLaundryRooms = useSelector((state) => state.allLaundryRooms);
     const LR = useSelector((state) => state.allLaundryRooms.laundryRooms);
     let {match, getLaundryRooms} = props;
-    console.log(LR);
-    const item = LR.map((name,address) => {
-        return <div>
-            <h2>{name}</h2>
-            <p>{address}</p>
-            </div>
-    })
 
     useEffect(() => {
         // trigger room load from backend
         getLaundryRooms();
     }, []);
 
-    return (!allLaundryRooms.laundryRooms && !allLaundryRooms.error ? <Loading/> :
+    // function handleRoomClick(xyz) {
+    //     console.log("handleRoomClickButton");
+    //     props.onRoomManagementClick(xyz); // pass any argument to the callback
+    // }
+
+    // function handleMachineClick(xyz) {
+    //     console.log("handleMachineClickButton");
+    //     props.onMachineManagementClick(xyz); // pass any argument to the callback
+    // }
+
+    return (!allLaundryRooms.laundryRooms && !allLaundryRooms.error && !LR ? <Loading/> :
 
         <div className={classes.usersignUpRoot}>
             <Paper className={classes.signUpPaper} component="form">
@@ -75,13 +78,25 @@ function MenuInfoComponent(props) {
                                     <TableBody>
                                         {LR.map((item, index) => {
                                             return (
+                                                <>
                                                 <MenuRoomInfoComponent
                                                     isLoggedIn={!!user.user}
                                                     isAdmin={!!user.user ? user.user.role === "admin" : false}
                                                     onMachineManagementClick={props.onMachineManagementClick}
                                                     onRoomManagementClick={props.onRoomManagementClick}
+                                                    onReservationsClick={props.onReservationsClick}
                                                     room={item}
                                                 />
+                                                {/*<Button*/}
+                                                {/*    name="MyButton"*/}
+                                                {/*    onClick = {() => handleRoomClick(item)}*/}
+                                                {/*    variant="contained"*/}
+                                                {/*    color="primary"*/}
+                                                {/*    className={classes.roomSettingsButton}*/}
+                                                {/*>*/}
+                                                {/*    Send Room To Parent*/}
+                                                {/*</Button>*/}
+                                                </>
                                             );
                                         })}
                                     </TableBody>

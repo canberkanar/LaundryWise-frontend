@@ -1,6 +1,3 @@
-/**
- * @author canberk.anar
- */
 
 export function selectedLaundryRoom(state = {}, action) {
     switch (action.type) {

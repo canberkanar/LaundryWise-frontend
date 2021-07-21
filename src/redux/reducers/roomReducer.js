@@ -1,14 +1,12 @@
-/**
- * @author canberk.anar
- */
-
-export default function selectedRoom(state = {}, action) {
+export function selectRoom(state = {}, action) {
     switch (action.type) {
         case "ROOM":
-            return { room: action.data };
+            console.log("INSIDE THE SELECT ROOM REDUCER:");
+            console.log(action.room);
+            return { room: action.room };
         default:
-            return { room: action.data };
+            return state;
     }
-
 }
+
 

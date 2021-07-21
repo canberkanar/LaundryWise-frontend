@@ -15,6 +15,7 @@ const getUser = () => {
                 _id: userJson._id,
                 username: userJson.username,
                 role: userJson.role,
+                laundryRooms: userJson.laundryRooms
             },
         };
     }

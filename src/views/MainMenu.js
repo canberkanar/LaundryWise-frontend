@@ -1,10 +1,10 @@
-import {Button, Grid, TextareaAutosize, Typography} from "@material-ui/core";
+import {Grid} from "@material-ui/core";
 import { Helmet } from 'react-helmet';
 import {connect, useSelector} from "react-redux";
 import MenuInfoComponent from "../components/MenuInfoComponent";
 import React, {useEffect} from "react";
 import MenuStatsComponent from "../components/MenuStatsComponent";
-import {getLaundryRooms, getRoom} from "../redux/actions";
+import {getLaundryRooms} from "../redux/actions";
 import Loading from "../components/Loading";
 
 
@@ -12,13 +12,13 @@ function MainMenu(props) {
 
     const user = useSelector((state) => state.user);
     const allLaundryRooms = useSelector((state) => state.allLaundryRooms);
-    const theRoom = useSelector((state) => state.getRoom)
-    let {match, getLaundryRooms, getRoom} = props;
 
-    const onMachineManagementClick = () => {
-        // navigate to an empty mask for entering details of the new movie
-        props.history.push("/machineManagement");
-    };
+    let isLoggedIn = !!user.user;
+    let isAdmin = !!user.user ? user.user.role === "admin" : false;
+
+    let {match, getLaundryRooms} = props;
+
+
     const onUsageStatsClick = () => {
         // navigate to an empty mask for entering details of the new movie
         props.history.push("/usageStatistics");
@@ -27,17 +27,33 @@ function MainMenu(props) {
         // navigate to an empty mask for entering details of the new movie
         props.history.push("/revenueStatistics");
     };
-    const onRoomManagementClick = (xroom) => {
-
-        console.log(xroom);
-        getRoom(xroom);
+    const onRoomManagementClick = (childData) => {
+        console.log("The passed data childData to RoomManagement:")
+        console.log(childData);
         // navigate to an empty mask for entering details of the new movie
-        props.history.push("/roomManagement");
+        props.history.push("/roomManagement", childData);
+    };
+    const onMachineManagementClick = (childData) => {
+        console.log("The passed data childData to MachineManagement:")
+        console.log(childData);
+        // navigate to an empty mask for entering details of the new movie
+        props.history.push("/machineManagement", childData);
+    };
+    const onReservationsClick = (childData) => {
+        // navigate to an empty mask for entering details of the new movie
+        if(isAdmin){
+            props.history.push("/admin/laundryroom/" + childData);
+        }
+        else{
+            props.history.push("/reserve/" + childData);
+        }
     };
 
     useEffect(() => {
         // trigger room load from backend
         getLaundryRooms();
+        console.log("This is the User:")
+        console.log(user);
     }, []);
 
     return (!allLaundryRooms.laundryRooms && !allLaundryRooms.error ? <Loading/> :
@@ -45,14 +61,18 @@ function MainMenu(props) {
             <Helmet>
                 <title>LaundryWise | Main Menu</title>
             </Helmet>
+            <h1>
+                {user.role}
+            </h1>
             <br/>
             <Grid container id="LaundryRoomsGrid">
                 <Grid item xs={10} id="RoomPanelGrid">
                     <MenuInfoComponent
-                        isLoggedIn={!!user.user}
-                        isAdmin={!!user.user ? user.user.role === "admin" : false}
+                        isLoggedIn={isLoggedIn}
+                        isAdmin={isAdmin}
                         onMachineManagementClick={onMachineManagementClick}
                         onRoomManagementClick={onRoomManagementClick}
+                        onReservationsClick={onReservationsClick}
                         laundryRooms = {allLaundryRooms.laundryRooms}
 
                     />
@@ -61,8 +81,8 @@ function MainMenu(props) {
                 <Grid item xs={2} id="StatisticsGrid">
 
                     <MenuStatsComponent
-                        isLoggedIn={!!user.user}
-                        isAdmin={!!user.user ? user.user.role === "admin" : false}
+                        isLoggedIn={isLoggedIn}
+                        isAdmin={isAdmin}
                         onUsageStatsClick={onUsageStatsClick}
                         onRevenueStatsClick={onRevenueStatsClick}
                     />
@@ -74,6 +94,6 @@ function MainMenu(props) {
     );
 }
 
-export default connect(null, {getLaundryRooms, getRoom})(
+export default connect(null, {getLaundryRooms})(
     MainMenu
 );

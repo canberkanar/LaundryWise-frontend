@@ -50,6 +50,21 @@ function MenuRoomInfoComponent(props) {
     const room = props.room;
 
 
+    function handleMClick(xyz) {
+        props.onMachineManagementClick(xyz); // pass any argument to the callback
+    }
+
+    function handleRClick(xyz) {
+        props.onRoomManagementClick(xyz); // pass any argument to the callback
+    }
+
+    function handleRezClick(xyz) {
+        console.log("REZ BUTTON PRESSED")
+        console.log("THE ID IS:" + xyz)
+        props.onReservationsClick(xyz); // pass any argument to the callback
+    }
+
+
     return (
 
         <div className={classes.usersignUpRoot}>
@@ -73,10 +88,13 @@ function MenuRoomInfoComponent(props) {
                                 {/*<Button variant="contained"> Room Setings </Button>*/}
                                 {props.isAdmin ? (
                                     <Button
-                                        onClick={props.onRoomManagementClick}
+                                        name="MyButton"
+                                        room={room.name}
+                                        onClick = {() => handleRClick(props.room)}
                                         variant="contained"
                                         color="primary"
                                         className={classes.roomSettingsButton}
+
                                     >
                                         Room Settings
                                     </Button>
@@ -85,7 +103,7 @@ function MenuRoomInfoComponent(props) {
                                 {/*<Button variant="contained"> Machine Settings </Button>*/}
                                 {props.isAdmin ? (
                                     <Button
-                                        onClick={props.onMachineManagementClick}
+                                        onClick = {() => handleMClick(props.room)}
                                         variant="contained"
                                         color="primary"
                                         className={classes.machineSettingsButton}
@@ -94,7 +112,13 @@ function MenuRoomInfoComponent(props) {
                                     </Button>
                                 ) : null}
                                 <br/>
-                                <Button variant="contained"> Reservations </Button>
+
+                                <Button
+                                    onClick = {() => handleRezClick(room._id)}
+                                    variant="contained"
+                                >
+                                    Reservations
+                                </Button>
 
                             </Grid>
                             <br/>

@@ -1,19 +1,29 @@
 import {Grid, Paper} from "@material-ui/core";
 import { Helmet } from 'react-helmet';
-import RoomInfoComponent from "../components/RoomInfoComponent";
-import WorkingHoursComponent from "../components/WorkingHoursComponent";
-import AnnouncementsComponent from "../components/AnnouncementsComponent";
-import {connect} from "react-redux";
+import {connect, useSelector} from "react-redux";
 import {withRouter} from "react-router-dom";
+import Loading from "../components/Loading";
+import React, {useEffect} from "react";
 
 function UsageStatistics() {
 
-    return (
+    const user = useSelector((state) => state.user);
+
+    useEffect(() => {
+        // trigger room load from backend
+        console.log("GET IN TO USAGE STATISTICS")
+        console.log(user);
+    }, []);
+
+
+    return (!user ? <Loading/> :
         <div>
             <Helmet>
                 <title>LaundryWise | Usage Statistics</title>
             </Helmet>
-
+            <h1>
+                {user.user.username}
+            </h1>
             <br/>
             <Paper>
                 <h1>Usage Statistics</h1>
