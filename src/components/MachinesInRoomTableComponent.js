@@ -54,10 +54,6 @@ function MachinesInRoomTableComponent(props) {
 
     let {match, getAllMachines, getAllMachinesInRoom, getMachine} = props;
 
-    useEffect(() => {
-        //getAllMachines();
-        getAllMachinesInRoom(props.theRoom._id,"washer");
-    }, []);
 
     console.log(allMachines);
 

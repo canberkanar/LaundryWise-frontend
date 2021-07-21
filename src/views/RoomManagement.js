@@ -2,9 +2,9 @@ import {Grid, Paper, TextField} from "@material-ui/core";
 import {Helmet} from 'react-helmet';
 import {connect, useSelector} from "react-redux";
 import MachineInRoomInfoComponent from "../components/MachineInRoomInfoComponent";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import MachinesInRoomTableComponent from "../components/MachinesInRoomTableComponent";
-import {getLaundryRooms, getRoom} from "../redux/actions";
+import {getAllMachinesInRoom, getLaundryRooms, getRoom} from "../redux/actions";
 import Loading from "../components/Loading";
 
 
@@ -12,11 +12,17 @@ function RoomManagement(props) {
 
 
     const user = useSelector((state) => state.user);
+
     const [selectedMachineType, setSelectedMachineType] = useState("washer");
 
     console.log("COME INSIDE TO ROOM MANAGEMENT");
 
-    const theRoom = props.location.state
+    const theRoom = props.location.state;
+
+    useEffect(() => {
+        //getAllMachines();
+        getAllMachinesInRoom(theRoom._id, selectedMachineType);
+    }, [selectedMachineType]);
 
     return (!theRoom && !theRoom.error ? <Loading/> :
             // !theRoom ? <Loading/> :
@@ -31,12 +37,12 @@ function RoomManagement(props) {
                     <Grid item xs={2} id="RoomInfoGrid">
                         <MachineInRoomInfoComponent selectedMachineType={selectedMachineType}
                                                     passSelectedMachineTypeToParent={setSelectedMachineType}
-                                                    theRoom = {theRoom}/>
+                                                    theRoom={theRoom}/>
 
                     </Grid>
                     <br/>
                     <Grid item xs={10} id="MachinesTable">
-                        <MachinesInRoomTableComponent theRoom = {theRoom}/>
+                        <MachinesInRoomTableComponent theRoom={theRoom}/>
                     </Grid>
                 </Grid>
             </div>
@@ -44,7 +50,7 @@ function RoomManagement(props) {
 }
 
 // export default MachineManagement;
-export default connect(null, {getLaundryRooms, getRoom})(
+export default connect(null, {getLaundryRooms, getRoom, getAllMachinesInRoom})(
     RoomManagement
 );
 

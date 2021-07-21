@@ -44,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
 function MachineInRoomInfoComponent(props) {
     const classes = useStyles();
     const user = useSelector((state) => state.user);
+
     const handleRadioChange = (event) => {
         props.passSelectedMachineTypeToParent(event.target.value);
     };
