@@ -13,6 +13,9 @@ function MainMenu(props) {
     const user = useSelector((state) => state.user);
     const allLaundryRooms = useSelector((state) => state.allLaundryRooms);
 
+    let isLoggedIn = !!user.user;
+    let isAdmin = !!user.user ? user.user.role === "admin" : false;
+
     let {match, getLaundryRooms} = props;
 
 
@@ -38,7 +41,12 @@ function MainMenu(props) {
     };
     const onReservationsClick = (childData) => {
         // navigate to an empty mask for entering details of the new movie
-        props.history.push("/admin/laundryroom/" + childData);
+        if(isAdmin){
+            props.history.push("/admin/laundryroom/" + childData);
+        }
+        else{
+            props.history.push("/reserve/" + childData);
+        }
     };
 
     useEffect(() => {
@@ -60,8 +68,8 @@ function MainMenu(props) {
             <Grid container id="LaundryRoomsGrid">
                 <Grid item xs={10} id="RoomPanelGrid">
                     <MenuInfoComponent
-                        isLoggedIn={!!user.user}
-                        isAdmin={!!user.user ? user.user.role === "admin" : false}
+                        isLoggedIn={isLoggedIn}
+                        isAdmin={isAdmin}
                         onMachineManagementClick={onMachineManagementClick}
                         onRoomManagementClick={onRoomManagementClick}
                         onReservationsClick={onReservationsClick}
@@ -73,8 +81,8 @@ function MainMenu(props) {
                 <Grid item xs={2} id="StatisticsGrid">
 
                     <MenuStatsComponent
-                        isLoggedIn={!!user.user}
-                        isAdmin={!!user.user ? user.user.role === "admin" : false}
+                        isLoggedIn={isLoggedIn}
+                        isAdmin={isAdmin}
                         onUsageStatsClick={onUsageStatsClick}
                         onRevenueStatsClick={onRevenueStatsClick}
                     />
