@@ -15,14 +15,17 @@ function RoomManagement(props) {
 
     const [selectedMachineType, setSelectedMachineType] = useState("washer");
 
-    console.log("COME INSIDE TO ROOM MANAGEMENT");
-
     const theRoom = props.location.state;
 
+    let {match, getAllMachinesInRoom} = props;
+
     useEffect(() => {
-        //getAllMachines();
         getAllMachinesInRoom(theRoom._id, selectedMachineType);
-    }, [selectedMachineType]);
+    }, [match.params, selectedMachineType, theRoom._id]);
+
+
+    const allMachines = useSelector((state) => state.selectMachinesInRoom.machines);
+
 
     return (!theRoom && !theRoom.error ? <Loading/> :
             // !theRoom ? <Loading/> :
@@ -42,7 +45,7 @@ function RoomManagement(props) {
                     </Grid>
                     <br/>
                     <Grid item xs={10} id="MachinesTable">
-                        <MachinesInRoomTableComponent theRoom={theRoom}/>
+                        <MachinesInRoomTableComponent theRoom={theRoom} allMachines = {allMachines}/>
                     </Grid>
                 </Grid>
             </div>

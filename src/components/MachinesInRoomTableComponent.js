@@ -50,9 +50,8 @@ function MachinesInRoomTableComponent(props) {
     const classes = useStyles();
     console.log(machines);
 
-    const allMachines = useSelector((state) => state.selectMachinesInRoom.machines);
 
-    let {match, getAllMachines, getAllMachinesInRoom, getMachine} = props;
+    let {allMachines} = props;
 
 
     console.log(allMachines);
