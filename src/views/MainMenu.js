@@ -12,7 +12,8 @@ function MainMenu(props) {
 
     const user = useSelector((state) => state.user);
     const allLaundryRooms = useSelector((state) => state.allLaundryRooms);
-    const theRoom = useSelector((state) => state.getRoom)
+    const theRoom = useSelector((state) => state.selectRoom.room)
+
     let {match, getLaundryRooms, getRoom} = props;
 
     const onMachineManagementClick = () => {
@@ -27,10 +28,12 @@ function MainMenu(props) {
         // navigate to an empty mask for entering details of the new movie
         props.history.push("/revenueStatistics");
     };
-    const onRoomManagementClick = (xroom) => {
-
-        console.log(xroom);
-        getRoom(xroom);
+    const onRoomManagementClick = (childData) => {
+        console.log("Room initial state:");
+        console.log(theRoom);
+        console.log("The passed data childData:")
+        console.log(childData);
+        getRoom(childData);
         // navigate to an empty mask for entering details of the new movie
         props.history.push("/roomManagement");
     };

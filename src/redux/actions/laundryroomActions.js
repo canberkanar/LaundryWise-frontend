@@ -39,7 +39,6 @@ export function getLaundryRooms() {
         try {
             // ask for the movies in the backend
             let laundryRooms = await LaundryRoomService.getLaundryRooms();
-            console.log(laundryRooms);
             // call onSuccess in context of redux
             dispatch(onSuccess(laundryRooms));
         } catch (e) {

@@ -49,6 +49,10 @@ function MenuRoomInfoComponent(props) {
     const user = useSelector((state) => state.user);
     const room = props.room;
 
+    function handleClick(event) {
+        props.onRoomManagementClick(event.target.room); // pass any argument to the callback
+    }
+
 
     return (
 
@@ -73,10 +77,13 @@ function MenuRoomInfoComponent(props) {
                                 {/*<Button variant="contained"> Room Setings </Button>*/}
                                 {props.isAdmin ? (
                                     <Button
-                                        onClick={props.onRoomManagementClick}
+                                        name="MyButton"
+                                        room={room.name}
+                                        onClick = {handleClick}
                                         variant="contained"
                                         color="primary"
                                         className={classes.roomSettingsButton}
+
                                     >
                                         Room Settings
                                     </Button>
