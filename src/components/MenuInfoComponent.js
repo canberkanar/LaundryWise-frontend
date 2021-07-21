@@ -43,22 +43,13 @@ function MenuInfoComponent(props) {
     const user = useSelector((state) => state.user);
     const allLaundryRooms = useSelector((state) => state.allLaundryRooms);
     const LR = useSelector((state) => state.allLaundryRooms.laundryRooms);
+    console.log(LR);
     let {match, getLaundryRooms} = props;
 
     useEffect(() => {
         // trigger room load from backend
         getLaundryRooms();
     }, []);
-
-    // function handleRoomClick(xyz) {
-    //     console.log("handleRoomClickButton");
-    //     props.onRoomManagementClick(xyz); // pass any argument to the callback
-    // }
-
-    // function handleMachineClick(xyz) {
-    //     console.log("handleMachineClickButton");
-    //     props.onMachineManagementClick(xyz); // pass any argument to the callback
-    // }
 
     return (!allLaundryRooms.laundryRooms && !allLaundryRooms.error && !LR ? <Loading/> :
 
@@ -102,22 +93,6 @@ function MenuInfoComponent(props) {
                                     </TableBody>
                                 </Table>
                             </TableContainer>
-
-                            {/*<br/>*/}
-                            {/*<MenuRoomInfoComponent*/}
-                            {/*    isLoggedIn={!!user.user}*/}
-                            {/*    isAdmin={!!user.user ? user.user.role === "admin" : false}*/}
-                            {/*    onMachineManagementClick={props.onMachineManagementClick}*/}
-                            {/*    onRoomManagementClick={props.onRoomManagementClick}*/}
-                            {/*/>*/}
-
-                            {/*<br/>*/}
-                            {/*<MenuRoomInfoComponent*/}
-                            {/*    isLoggedIn={!!user.user}*/}
-                            {/*    isAdmin={!!user.user ? user.user.role === "admin" : false}*/}
-                            {/*    onMachineManagementClick={props.onMachineManagementClick}*/}
-                            {/*    onRoomManagementClick={props.onRoomManagementClick}*/}
-                            {/*/>*/}
 
                         </Grid>
 

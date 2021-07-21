@@ -15,9 +15,7 @@ function MainMenu(props) {
 
     let isLoggedIn = !!user.user;
     let isAdmin = !!user.user ? user.user.role === "admin" : false;
-
     let {match, getLaundryRooms} = props;
-
 
     const onUsageStatsClick = () => {
         // navigate to an empty mask for entering details of the new movie
@@ -74,7 +72,6 @@ function MainMenu(props) {
                         onRoomManagementClick={onRoomManagementClick}
                         onReservationsClick={onReservationsClick}
                         laundryRooms = {allLaundryRooms.laundryRooms}
-
                     />
                 </Grid>
                 <br/>

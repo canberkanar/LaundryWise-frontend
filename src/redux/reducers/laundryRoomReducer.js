@@ -19,3 +19,12 @@ export function allLaundryRooms(state = {}, action) {
     }
 }
 
+export function updatedRoom(state = {}, action) {
+    switch (action.type) {
+        case "UPDATED_ROOM":
+            return { updated_room: action.laundryroom };
+        default:
+            return { updated_room: action.laundryroom };
+    }
+}
+
