@@ -47,6 +47,11 @@ const useStyles = makeStyles((theme) => ({
 function MenuRoomInfoComponent(props) {
     const classes = useStyles();
     const user = useSelector((state) => state.user);
+    const room = props.room;
+
+    function handleClick(event) {
+        props.onRoomManagementClick(event.target.room); // pass any argument to the callback
+    }
 
 
     return (
@@ -61,25 +66,24 @@ function MenuRoomInfoComponent(props) {
                             <Grid item xs={6} id="RoomPanelGrid">
 
                                 <Typography variant="h4" component="h2" align="left">
-                                    Laundry Room 1 - Address
+                                    {room.name} - {room.address}
                                 </Typography>
                                 <br/>
                                 <Typography align="left">
-                                    Number of Operating Washing Machines: 3
-                                </Typography>
-
-                                <Typography align="left">
-                                    Number of Operating Drying Machines: 2
+                                    Number of Operating Machines: {room.machines.length}
                                 </Typography>
 
                                 <br/>
                                 {/*<Button variant="contained"> Room Setings </Button>*/}
                                 {props.isAdmin ? (
                                     <Button
-                                        onClick={props.onRoomManagementClick}
+                                        name="MyButton"
+                                        room={room.name}
+                                        onClick = {handleClick}
                                         variant="contained"
                                         color="primary"
                                         className={classes.roomSettingsButton}
+
                                     >
                                         Room Settings
                                     </Button>

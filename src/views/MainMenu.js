@@ -4,7 +4,7 @@ import {connect, useSelector} from "react-redux";
 import MenuInfoComponent from "../components/MenuInfoComponent";
 import React, {useEffect} from "react";
 import MenuStatsComponent from "../components/MenuStatsComponent";
-import {getLaundryRooms} from "../redux/actions";
+import {getLaundryRooms, getRoom} from "../redux/actions";
 import Loading from "../components/Loading";
 
 
@@ -12,7 +12,9 @@ function MainMenu(props) {
 
     const user = useSelector((state) => state.user);
     const allLaundryRooms = useSelector((state) => state.allLaundryRooms);
-    let {match, getLaundryRooms} = props;
+    const theRoom = useSelector((state) => state.selectRoom)
+
+    let {match, getLaundryRooms, getRoom} = props;
 
     const onMachineManagementClick = () => {
         // navigate to an empty mask for entering details of the new movie
@@ -26,9 +28,14 @@ function MainMenu(props) {
         // navigate to an empty mask for entering details of the new movie
         props.history.push("/revenueStatistics");
     };
-    const onRoomManagementClick = () => {
+    const onRoomManagementClick = (childData) => {
+        console.log("Room initial state:");
+        console.log(theRoom);
+        console.log("The passed data childData:")
+        console.log(childData);
+        getRoom(childData);
         // navigate to an empty mask for entering details of the new movie
-        props.history.push("/roomManagement");
+        props.history.push("/roomManagement", childData);
     };
 
     useEffect(() => {
@@ -70,6 +77,6 @@ function MainMenu(props) {
     );
 }
 
-export default connect(null, {getLaundryRooms})(
+export default connect(null, {getLaundryRooms, getRoom})(
     MainMenu
 );
