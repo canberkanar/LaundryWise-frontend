@@ -13,11 +13,14 @@ export default class MachineService {
     static baseURL3(){
         return "http://localhost:4000/laundryroom/machinesInRoom";
     }
-    static getAllMachinesInRoom(id) {
+    static getAllMachinesInRoom(id,type) {
 
         return new Promise(async (resolve, reject) => {
-            let url = `${MachineService.baseURL3()}/?id=${id}`;
+            let url = `${MachineService.baseURL3()}/?id=${id}`
 
+            if(type) {
+                url = url + "&machineType=" + `${type}`;
+            }
             HttpService.get(
                 url,
                 function (data) {

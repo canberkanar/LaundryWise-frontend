@@ -36,7 +36,7 @@ export const getAllMachines = () => {
     };
 };
 
-export const getAllMachinesInRoom = (id) => {
+export const getAllMachinesInRoom = (id,type) => {
     function onSuccess(machines) {
         return { type: "GETALLMACHINESINROOM_SUCCESS", machines: machines };
     }
@@ -46,7 +46,7 @@ export const getAllMachinesInRoom = (id) => {
 
     return async (dispatch, getState) => {
         try {
-            let machines = await MachineService.getAllMachinesInRoom(id);
+            let machines = await MachineService.getAllMachinesInRoom(id,type);
             dispatch(onSuccess(machines));
         } catch (e) {
             onFailure(e);
