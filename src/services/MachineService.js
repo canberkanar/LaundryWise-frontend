@@ -14,9 +14,9 @@ export default class MachineService {
         return "http://localhost:4000/laundryroom/machinesInRoom";
     }
     static getAllMachinesInRoom(id) {
-        console.log('girrrdi');
+
         return new Promise(async (resolve, reject) => {
-            let url = `${MachineService.baseURL3()}/${id}`;
+            let url = `${MachineService.baseURL3()}/?id=${id}`;
 
             HttpService.get(
                 url,
