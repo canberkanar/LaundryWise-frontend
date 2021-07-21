@@ -30,12 +30,13 @@ function RoomManagement(props) {
                 <Grid container id="MachineInRoom">
                     <Grid item xs={2} id="RoomInfoGrid">
                         <MachineInRoomInfoComponent selectedMachineType={selectedMachineType}
-                                                    passSelectedMachineTypeToParent={setSelectedMachineType}/>
+                                                    passSelectedMachineTypeToParent={setSelectedMachineType}
+                                                    theRoom = {theRoom}/>
 
                     </Grid>
                     <br/>
                     <Grid item xs={10} id="MachinesTable">
-                        <MachinesInRoomTableComponent/>
+                        <MachinesInRoomTableComponent theRoom = {theRoom}/>
                     </Grid>
                 </Grid>
             </div>

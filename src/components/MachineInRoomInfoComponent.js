@@ -47,7 +47,7 @@ function MachineInRoomInfoComponent(props) {
     const handleRadioChange = (event) => {
         props.passSelectedMachineTypeToParent(event.target.value);
     };
-
+    const theRoom = props.theRoom;
     return (
 
         <div className={classes.usersignUpRoot}>
@@ -57,10 +57,7 @@ function MachineInRoomInfoComponent(props) {
                     <Grid id="LaundryRoomInfoGrid" container>
 
                         <Grid item xs={12}>
-                            <Typography align="left">
-                                Laundry Room 1
-                            </Typography>
-                            <Typography>Address</Typography>
+                            <Typography>{theRoom.address}</Typography>
                         </Grid>
                         <br/><br/><br/><br/><br/><br/>
                         {/*isAdmin must be fed in from parent view as parameter*/}
