@@ -1,28 +1,28 @@
+// export function getRoom(theRoom) {
+//     function onSuccess(room) {
+//         return { type: "GET_ROOM_SUCCESS", room: room };
+//     }
+//     console.log("INSIDE THE GET ROOM ACTION:")
+//     console.log(theRoom)
+//     return { type: "ROOM", room: theRoom };
+// }
 
-import LaundryRoomService from "../../services/LaundryRoomService";
-import MovieService from "../../services/MovieService";
 
-export const getRoom = (theRoom) => {
-    // function onSuccess(laundryroom) {
-    //     return { type: "ROOM", room: theRoom };
-    // }
-    // function onFailure(error) {
-    //     console.log("failed to load a laundryroom", error);
-    // }
-    //
-    // return async (dispatch, getState) => {
-    //     try {
-    //         let laundryroom = await LaundryRoomService.getLaundryRoom(id, machineType, date);
-    //         dispatch(onSuccess(laundryroom));
-    //     } catch (e) {
-    //         onFailure(e);
-    //     }
-    // };
-
-    return {
-        type: 'ROOM',
-        data: theRoom
+export function getRoom(room)  {
+    function onSuccess(room) {
+        return { type: "ROOM", room: room };
     }
+    function onFailure(error) {
+        console.log("failed to load a room", error);
+    }
+
+    return async (dispatch) => {
+        try {
+            dispatch(onSuccess(room));
+        } catch (e) {
+            onFailure(e);
+        }
+    };
 };
 
 

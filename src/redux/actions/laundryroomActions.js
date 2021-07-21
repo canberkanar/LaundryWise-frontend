@@ -3,7 +3,6 @@
  */
 
 import LaundryRoomService from "../../services/LaundryRoomService";
-import MovieService from "../../services/MovieService";
 
 export const getLaundryRoom = (id, machineType, date) => {
     function onSuccess(laundryroom) {
@@ -39,7 +38,6 @@ export function getLaundryRooms() {
         try {
             // ask for the movies in the backend
             let laundryRooms = await LaundryRoomService.getLaundryRooms();
-            console.log(laundryRooms);
             // call onSuccess in context of redux
             dispatch(onSuccess(laundryRooms));
         } catch (e) {

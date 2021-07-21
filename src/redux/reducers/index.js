@@ -3,7 +3,7 @@ import user from "./userReducer";
 import entities from "./entitiesReducer";
 import selectedMovie from "./selectedMovieReducer";
 import {selectedLaundryRoom, allLaundryRooms} from "./laundryRoomReducer";
-import selectedRoom from "./roomReducer";
+import {selectRoom} from "./roomReducer";
 
 export default combineReducers({
     user,
@@ -11,5 +11,5 @@ export default combineReducers({
     selectedMovie,
     selectedLaundryRoom,
     allLaundryRooms,
-    selectedRoom
+    selectRoom
 });

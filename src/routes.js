@@ -16,7 +16,7 @@ import ReserveView from "./views/ReserveView";
 const routes = [
     {
         path: "/",
-        component: MovieListView,
+        component: MainMenu,
         exact: true,
     },
     {
