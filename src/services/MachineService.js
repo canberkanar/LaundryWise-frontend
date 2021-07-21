@@ -10,6 +10,29 @@ export default class MachineService {
     static baseURL2(){
         return "http://localhost:4000/machine/all";
     }
+    static baseURL3(){
+        return "http://localhost:4000/laundryroom/machinesInRoom";
+    }
+    static getAllMachinesInRoom(id) {
+        console.log('girrrdi');
+        return new Promise(async (resolve, reject) => {
+            let url = `${MachineService.baseURL3()}/${id}`;
+
+            HttpService.get(
+                url,
+                function (data) {
+                    if (data !== undefined || Object.keys(data).length !== 0) {
+                        resolve(data);
+                    } else {
+                        reject("Error while retrieving Laundry Room!");
+                    }
+                },
+                function (textStatus) {
+                    reject(textStatus);
+                }
+            );
+        });
+    }
     static getAllMachines() {
         return new Promise(async (resolve, reject) => {
             let url = `${MachineService.baseURL2()}`;

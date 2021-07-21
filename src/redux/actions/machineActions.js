@@ -35,3 +35,21 @@ export const getAllMachines = () => {
         }
     };
 };
+
+export const getAllMachinesInRoom = (id) => {
+    function onSuccess(machines) {
+        return { type: "GETALLMACHINESINROOM_SUCCESS", machines: machines };
+    }
+    function onFailure(error) {
+        console.log("failed to load a machine", error);
+    }
+
+    return async (dispatch, getState) => {
+        try {
+            let machines = await MachineService.getAllMachinesInRoom(id);
+            dispatch(onSuccess(machines));
+        } catch (e) {
+            onFailure(e);
+        }
+    };
+};

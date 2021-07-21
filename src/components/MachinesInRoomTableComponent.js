@@ -10,7 +10,8 @@ import Paper from '@material-ui/core/Paper';
 import MachineInRoomInfoComponent from "./MachineInRoomInfoComponent";
 import MachineService from "../services/MachineService";
 import {connect, useSelector} from "react-redux";
-import {getAllMachines, getLaundryRooms, getMachine, getRoom} from "../redux/actions";
+import {getAllMachines,getAllMachinesInRoom, getLaundryRooms, getMachine, getRoom} from "../redux/actions";
+import Loading from "./Loading";
 
 let MACHINES_ =[     {
     "isActive": true,
@@ -49,37 +50,43 @@ function MachinesInRoomTableComponent(props) {
     const classes = useStyles();
     console.log(machines);
 
-    const allMachines = useSelector((state) => state.selectMachines.machines);
-    let {match, getAllMachines, getMachine} = props;
+    const allMachines = useSelector((state) => state.selectMachinesInRoom.machines);
+
+    let {match, getAllMachines, getAllMachinesInRoom, getMachine} = props;
 
     useEffect(() => {
-        getAllMachines();
-        console.log('girdi ');
-        // async function fetchMyAPI() {
-        //     const response = await MachineService.getMachinesbyId();
-        //     console.log(response);
-        //     machines2.push(response)
-        //     console.log(machines2)
-        // }
-        // fetchMyAPI()
+        //getAllMachines();
+        getAllMachinesInRoom(props.theRoom._id);
     }, []);
 
     console.log(allMachines);
-    return (
+
+    return ( !allMachines ? <Loading/> :
 
         <TableContainer component={Paper}>
             <Table className={classes.table} aria-label="simple table">
                 <TableHead>
                     <TableRow>
+                        <TableCell>Machine Number</TableCell>
+                        <TableCell>Price</TableCell>
+                        <TableCell>Type</TableCell>
                         <TableCell>Activity</TableCell>
-
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {allMachines.map((machine) => (
                         <TableRow key="test">
                             <TableCell component="th" scope="row">
+                                No: {machine.deviceNumberInRoom}
+                            </TableCell>
+                            <TableCell component="th" scope="row">
+                                {machine.price}
+                            </TableCell>
+                            <TableCell component="th" scope="row">
                                 {machine.machineType}
+                            </TableCell>
+                            <TableCell component="th" scope="row">
+                                {machine.isEnabled.toString()}
                             </TableCell>
 
                         </TableRow>
@@ -91,6 +98,6 @@ function MachinesInRoomTableComponent(props) {
 }
 
 
-export default connect(null, {getMachine, getAllMachines})(
+export default connect(null, {getMachine, getAllMachines,getAllMachinesInRoom})(
     MachinesInRoomTableComponent
 );

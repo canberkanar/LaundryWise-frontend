@@ -19,4 +19,15 @@ export function selectMachines(state = {}, action) {
     }
 }
 
+export function selectMachinesInRoom(state = {}, action) {
+    switch (action.type) {
+        case "GETALLMACHINESINROOM_SUCCESS":
+            //console.log("INSIDE THE MACHINE REDUCER:");
+            console.log(action.machines);
+            return { machines: action.machines };
+        default:
+            return state;
+    }
+}
+
 
