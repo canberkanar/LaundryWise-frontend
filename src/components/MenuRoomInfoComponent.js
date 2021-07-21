@@ -49,8 +49,19 @@ function MenuRoomInfoComponent(props) {
     const user = useSelector((state) => state.user);
     const room = props.room;
 
-    function handleClick(event) {
-        props.onRoomManagementClick(event.target.room); // pass any argument to the callback
+
+    function handleMClick(xyz) {
+        props.onMachineManagementClick(xyz); // pass any argument to the callback
+    }
+
+    function handleRClick(xyz) {
+        props.onRoomManagementClick(xyz); // pass any argument to the callback
+    }
+
+    function handleRezClick(xyz) {
+        console.log("REZ BUTTON PRESSED")
+        console.log("THE ID IS:" + xyz)
+        props.onReservationsClick(xyz); // pass any argument to the callback
     }
 
 
@@ -79,7 +90,7 @@ function MenuRoomInfoComponent(props) {
                                     <Button
                                         name="MyButton"
                                         room={room.name}
-                                        onClick = {handleClick}
+                                        onClick = {() => handleRClick(props.room)}
                                         variant="contained"
                                         color="primary"
                                         className={classes.roomSettingsButton}
@@ -92,7 +103,7 @@ function MenuRoomInfoComponent(props) {
                                 {/*<Button variant="contained"> Machine Settings </Button>*/}
                                 {props.isAdmin ? (
                                     <Button
-                                        onClick={props.onMachineManagementClick}
+                                        onClick = {() => handleMClick(props.room)}
                                         variant="contained"
                                         color="primary"
                                         className={classes.machineSettingsButton}
@@ -101,7 +112,13 @@ function MenuRoomInfoComponent(props) {
                                     </Button>
                                 ) : null}
                                 <br/>
-                                <Button variant="contained"> Reservations </Button>
+
+                                <Button
+                                    onClick = {() => handleRezClick(room._id)}
+                                    variant="contained"
+                                >
+                                    Reservations
+                                </Button>
 
                             </Grid>
                             <br/>
