@@ -4,10 +4,8 @@ export function selectRoom(state = {}, action) {
             console.log("INSIDE THE SELECT ROOM REDUCER:");
             console.log(action.room);
             return { room: action.room };
-        case "GET_ROOM_FAILURE":
-            return { room: "Sorry for your loss." };
         default:
-            return { room: null };
+            return state;
     }
 }
 

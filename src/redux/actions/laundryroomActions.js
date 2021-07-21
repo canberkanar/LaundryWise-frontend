@@ -3,7 +3,6 @@
  */
 
 import LaundryRoomService from "../../services/LaundryRoomService";
-import MovieService from "../../services/MovieService";
 
 export const getLaundryRoom = (id, machineType, date) => {
     function onSuccess(laundryroom) {

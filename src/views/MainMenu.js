@@ -12,7 +12,7 @@ function MainMenu(props) {
 
     const user = useSelector((state) => state.user);
     const allLaundryRooms = useSelector((state) => state.allLaundryRooms);
-    const theRoom = useSelector((state) => state.selectRoom.room)
+    const theRoom = useSelector((state) => state.selectRoom)
 
     let {match, getLaundryRooms, getRoom} = props;
 
@@ -35,7 +35,7 @@ function MainMenu(props) {
         console.log(childData);
         getRoom(childData);
         // navigate to an empty mask for entering details of the new movie
-        props.history.push("/roomManagement");
+        props.history.push("/roomManagement", childData);
     };
 
     useEffect(() => {
