@@ -9,22 +9,24 @@ import React, {useEffect} from "react";
 import {getAnnouncements} from "../redux/actions/announcementActions";
 import LaundryRoomService from "../services/LaundryRoomService";
 import {login} from "../redux/actions";
+import AnnouncementService from "../services/AnnouncementService";
 
 function MachineManagement(props) {
 
     const theRoom = props.location.state;
     console.log("The RRoom: ", theRoom);
-    //let anns = theRoom.announcements;
+    // Talha'nın backend değişikliğinden sonra çalışacak:
+    // let ann =  AnnouncementService.getAnnouncement(theRoom.announcements);
+    // console.log(ann);
     console.log("COME INSIDE TO MACHINE MANAGEMENT");
-    let announcements = useSelector((state) => state.allAnnouncements.announcements);
-    let {match, getAnnouncements} = props;
+    let announcement = {"title": "title", "body": "body"};
+
     let data = {
         "laundryRoomId": theRoom._id
     }
 
     useEffect(() => {
         // trigger room load from backend
-        getAnnouncements(data);
     }, []);
 
 
@@ -43,7 +45,7 @@ function MachineManagement(props) {
 
     };
 
-    return (!announcements ? <Loading/> :
+    return (!announcement ? <Loading/> :
         <div>
             <Helmet>
                 <title>LaundryWise | Machine Management</title>
@@ -62,15 +64,10 @@ function MachineManagement(props) {
                 </Grid>
                 <br/>
                 <Grid item xs={7} id="RoomAnnouncementsGrid">
-                    {announcements.map((item, index) => {
-                        return (
-                            <>
-                                <AnnouncementsComponent
-                                    announcement={item}
-                                />
-                            </>
-                        );
-                    })}
+                    <AnnouncementsComponent
+                        announcement={announcement}
+                        room={theRoom}
+                    />
                 </Grid>
             </Grid>
         </div>

@@ -20,6 +20,7 @@ import {connect, useSelector} from "react-redux";
 import {getLaundryRooms} from "../redux/actions";
 import {allAnnouncements} from "../redux/reducers/announcementReducer";
 import Loading from "./Loading";
+import AnnouncementService from "../services/AnnouncementService";
 
 const useStyles = makeStyles((theme) => ({
     usersignUpRoot: {
