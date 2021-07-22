@@ -57,6 +57,7 @@ function MachineManagement(props) {
                     <br/>
                     <WorkingHoursComponent
                         onClick={(start, end) => handleSave(start, end)}
+                        room={theRoom}
                     />
                 </Grid>
                 <br/>
