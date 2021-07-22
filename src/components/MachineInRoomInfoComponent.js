@@ -5,12 +5,13 @@ import {
     Grid,
     Typography,
     FormControlLabel,
-    Switch, RadioGroup, Radio,
+    Switch, RadioGroup, Radio, Button,
 
 } from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
-
+import AddIcon from '@material-ui/icons/Add';
 import {useSelector} from "react-redux";
+import SaveIcon from "@material-ui/icons/Save";
 
 const useStyles = makeStyles((theme) => ({
     usersignUpRoot: {
@@ -35,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
         justifyContent: "flex-end",
     },
-    signUpButton: {
+    addButton: {
         marginLeft: theme.spacing(1),
     },
 }));
@@ -60,10 +61,21 @@ function MachineInRoomInfoComponent(props) {
                         <Grid item xs={12}>
                             <Typography>{theRoom.address}</Typography>
                         </Grid>
-                        <br/><br/><br/><br/><br/><br/>
+                        <br/><br/><br/><br/>
                         {/*isAdmin must be fed in from parent view as parameter*/}
                         {/*isAdmin={!!user.user ? user.user.role === "admin" : false}*/}
                         <Grid id="LaundryRoomActiveGrid" container xs={6}>
+                            <Button
+                                className={classes.addButton}
+                                variant="contained"
+                                color="primary"
+                                // onClick={onRegister}
+                                type="submit"
+                                startIcon={<AddIcon/>}
+                            >
+                                Add
+                            </Button>
+
                         <RadioGroup aria-label="gender" name="gender1" value={props.selectedMachineType}
                                     onChange={handleRadioChange}>
                             <FormControlLabel value="washer" control={<Radio/>} label="Washing Machines"/>
