@@ -11,6 +11,8 @@ import {
     Typography,
 } from "@material-ui/core";
 import PropTypes from "prop-types";
+import LaundryRoomService from "../services/LaundryRoomService";
+import MachineService from "../services/MachineService";
 
 const useStyles = makeStyles((theme) => ({
     usersignUpRoot: {
@@ -49,7 +51,39 @@ function AddMachineView(props) {
         addRecipe(recipe);
         props.history.push("/recipes");
     };*/
+    const [selectedNumberInRoom, setselectedNumberInRoom] = React.useState('');
+    const [selectedPrice, setselectedPrice] = React.useState('');
+    const [selectedType, setselectedType] = React.useState('');
 
+    const handleNumberInRoom = (number) => {
+        setselectedNumberInRoom(number.target.value);
+    };
+    const handlePrice = (price) => {
+        setselectedPrice(price.target.value);
+    };
+    const handleType = (price) => {
+        setselectedType(price.target.value);
+    };
+    const handleSave = async (selectedNumberInRoom, selectedPrice,selectedType) => {
+        console.log("BUTTON WORKED!");
+        console.log("number: " + selectedNumberInRoom + " price: " + selectedPrice + " type: " + selectedType );
+        let data=  {
+            "deviceRoomId": props.location.state._id,
+            "deviceNumberInRoom": selectedNumberInRoom,
+            "machineType": selectedType,
+            "isEnabled": true,
+            "operationCount": 0,
+            "price": parseFloat(selectedPrice)
+        }
+        try {
+            let createdMachine = await MachineService.createMachine(data);
+        } catch (e) {
+            console.log("errorlandin");
+            console.log(e);
+        }
+        console.log(data)
+        props.history.push('/roomManagement',props.location.state)
+    };
     const classes = useStyles();
     const [registerError, setRegisterError] = React.useState("");
     console.log(props.location.state)
@@ -59,31 +93,31 @@ function AddMachineView(props) {
             <Paper className={classes.signUpPaper} component="form">
                 <div className={classes.signUpRow}>
                     <Typography variant="body1" align="center">
-                        Machine Add & Update
+                        Add Machine
                     </Typography>
                 </div>
                 <div className={classes.signUpRow}>
                     <TextField
                         label="Number In Room"
                         fullWidth
-                        value="1"
-                        //onChange={onChangeTitle}
+                        //value="1"
+                        onChange={handleNumberInRoom}
                     />
                 </div>
                 <div className={classes.signUpRow}>
                     <TextField
                         label="Price"
                         fullWidth
-                        value="1"
-                        //onChange={onChangeIngredients}
+                        //value="1"
+                        onChange={handlePrice}
                     />
                 </div>
                 <div className={classes.signUpRow}>
                     <TextField
                         label="Machine Type"
                         fullWidth
-                        value="washer"
-                        //onChange={onChangePreparationSteps}
+                        //value="washer"
+                        onChange={handleType}
 
                     />
                 </div>
@@ -108,9 +142,9 @@ function AddMachineView(props) {
                         // must be referenced with arrow function else the function onSave will be triggered on load,
                         // which is unwanted behaviour
                         // https://stackoverflow.com/questions/33846682/react-onclick-function-fires-on-render
-                        onClick={() => {
-                            //props.onSave(createRecipe())
-                        }}
+                        onClick={() =>
+                            handleSave(selectedNumberInRoom,selectedPrice,selectedType)
+                        }
                         //disabled={recipeTitle === "" | recipePreparationSteps === ""}
                         //type="submit"
                     >
