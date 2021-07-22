@@ -8,7 +8,7 @@ import {selectRoom} from "./roomReducer";
 //import {useSelector} from "react-redux";
 import {allAnnouncements} from "./announcementReducer";
 import {selectMachine, selectMachines,selectMachinesInRoom} from "./machineReducer";
-
+//reducers
 export default combineReducers({
     user,
     entities,
