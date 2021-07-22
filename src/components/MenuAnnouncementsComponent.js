@@ -41,6 +41,11 @@ const useStyles = makeStyles((theme) => ({
 
 
 function MenuAnnouncementsComponent(props) {
+
+    let room = props.room;
+    let anc_id = room.announcements;
+    // Talha yaptiktan sonra bu announcement Service ile cekilecek:
+    let announcement = {"title": "title", "body": "body"};
     const classes = useStyles();
     const user = useSelector((state) => state.user);
 
@@ -55,15 +60,11 @@ function MenuAnnouncementsComponent(props) {
 
                         <Grid>
                             <Typography align="left">
-                                Announcements:
+                                {announcement.title}
                             </Typography>
                             <br/>
                             <Typography>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                                voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                                {announcement.body}
                             </Typography>
 
                         </Grid>
