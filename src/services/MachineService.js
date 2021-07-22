@@ -13,6 +13,9 @@ export default class MachineService {
     static baseURL3(){
         return "http://localhost:4000/laundryroom/machinesInRoom";
     }
+    static createMachineUrl(){
+        return "http://localhost:4000/machine/";
+    }
     static getAllMachinesInRoom(id,type) {
 
         return new Promise(async (resolve, reject) => {
@@ -80,6 +83,28 @@ export default class MachineService {
         console.log(response);
         return response.data;
 
+    }
+    static createMachine(data) {
+        console.log("Given Data To Me Is:");
+        console.log(data);
+        return new Promise(async (resolve, reject) => {
+            let url = `${MachineService.createMachineUrl()}`;
+
+            HttpService.post(
+                url,
+                data,
+                function (data) {
+                    if (data !== undefined || Object.keys(data).length !== 0) {
+                        resolve(data);
+                    } else {
+                        reject("Error while retrieving Laundry Room!");
+                    }
+                },
+                function (textStatus) {
+                    reject(textStatus);
+                }
+            );
+        });
     }
 }
 
