@@ -202,10 +202,9 @@ function AdminSchedulerComponent(props) {
                     data={schedulerDataSource} firstDayOfWeek="1">
                     <ViewState
                         defaultCurrentDate={props.selectedDate}
-                        // onCurrentDateChange={currentDateChange}
                     />
 
-                    <WeekView startDayHour={0,1} endDayHour={24} cellDuration='60'
+                    <WeekView startDayHour={0} endDayHour={24} cellDuration='60'
                               timeTableCellComponent={TimeTableCell}
                     />
                     <Toolbar/>
