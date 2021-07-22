@@ -2,18 +2,18 @@
  * @author canberk.anar
  */
 
-import React, {useEffect} from "react";
+import React from "react";
 import {
     Paper,
     Grid,
     Typography,
     FormControlLabel,
-    Switch,
+    Switch, Checkbox, Button,
 
 } from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
-
-import {useSelector} from "react-redux";
+import {connect, useSelector} from "react-redux";
+import {updateLaundryRoom} from "../redux/actions";
 
 const useStyles = makeStyles((theme) => ({
     usersignUpRoot: {
@@ -43,43 +43,51 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-
 function RoomInfoComponent(props) {
+
     const classes = useStyles();
     const user = useSelector((state) => state.user);
+    let {updateLaundryRoom} = props;
+    let roomId = props.room._id;
+    let roomState = props.room.isActive;
+    console.log("Room ID:", roomId);
+    console.log("Room State:", roomState);
+    const [checked, setChecked] = React.useState({
+        value: props.room.isActive});
+    console.log("Value of checked: ", checked.value);
+    let data = null;
 
+
+    const activationOnClick = () => {
+        // navigate to an empty mask for entering details of the new movie
+        console.log("ACTIVATION BUTTON TOGGLED");
+        data = {"isActive": !roomState};
+        roomState = !roomState;
+        console.log("Req Data: ", data);
+        console.log("Room Id: ", roomId);
+        updateLaundryRoom(roomId, data);
+    };
 
     return (
-
         <div className={classes.usersignUpRoot}>
             <Paper className={classes.signUpPaper} component="form">
                 <div className={classes.signUpRow}>
-
                     <Grid id="LaundryRoomInfoGrid" container>
-
                         <Grid item xs={6}>
                             <Typography align="left">
-                                Laundry Room 1
+                                {props.room.name}
                             </Typography>
-                            <Typography>Address</Typography>
+                            <Typography>{props.room.address}</Typography>
                         </Grid>
-
-                        {/*isAdmin must be fed in from parent view as parameter*/}
-                        {/*isAdmin={!!user.user ? user.user.role === "admin" : false}*/}
-
-                        {!props.isAdmin ? (
                             <Grid id="LaundryRoomActiveGrid" container xs={6}>
-
-                                <FormControlLabel
-                                    control={<Switch
-                                        name="checkedB"
-                                        inputProps={{'aria-label': 'primary checkbox'}}/>}
-                                    label="Is the room active?"
-                                />
-
-
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    onClick = {activationOnClick}
+                                >
+                                    {!roomState ? "Activate" : "Deactivate"}
+                                </Button>
                             </Grid>
-                        ) : null}
 
                     </Grid>
 
@@ -89,4 +97,6 @@ function RoomInfoComponent(props) {
 );
 }
 
-export default RoomInfoComponent;
+export default connect(null, {updateLaundryRoom})(
+    RoomInfoComponent
+);

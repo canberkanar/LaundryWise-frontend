@@ -6,6 +6,7 @@ import LaundryRoomService from "../../services/LaundryRoomService";
 
 export const getLaundryRoom = (id, machineType, date) => {
     function onSuccess(laundryroom) {
+        window.localStorage["room"] = laundryroom;
         return { type: "GETLAUNDRYROOM_SUCCESS", laundryroom: laundryroom };
     }
     function onFailure(error) {
@@ -26,6 +27,7 @@ export function getLaundryRooms() {
     // when the backend call was successfull and the movies are retrieved
     // in the dispatcher the movies will be added to the global state
     function onSuccess(laundryRooms) {
+        window.localStorage["laundryRooms"] = laundryRooms;
         return { type: "GETLAUNDRYROOMS_SUCCESS", laundryRooms: laundryRooms };
     }
     // when the backend call was failed
@@ -45,5 +47,25 @@ export function getLaundryRooms() {
         }
     };
 }
+
+export const updateLaundryRoom = (id, data) => {
+    function onSuccess(newRoom) {
+        return { type: "UPDATED_ROOM", laundryroom: newRoom };
+    }
+    function onFailure(error) {
+        console.log("failed to update the laundryroom", error);
+    }
+
+    return async (dispatch, getState) => {
+        try {
+            console.log("I HAVE COME INTO THE LAUNDRY ROOM ACTION TRY")
+            let newRoom = await LaundryRoomService.updateLaundryRoom(id, data);
+            dispatch(onSuccess(newRoom));
+        } catch (e) {
+            onFailure(e);
+        }
+    };
+};
+
 
 

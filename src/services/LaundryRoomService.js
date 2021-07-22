@@ -3,16 +3,10 @@
  */
 
 import HttpService from "./HttpService";
-import axios from "axios";
 export default class LaundryRoomService {
 
-    static baseURL() {
-        return "http://localhost:4000/laundryroom/filter";
-    }
-
-    static baseURL2() {
-        return "http://localhost:4000/laundryroom/";
-    }
+    static baseURL() {return "http://localhost:4000/laundryroom/filter";}
+    static baseURL2() {return "http://localhost:4000/laundryroom/";}
 
     static getLaundryRooms() {
         return new Promise(async (resolve, reject) => {
@@ -54,10 +48,27 @@ export default class LaundryRoomService {
             );
         });
     }
-    // static async getAllLaundryRooms() {
-    //     const response = await axios.get(`http://localhost:4000/laundryroom/`);
-    //     console.log(response);
-    //     return response.data;
-    //
-    // }
+
+    static updateLaundryRoom(id, data) {
+        console.log("GET INTO UPDATE LAUNDRY ROOM SERVICE???");
+        console.log("Given Data To Me Is:");
+        console.log(data);
+        console.log("Given Room Id To Me Is:");
+        console.log(id);
+        return new Promise(async (resolve, reject) => {
+            let url = `${LaundryRoomService.baseURL2()}${id}`
+
+            HttpService.put(
+                url,
+                data,
+                function (data) {
+                    resolve(data);
+                },
+                function (textStatus) {
+                    reject(textStatus);
+                }
+            );
+        });
+    }
+
 }

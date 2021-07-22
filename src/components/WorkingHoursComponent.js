@@ -41,27 +41,27 @@ const useStyles = makeStyles((theme) => ({
 
 function WorkingHoursComponent(props) {
 
-
     const classes = useStyles();
 
-    const [value, setValue] = React.useState('monday'); //state of radio
-    // Switch's State
-    //radio
-    const handleChange = (event) => {
-        setValue(event.target.value);
+    // const [value, setValue] = React.useState('monday'); //state of radio
+    // // Switch's State
+    // //radio
+    //
+    // const [checked, setChecked] = React.useState(false);
+    // const handleChangeCheckBox = (event) => {
+    //     setChecked(event.target.checked);
+    // }
+
+    const [selectedStartDate, setSelectedStartDate] = React.useState(new Date('2014-08-18T21:11:54'));
+    const [selectedEndDate, setSelectedEndDate] = React.useState(new Date('2014-08-18T21:11:54'));
+
+    const handleStartDateChange = (date) => {
+        setSelectedStartDate(date);
+    };
+    const handleEndDateChange = (date) => {
+        setSelectedEndDate(date);
     };
 
-    const [checked, setChecked] = React.useState(false);
-
-    const handleChangeCheckBox = (event) => {
-        setChecked(event.target.checked);
-    }
-
-    const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
-
-    const handleDateChange = (date) => {
-        setSelectedDate(date);
-    };
 
     return (
         <div className={classes.usersignUpRoot}>
@@ -69,22 +69,6 @@ function WorkingHoursComponent(props) {
                 <div className={classes.signUpRow}>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <Grid container id="WorkingHoursGrid">
-                <Grid item xs={5} id="DaysOfWeek">
-                    <FormControl component="fieldset">
-                        <FormLabel component="legend">Days of the week</FormLabel>
-                        <RadioGroup aria-label="gender" name="gender1" value={value}
-                                    onChange={handleChange}>
-                            <FormControlLabel value="monday" control={<Radio/>} label="Monday"/>
-                            <FormControlLabel value="tuesday" control={<Radio/>} label="Tuesday"/>
-                            <FormControlLabel value="wednesday" control={<Radio/>} label="Wednesday"/>
-                            <FormControlLabel value="thursday" control={<Radio/>} label="Thursday"/>
-                            <FormControlLabel value="friday" control={<Radio/>} label="Friday"/>
-                            <FormControlLabel value="saturday" control={<Radio/>} label="Saturday"/>
-                            <FormControlLabel value="sunday" control={<Radio/>} label="Sunday"/>
-
-                        </RadioGroup>
-                    </FormControl>
-                </Grid>
 
                 <Grid item xs={7} id="ActiveTimeInterval">
 
@@ -93,8 +77,8 @@ function WorkingHoursComponent(props) {
                         id="time-from"
                         label="From:"
 
-                        value={selectedDate}
-                        onChange={handleDateChange}
+                        value={selectedStartDate}
+                        onChange={handleStartDateChange}
                         KeyboardButtonProps={{
                             'aria-label': 'change time',
                         }}
@@ -103,34 +87,22 @@ function WorkingHoursComponent(props) {
                         margin="normal"
                         id="time-to"
                         label="To:"
-                        value={selectedDate}
-                        onChange={handleDateChange}
+                        value={selectedEndDate}
+                        onChange={handleEndDateChange}
                         KeyboardButtonProps={{
                             'aria-label': 'change time',
                         }}
-                    />
-
-                    <FormControlLabel
-                        control={<Checkbox checked={checked} onChange={handleChangeCheckBox}
-                                           name="checkedA"/>}
-                        label="Non-operational day (Holiday)"
                     />
 
                 </Grid>
             </Grid>
 
 
-            <div
-                className={classes.signUpRow + " " + classes.signUpButtons}
-            >
-
+            <div className={classes.signUpRow + " " + classes.signUpButtons}>
                 <Button
-                    className={classes.signUpButton}
                     variant="contained"
                     color="primary"
-                    // onClick={onRegister}
-                    type="submit"
-                    startIcon={<SaveIcon/>}
+                    onClick = {() => props.onClick(selectedStartDate.getHours(), selectedEndDate.getHours())}
                 >
                     Save
                 </Button>
