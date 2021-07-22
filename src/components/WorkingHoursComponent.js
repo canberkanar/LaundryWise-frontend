@@ -69,23 +69,6 @@ function WorkingHoursComponent(props) {
                 <div className={classes.signUpRow}>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <Grid container id="WorkingHoursGrid">
-                {/*<Grid item xs={5} id="DaysOfWeek">*/}
-                {/*    <FormControl component="fieldset">*/}
-                {/*        <FormLabel component="legend">Days of The Week</FormLabel>*/}
-                {/*        <RadioGroup aria-label="gender" name="gender1" value={value}*/}
-                {/*                    onChange={handleChange}>*/}
-                {/*            <FormControlLabel value="monday" control={<Radio/>} label="Monday"/>*/}
-                {/*            <FormControlLabel value="tuesday" control={<Radio/>} label="Tuesday"/>*/}
-                {/*            <FormControlLabel value="wednesday" control={<Radio/>} label="Wednesday"/>*/}
-                {/*            <FormControlLabel value="thursday" control={<Radio/>} label="Thursday"/>*/}
-                {/*            <FormControlLabel value="friday" control={<Radio/>} label="Friday"/>*/}
-                {/*            <FormControlLabel value="saturday" control={<Radio/>} label="Saturday"/>*/}
-                {/*            <FormControlLabel value="sunday" control={<Radio/>} label="Sunday"/>*/}
-
-                {/*        </RadioGroup>*/}
-                {/*    </FormControl>*/}
-                {/*</Grid>*/}
-
 
                 <Grid item xs={7} id="ActiveTimeInterval">
 
@@ -111,26 +94,15 @@ function WorkingHoursComponent(props) {
                         }}
                     />
 
-                    {/*<FormControlLabel*/}
-                    {/*    control={<Checkbox checked={checked} onChange={handleChangeCheckBox}*/}
-                    {/*                       name="checkedA"/>}*/}
-                    {/*    label="Non-operational day (Holiday)"*/}
-                    {/*/>*/}
-
                 </Grid>
             </Grid>
 
 
-            <div
-                className={classes.signUpRow + " " + classes.signUpButtons}
-            >
-
+            <div className={classes.signUpRow + " " + classes.signUpButtons}>
                 <Button
                     variant="contained"
                     color="primary"
                     onClick = {() => props.onClick(selectedStartDate.getHours(), selectedEndDate.getHours())}
-                    type="submit"
-                    startIcon={<SaveIcon/>}
                 >
                     Save
                 </Button>

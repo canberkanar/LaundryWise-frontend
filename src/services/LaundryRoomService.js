@@ -50,8 +50,11 @@ export default class LaundryRoomService {
     }
 
     static updateLaundryRoom(id, data) {
-        console.log("GET INTO UPDATE LAUNDRY ROOM SERVICE");
+        console.log("GET INTO UPDATE LAUNDRY ROOM SERVICE???");
+        console.log("Given Data To Me Is:");
         console.log(data);
+        console.log("Given Room Id To Me Is:");
+        console.log(id);
         return new Promise(async (resolve, reject) => {
             let url = `${LaundryRoomService.baseURL2()}${id}`
 

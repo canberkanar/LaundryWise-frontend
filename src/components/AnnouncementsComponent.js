@@ -1,12 +1,8 @@
-/**
- * @author canberk.anar
- */
-
 import {makeStyles} from "@material-ui/core/styles";
 import {
     FormLabel,
     Grid,
-    IconButton,
+    IconButton, Input,
     InputLabel,
     MenuItem,
     Paper,
@@ -14,11 +10,16 @@ import {
     TextField,
     Typography
 } from "@material-ui/core";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import AddIcon from "@material-ui/icons/Add";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import SaveIcon from "@material-ui/icons/Save";
+import {getAnnouncements} from "../redux/actions/announcementActions";
+import {connect, useSelector} from "react-redux";
+import {getLaundryRooms} from "../redux/actions";
+import {allAnnouncements} from "../redux/reducers/announcementReducer";
+import Loading from "./Loading";
 
 const useStyles = makeStyles((theme) => ({
     usersignUpRoot: {
@@ -52,56 +53,60 @@ const useStyles = makeStyles((theme) => ({
 function AnnouncementsComponent(props) {
     const classes = useStyles();
 
+
+    let announcement = props.announcement;
+    const [title, setTitle] = useState(announcement.title);
+    const [body, setBody] = useState(announcement.body);
+
+    const onTitleChange = (e) => {
+        setTitle(e.target.value)
+    }
+    const onBodyChange = (e) => {
+        setBody(e.target.value)
+    }
+    const onSave = () => {
+        console.log(title, body);
+    };
+
     return (
 
         <div className={classes.usersignUpRoot}>
             <Paper className={classes.signUpPaper} component="form">
                 <div className={classes.signUpRow}>
                     <Grid container id="AnnouncementsGridContainer">
-                        <Grid item xs={6}>
-                            <FormLabel component="legend">Room Announcements</FormLabel>
+                        <IconButton
+                            aria-label="save"
+                            className={classes.margin}
+                            onClick={onSave}
+                        >
+                            <SaveIcon fontSize="large"/>
+                        </IconButton>
 
-                            <IconButton aria-label="delete" className={classes.margin}>
-                                <AddIcon fontSize="large"/>
-                            </IconButton>
-                            <IconButton aria-label="delete" className={classes.margin}>
-                                <EditIcon fontSize="large"/>
-                            </IconButton>
-                            <IconButton aria-label="delete" className={classes.margin}>
-                                <DeleteIcon fontSize="large"/>
-                            </IconButton>
-                        </Grid>
-
-                        <Grid item xs={6}>
-                            <Typography>Announcement ID</Typography>
-                            <Select id="select" value="1" select>
-                                <MenuItem value="1">1</MenuItem>
-                                <MenuItem value="2">2</MenuItem>
-                                <MenuItem value="3">3</MenuItem>
-                            </Select>
-                            <IconButton aria-label="delete" className={classes.margin}>
-                                <SaveIcon fontSize="large"/>
-                            </IconButton>
-                        </Grid>
-                    </Grid>
-
-                    <Grid container>
-                        <Grid item xs={12} >
-                            <InputLabel id="titleLabel">Title</InputLabel>
-                            <TextField id="titleField"/>
-                        </Grid>
-
-                        <br/>
-
-                        <Grid item xs={12}>
-                            <InputLabel id="bodyLabel">Body</InputLabel>
-                            <TextField id="titleField"/>
-                        </Grid>
+                        <TextField
+                            id="outlined-multiline-static"
+                            label="Title"
+                            multiline
+                            rows={4}
+                            onChange={onTitleChange}
+                            defaultValue={title}
+                            variant="outlined"
+                        />
+                        <TextField
+                            id="outlined-multiline-static"
+                            label="Body"
+                            multiline
+                            rows={4}
+                            onChange={onBodyChange}
+                            defaultValue={body}
+                            variant="outlined"
+                        />
                     </Grid>
                 </div>
-            </Paper></div>
+            </Paper>
+        </div>
     );
 }
 
 
-export default AnnouncementsComponent;
+
+export default connect()(AnnouncementsComponent);

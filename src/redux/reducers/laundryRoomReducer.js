@@ -10,7 +10,13 @@ export function selectedLaundryRoom(state = {}, action) {
     }
 }
 
-export function allLaundryRooms(state = {}, action) {
+const getLaundryRooms = () => {
+    if (window.localStorage["laundryRooms"]) {
+        return window.localStorage["laundryRooms"];
+    }
+    return {};
+};
+export function allLaundryRooms(state = getLaundryRooms(), action) {
     switch (action.type) {
         case "GETLAUNDRYROOMS_SUCCESS":
             return { laundryRooms: action.laundryRooms };
@@ -19,7 +25,13 @@ export function allLaundryRooms(state = {}, action) {
     }
 }
 
-export function updatedRoom(state = {}, action) {
+const getLaundryRoom = () => {
+    if (window.localStorage["room"]) {
+        return window.localStorage["room"];
+    }
+    return {};
+};
+export function updatedRoom(state = getLaundryRoom(), action) {
     switch (action.type) {
         case "UPDATED_ROOM":
             return { updated_room: action.laundryroom };
@@ -27,4 +39,14 @@ export function updatedRoom(state = {}, action) {
             return { updated_room: action.laundryroom };
     }
 }
+
+export function setRoom(state = getLaundryRoom(), action) {
+    switch (action.type) {
+        case "UPDATED_ROOM":
+            return { updated_room: action.laundryroom };
+        default:
+            return { updated_room: action.laundryroom };
+    }
+}
+
 

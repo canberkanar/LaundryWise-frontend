@@ -4,6 +4,8 @@ import entities from "./entitiesReducer";
 import selectedMovie from "./selectedMovieReducer";
 import {selectedLaundryRoom, allLaundryRooms, updatedRoom} from "./laundryRoomReducer";
 import {selectRoom} from "./roomReducer";
+import {useSelector} from "react-redux";
+import {allAnnouncements} from "./announcementReducer";
 
 export default combineReducers({
     user,
@@ -12,5 +14,6 @@ export default combineReducers({
     selectedLaundryRoom,
     allLaundryRooms,
     selectRoom,
-    updatedRoom
+    updatedRoom,
+    allAnnouncements
 });

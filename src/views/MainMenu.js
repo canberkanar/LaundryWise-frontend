@@ -4,8 +4,9 @@ import {connect, useSelector} from "react-redux";
 import MenuInfoComponent from "../components/MenuInfoComponent";
 import React, {useEffect} from "react";
 import MenuStatsComponent from "../components/MenuStatsComponent";
-import {getLaundryRooms} from "../redux/actions";
+import {getLaundryRoom, getLaundryRooms} from "../redux/actions";
 import Loading from "../components/Loading";
+import {getAnnouncements} from "../redux/actions/announcementActions";
 
 
 function MainMenu(props) {
@@ -15,7 +16,8 @@ function MainMenu(props) {
 
     let isLoggedIn = !!user.user;
     let isAdmin = !!user.user ? user.user.role === "admin" : false;
-    let {match, getLaundryRooms} = props;
+
+    let {match, getLaundryRooms, getAnnouncements, getLaundryRoom} = props;
 
     const onUsageStatsClick = () => {
         // navigate to an empty mask for entering details of the new movie
@@ -34,6 +36,10 @@ function MainMenu(props) {
     const onMachineManagementClick = (childData) => {
         console.log("The passed data childData to MachineManagement:")
         console.log(childData);
+        let data = {
+            "laundryRoomId": childData._id
+        }
+        getAnnouncements(data);
         // navigate to an empty mask for entering details of the new movie
         props.history.push("/machineManagement", childData);
     };
@@ -91,6 +97,6 @@ function MainMenu(props) {
     );
 }
 
-export default connect(null, {getLaundryRooms})(
+export default connect(null, {getLaundryRooms, getAnnouncements, getLaundryRoom})(
     MainMenu
 );
