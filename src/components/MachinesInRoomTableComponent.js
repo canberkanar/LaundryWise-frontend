@@ -96,6 +96,14 @@ function MachinesInRoomTableComponent(props) {
                                 {machine.isEnabled.toString()}
                             </TableCell>
 
+                            <TableCell>
+                                <Button
+                                    onClick={() => props.onClick(machine)}
+                                >
+                                    Edit
+                                </Button>
+                            </TableCell>
+
                         </TableRow>
                     ))}
                 </TableBody>
