@@ -78,15 +78,6 @@ function MenuInfoComponent(props) {
                                                     onReservationsClick={props.onReservationsClick}
                                                     room={item}
                                                 />
-                                                {/*<Button*/}
-                                                {/*    name="MyButton"*/}
-                                                {/*    onClick = {() => handleRoomClick(item)}*/}
-                                                {/*    variant="contained"*/}
-                                                {/*    color="primary"*/}
-                                                {/*    className={classes.roomSettingsButton}*/}
-                                                {/*>*/}
-                                                {/*    Send Room To Parent*/}
-                                                {/*</Button>*/}
                                                 </>
                                             );
                                         })}
