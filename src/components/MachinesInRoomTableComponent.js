@@ -1,36 +1,98 @@
-import * as React from 'react';
-import { DataGrid } from '@material-ui/data-grid';
+import React, {useEffect} from "react";
+import { makeStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import MachineInRoomInfoComponent from "./MachineInRoomInfoComponent";
+import MachineService from "../services/MachineService";
+import {connect, useSelector} from "react-redux";
+import {getAllMachines,getAllMachinesInRoom, getLaundryRooms, getMachine, getRoom} from "../redux/actions";
+import Loading from "./Loading";
+
+let MACHINES_ =[     {
+    "isActive": true,
+    "machines": [
+        "60f48d84240f7f049053bc1c"
+    ],
+    "_id": "60f48d5f240f7f049053b676",
+    "name": "name-1",
+    "address": "address-1",
+    "operationStartHour": 6,
+    "operationEndHour": 24,
+    "__v": 0
+},
+    {
+        "isActive": true,
+        "machines": [
+            "60f48d84240f7f049053bc1c"
+        ],
+        "_id": "60f48d5f240f7f049053b676",
+        "name": "name-1",
+        "address": "address-1",
+        "operationStartHour": 6,
+        "operationEndHour": 24,
+        "__v": 0}];
+const useStyles = makeStyles({
+    table: {
+        minWidth: 650,
+    },
+});
+
+
+
 
 function MachinesInRoomTableComponent(props) {
-    const columns = [
-        { field: 'id', headerName: 'Machine # In Room', width: 200 },
-        { field: 'firstName', headerName: 'Price', width: 200},
-        { field: 'lastName', headerName: 'Enable', width: 200 },
-        {
-            field: 'age',
-            headerName: 'Add & Remove',
-            type: 'number',
-            width: 300,
-        }
-    ];
+    const machines = props.theRoom.machines;
+    const classes = useStyles();
+    console.log(machines);
 
-    const rows = [
-        { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-        { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-        { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-        { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-        { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-        { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-        { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-        { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-        { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-    ];
 
-    return (
-        <div style={{ height: 600, width: '100%' }}>
-            <DataGrid rows={rows} columns={columns} pageSize={5} checkboxSelection />
-        </div>
+    let {allMachines} = props;
+
+
+    console.log(allMachines);
+
+    return ( !allMachines ? <Loading/> :
+
+        <TableContainer component={Paper}>
+            <Table className={classes.table} aria-label="simple table">
+                <TableHead>
+                    <TableRow>
+                        <TableCell>Machine Number</TableCell>
+                        <TableCell>Price</TableCell>
+                        <TableCell>Type</TableCell>
+                        <TableCell>Activity</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {allMachines.map((machine) => (
+                        <TableRow key="test">
+                            <TableCell component="th" scope="row">
+                                No: {machine.deviceNumberInRoom}
+                            </TableCell>
+                            <TableCell component="th" scope="row">
+                                {machine.price}
+                            </TableCell>
+                            <TableCell component="th" scope="row">
+                                {machine.machineType}
+                            </TableCell>
+                            <TableCell component="th" scope="row">
+                                {machine.isEnabled.toString()}
+                            </TableCell>
+
+                        </TableRow>
+                    ))}
+                </TableBody>
+            </Table>
+        </TableContainer>
     );
 }
 
-export default MachinesInRoomTableComponent;
+
+export default connect(null, {getMachine, getAllMachines,getAllMachinesInRoom})(
+    MachinesInRoomTableComponent
+);
