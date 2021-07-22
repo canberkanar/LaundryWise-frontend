@@ -12,6 +12,8 @@ import MachineService from "../services/MachineService";
 import {connect, useSelector} from "react-redux";
 import {getAllMachines,getAllMachinesInRoom, getLaundryRooms, getMachine, getRoom} from "../redux/actions";
 import Loading from "./Loading";
+import {Button} from "@material-ui/core";
+import AddIcon from "@material-ui/icons/Add";
 
 let MACHINES_ =[     {
     "isActive": true,
@@ -61,6 +63,16 @@ function MachinesInRoomTableComponent(props) {
         <TableContainer component={Paper}>
             <Table className={classes.table} aria-label="simple table">
                 <TableHead>
+                    <Button
+                        className={classes.addButton}
+                        variant="contained"
+                        color="primary"
+                        // onClick={onRegister}
+                        onClick={props.onMachineClicked}
+                        startIcon={<AddIcon/>}
+                    >
+                        Add New Machine
+                    </Button>
                     <TableRow>
                         <TableCell>Machine Number</TableCell>
                         <TableCell>Price</TableCell>
