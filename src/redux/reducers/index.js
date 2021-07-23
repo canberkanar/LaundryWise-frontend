@@ -7,6 +7,7 @@ import {selectRoom} from "./roomReducer";
 import {allAnnouncements, announcement} from "./announcementReducer";
 import {selectMachine, selectMachines,selectMachinesInRoom} from "./machineReducer";
 import {statistics} from "./statisticsReducer";
+import reserveReducer from "./reserveReducer";
 
 
 //reducers
@@ -23,5 +24,6 @@ export default combineReducers({
     selectMachines,
     selectMachinesInRoom,
     statistics,
-    announcement
+    announcement,
+    reserveReducer
 });

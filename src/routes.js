@@ -12,6 +12,7 @@ import ReserveView from "./views/ReserveView";
 import MachineDetailsView from "./views/AddMachineView"
 import AddMachineView from "./views/AddMachineView";
 import EditMachineView from "./views/EditMachineView";
+import SuccessView from "./views/SuccessView";
 // routes within the movie database example app
 // used for routing
 
@@ -93,7 +94,11 @@ const routes = [
         exact: true,
 
     },
-
+    {
+        path: "/paymentSuccess",
+        component: SuccessView,
+        exact: true,
+    },
 ];
 
 export default routes;
