@@ -15,7 +15,7 @@ function SignUpView(props) {
 
     useEffect(() => {
         if (user.user) {
-            props.history.push("/");
+            props.history.push("/mainMenu");
         }
     }, [user, props.history]);
 

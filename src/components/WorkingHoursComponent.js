@@ -1,7 +1,7 @@
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 
-import {Paper, Button, Checkbox, FormControl, FormControlLabel, FormLabel, Grid, Radio, RadioGroup} from "@material-ui/core";
+import {Paper, Button, Grid} from "@material-ui/core";
 import {MuiPickersUtilsProvider, TimePicker} from "@material-ui/pickers";
 import React from "react";
 import {makeStyles} from "@material-ui/core/styles";
@@ -38,19 +38,18 @@ function WorkingHoursComponent(props) {
 
     const classes = useStyles();
 
-    // const [value, setValue] = React.useState('monday'); //state of radio
-    // // Switch's State
-    // //radio
-    //
-    // const [checked, setChecked] = React.useState(false);
-    // const handleChangeCheckBox = (event) => {
-    //     setChecked(event.target.checked);
-    // }
-    let str = new Date('2014-08-18T'+ props.room.operationStartHour +':00:00');
-    let end = new Date('2014-08-18T'+ props.room.operationEndHour +':00:00');
+    let startH = "0";
+    let endH = "0";
+    // Handle the error where when the start hour comes as 6, it makes ot 06 to concatanate in the date.
+    if(props.room.operationStartHour < 10){startH = startH + props.room.operationStartHour.toString();}
+    else{startH = props.room.operationStartHour.toString();}
+    if(props.room.operationEndHour < 10){endH = endH + props.room.operationEndHour.toString();}
+    else{endH = props.room.operationEndHour.toString();}
+
+    let str = new Date('2014-08-18T'+ startH +':00:00');
+    let end = new Date('2015-08-18T'+ endH +':00:00');
     const [selectedStartDate, setSelectedStartDate] = React.useState(str);
     const [selectedEndDate, setSelectedEndDate] = React.useState(end);
-
 
     const handleStartDateChange = (date) => {
         setSelectedStartDate(date);
@@ -73,7 +72,6 @@ function WorkingHoursComponent(props) {
                         margin="normal"
                         id="time-from"
                         label="From:"
-
                         value={selectedStartDate}
                         onChange={handleStartDateChange}
                         KeyboardButtonProps={{

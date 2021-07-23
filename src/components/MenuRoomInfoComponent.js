@@ -15,6 +15,7 @@ import RoomInfoComponent from "./RoomInfoComponent";
 import AnnouncementsComponent from "./AnnouncementsComponent";
 import MenuAnnouncementsComponent from "./MenuAnnouncementsComponent";
 
+
 const useStyles = makeStyles((theme) => ({
     usersignUpRoot: {
         margin: "auto",
@@ -77,59 +78,100 @@ function MenuRoomInfoComponent(props) {
                             <Grid item xs={6} id="RoomPanelGrid">
 
                                 <Typography variant="h4" component="h2" align="left">
-                                    {room.name} - {room.address}
+                                    {room.name}
+                                </Typography>
+                                <Typography variant="h6" component="h2" align="left">
+                                    Address: {room.address}
                                 </Typography>
                                 <br/>
                                 <Typography align="left">
                                     Number of Operating Machines: {room.machines.length}
+                                    <br/>
+                                    Operating Hours from {room.operationStartHour}:00 to {room.operationEndHour}:00
                                 </Typography>
 
-                                <br/>
-                                {/*<Button variant="contained"> Room Setings </Button>*/}
-                                {props.isAdmin ? (
-                                    <Button
-                                        name="MyButton"
-                                        room={room.name}
-                                        onClick = {() => handleRClick(props.room)}
-                                        variant="contained"
-                                        color="primary"
-                                        className={classes.roomSettingsButton}
+                                {/*<Grid container id="ButtonsGrid">*/}
+                                {/*    <Grid item xs={4} id="ReservationsButton">*/}
+                                {/*        <Button*/}
+                                {/*            onClick = {() => handleRezClick(room._id)}*/}
+                                {/*            variant="contained"*/}
+                                {/*        >*/}
+                                {/*            Reservations*/}
+                                {/*        </Button>*/}
+                                {/*    </Grid>*/}
+                                {/*    <Grid item xs={4} id="RoomSettingsButton">*/}
+                                {/*        {props.isAdmin ? (*/}
+                                {/*            <Button*/}
+                                {/*                name="MyButton"*/}
+                                {/*                room={room.name}*/}
+                                {/*                onClick = {() => handleRClick(props.room)}*/}
+                                {/*                variant="contained"*/}
+                                {/*                color="primary"*/}
+                                {/*                className={classes.roomSettingsButton}*/}
 
-                                    >
-                                        Room Settings
-                                    </Button>
-                                ) : null}
-                                <br/>
-                                {/*<Button variant="contained"> Machine Settings </Button>*/}
-                                {props.isAdmin ? (
-                                    <Button
-                                        onClick = {() => handleMClick(props.room)}
-                                        variant="contained"
-                                        color="primary"
-                                        className={classes.machineSettingsButton}
-                                    >
-                                        Machine Setings
-                                    </Button>
-                                ) : null}
-                                <br/>
+                                {/*            >*/}
+                                {/*                Room Settings*/}
+                                {/*            </Button>*/}
+                                {/*        ) : null}*/}
+                                {/*    </Grid>*/}
+                                {/*    <Grid item xs={4} id="MachineSettingsButton">*/}
+                                {/*        {props.isAdmin ? (*/}
+                                {/*            <Button*/}
+                                {/*                onClick = {() => handleMClick(props.room)}*/}
+                                {/*                variant="contained"*/}
+                                {/*                color="primary"*/}
+                                {/*                className={classes.machineSettingsButton}*/}
+                                {/*            >*/}
+                                {/*                Machine Setings*/}
+                                {/*            </Button>*/}
+                                {/*        ) : null}*/}
+                                {/*    </Grid>*/}
+                                {/*</Grid>*/}
 
-                                <Button
-                                    onClick = {() => handleRezClick(room._id)}
-                                    variant="contained"
-                                >
-                                    Reservations
-                                </Button>
+                                <Grid container id="ButtonsGrid">
+                                    <Button
+                                        onClick = {() => handleRezClick(room._id)}
+                                        variant="contained"
+                                    >
+                                        Reservations
+                                    </Button>
+                                    {props.isAdmin ? (
+                                        <Button
+                                            name="MyButton"
+                                            room={room.name}
+                                            onClick = {() => handleRClick(props.room)}
+                                            variant="contained"
+                                            color="primary"
+                                            className={classes.roomSettingsButton}
+
+                                        >
+                                            Room Settings
+                                        </Button>
+                                    ) : null}
+                                    {props.isAdmin ? (
+                                        <Button
+                                            onClick = {() => handleMClick(props.room)}
+                                            variant="contained"
+                                            color="primary"
+                                            className={classes.machineSettingsButton}
+                                        >
+                                            Machine Setings
+                                        </Button>
+                                    ) : null}
+                                </Grid>
 
                             </Grid>
                             <br/>
                             <Grid item xs={6} id="AnnouncementsGrid">
+                                <Typography variant="h6" component="h2">
+                                    Announcement:
+                                </Typography>
                                 <MenuAnnouncementsComponent
                                     room={room}
                                 />
                             </Grid>
 
                         </Grid>
-
                     </Grid>
 
                 </div>

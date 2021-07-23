@@ -4,7 +4,7 @@ import entities from "./entitiesReducer";
 import selectedMovie from "./selectedMovieReducer";
 import {selectedLaundryRoom, allLaundryRooms, updatedRoom} from "./laundryRoomReducer";
 import {selectRoom} from "./roomReducer";
-import {allAnnouncements} from "./announcementReducer";
+import {allAnnouncements, announcement} from "./announcementReducer";
 import {selectMachine, selectMachines,selectMachinesInRoom} from "./machineReducer";
 import {statistics} from "./statisticsReducer";
 import reserveReducer from "./reserveReducer";
@@ -24,5 +24,6 @@ export default combineReducers({
     selectMachines,
     selectMachinesInRoom,
     statistics,
+    announcement,
     reserveReducer
 });

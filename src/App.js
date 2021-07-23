@@ -61,7 +61,7 @@ function App() {
                                     <Route key={i} {...route} />
                                 ))}
                             </Switch>
-                            <Footer />
+                            {/*<Footer />*/}
                         </ScrollContainer>
                     </React.Fragment>
                 </Provider>

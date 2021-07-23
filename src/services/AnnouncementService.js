@@ -26,15 +26,20 @@ export default class AnnouncementService {
 
     static getAnnouncement(id) {
         return new Promise(async (resolve, reject) => {
-            let url = `${AnnouncementService.baseURL()}/?id=${id}`
+            console.log("COME IN TO ANNOUNCEMENT SERVICE")
+            let url = `${AnnouncementService.baseURL()}/`
+            let data = {
+                laundryRoomId: id
+            }
 
-            await HttpService.get(
+            await HttpService.post(
                 url,
+                data,
                 function (data) {
                     if (data !== undefined || Object.keys(data).length !== 0) {
                         resolve(data);
                     } else {
-                        reject("Error while retrieving Laundry Room!");
+                        reject("Error while retrieving Announcement!");
                     }
                 },
                 function (textStatus) {
@@ -43,4 +48,32 @@ export default class AnnouncementService {
             );
         });
     }
+
+    static updateAnnouncement(id, title, body) {
+        return new Promise(async (resolve, reject) => {
+            console.log("COME IN TO ANNOUNCEMENT SERVICE")
+            let url = `${AnnouncementService.baseURL()}/`
+            let data = {
+                announcementId: id,
+                title : title,
+                body: body
+            }
+
+            await HttpService.put(
+                url,
+                data,
+                function (data) {
+                    if (data !== undefined || Object.keys(data).length !== 0) {
+                        resolve(data);
+                    } else {
+                        reject("Error while retrieving Announcement!");
+                    }
+                },
+                function (textStatus) {
+                    reject(textStatus);
+                }
+            );
+        });
+    }
+
 }

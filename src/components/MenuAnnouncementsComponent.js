@@ -10,6 +10,9 @@ import {
 import {makeStyles} from "@material-ui/core/styles";
 
 import {useSelector} from "react-redux";
+import AnnouncementService from "../services/AnnouncementService";
+import LaundryRoomService from "../services/LaundryRoomService";
+import Loading from "./Loading";
 
 const useStyles = makeStyles((theme) => ({
     usersignUpRoot: {
@@ -43,14 +46,28 @@ const useStyles = makeStyles((theme) => ({
 function MenuAnnouncementsComponent(props) {
 
     let room = props.room;
-    let anc_id = room.announcements;
-    // Talha yaptiktan sonra bu announcement Service ile cekilecek:
     let announcement = {"title": "title", "body": "body"};
+    // const announcement = useSelector((state) => state.announcement);
+
     const classes = useStyles();
-    const user = useSelector((state) => state.user);
+
+    // const getAnnc = async (id) => {
+    //     try {
+    //         let announcement = await AnnouncementService.getAnnouncement(id);
+    //         console.log("The Returned Announcement is:")
+    //         console.log(announcement);
+    //         return announcement;
+    //     } catch (e) {
+    //         console.log(e);
+    //     }
+    // };
+    // let announcement = getAnnc(room._id);
+    // console.log("The Read Announcement is:")
+    // console.log(announcement);
 
 
-    return (
+
+    return (!announcement.body ? <Loading/> :
 
         <div className={classes.usersignUpRoot}>
             <Paper className={classes.signUpPaper} component="form">
