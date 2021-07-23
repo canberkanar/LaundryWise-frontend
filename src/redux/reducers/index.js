@@ -6,6 +6,8 @@ import {selectedLaundryRoom, allLaundryRooms, updatedRoom} from "./laundryRoomRe
 import {selectRoom} from "./roomReducer";
 import {allAnnouncements} from "./announcementReducer";
 import {selectMachine, selectMachines,selectMachinesInRoom} from "./machineReducer";
+import {statistics} from "./statisticsReducer";
+
 
 //reducers
 export default combineReducers({
@@ -19,5 +21,6 @@ export default combineReducers({
     allAnnouncements,
     selectMachine,
     selectMachines,
-    selectMachinesInRoom
+    selectMachinesInRoom,
+    statistics
 });

@@ -1,7 +1,3 @@
-/**
- * @author canberk.anar
- */
-
 import LaundryRoomService from "../../services/LaundryRoomService";
 
 export const getLaundryRoom = (id, machineType, date) => {
