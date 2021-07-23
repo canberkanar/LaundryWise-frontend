@@ -28,7 +28,7 @@ function RoomManagement(props) {
     };
 
     const editHandler= (machine) => {
-        props.history.push("./addMachine", {...machine, roomId: theRoom._id});
+        props.history.push("./editMachine", [machine,theRoom]);
     };
 
     const allMachines = useSelector((state) => state.selectMachinesInRoom.machines);
