@@ -50,9 +50,6 @@ function Header(props) {
                 >
                     LaundryWise
                 </Typography>
-                <IconButton onClick={props.toggletheme} color="inherit">
-                    {props.darkmode ? <WbSunnyIcon/> : <Brightness3Icon/>}
-                </IconButton>
                 <IconButton
                     onClick={(event) => setMenuAnchor(event.currentTarget)}
                     color="inherit"
