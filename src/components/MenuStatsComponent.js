@@ -1,17 +1,9 @@
-import React, {useEffect} from "react";
-import {
-    Paper,
-    Grid,
-    Typography,
-    FormControlLabel,
-    Switch, Button,
-
+import React from "react";
+import { Paper, Button,
 } from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
-
 import {useSelector} from "react-redux";
-import RoomInfoComponent from "./RoomInfoComponent";
-import MenuRoomInfoComponent from "./MenuRoomInfoComponent";
+
 
 const useStyles = makeStyles((theme) => ({
     usersignUpRoot: {
@@ -46,14 +38,12 @@ function MenuStatsComponent(props) {
     const classes = useStyles();
     const user = useSelector((state) => state.user);
 
-
     return (
 
         <div className={classes.usersignUpRoot}>
             <Paper className={classes.signUpPaper} component="form">
                 <div className={classes.signUpRow}>
 
-                    {/*<Button variant="contained"> Usage Statistics </Button>*/}
                     {props.isAdmin ? (
                         <Button
                             onClick={props.onUsageStatsClick}
@@ -66,7 +56,6 @@ function MenuStatsComponent(props) {
                     ) : null}
                     <br/>
                     <br/>
-                    {/*<Button variant="contained"> Revenue Statistics </Button>*/}
                     {props.isAdmin ? (
                         <Button
                             onClick={props.onRevenueStatsClick}
@@ -77,7 +66,6 @@ function MenuStatsComponent(props) {
                             Revenue Statistics
                         </Button>
                     ) : null}
-
                 </div>
             </Paper>
         </div>
