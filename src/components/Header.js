@@ -48,7 +48,7 @@ function Header(props) {
             <Toolbar className={classes.toolbar}>
                 <LocalLaundryIcon
                     fontSize="large"
-                    onClick={() => props.history.push("/")}
+                    onClick={() => props.history.push("/mainMenu")}
                 />
 
                 <Typography
@@ -58,9 +58,6 @@ function Header(props) {
                 >
                     LaundryWise
                 </Typography>
-                <IconButton onClick={onClickGithub} color="inherit">
-                    <GitHubIcon/>
-                </IconButton>
                 <IconButton onClick={props.toggletheme} color="inherit">
                     {props.darkmode ? <WbSunnyIcon/> : <Brightness3Icon/>}
                 </IconButton>
