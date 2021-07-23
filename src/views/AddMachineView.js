@@ -42,6 +42,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 function AddMachineView(props) {
     const user = useSelector((state) => state.user);
+    console.log("EDIT BUTTON WORKED");
+    console.log(props.location.state);
 /*
     const onCancel = () => { // forward user to recipes page if they cancel adding recipe
         props.history.push("/recipes");
