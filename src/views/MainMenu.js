@@ -89,7 +89,6 @@ function MainMenu(props) {
                         onRevenueStatsClick={onRevenueStatsClick}
                     />
 
-
                 </Grid>
             </Grid>
         </div>
