@@ -40,54 +40,76 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: theme.spacing(1),
     },
 }));
-function AddMachineView(props) {
+
+function EditMachineView(props) {
+
     const user = useSelector((state) => state.user);
-    console.log("EDIT BUTTON WORKED");
-    console.log(props.location.state);
-/*
-    const onCancel = () => { // forward user to recipes page if they cancel adding recipe
-        props.history.push("/recipes");
-    };
+    /*
+        const onCancel = () => { // forward user to recipes page if they cancel adding recipe
+            props.history.push("/recipes");
+        };
 
-    const onSave = (recipe) => {
-        addRecipe(recipe);
-        props.history.push("/recipes");
-    };*/
-    const [selectedNumberInRoom, setselectedNumberInRoom] = React.useState('');
-    const [selectedPrice, setselectedPrice] = React.useState('');
-    const [selectedType, setselectedType] = React.useState('');
+        const onSave = (recipe) => {
+            addRecipe(recipe);
+            props.history.push("/recipes");
+        };*/
+    const retrievedMachine = props.location.state[0]
+    const retrievedRoom = props.location.state[1]
+    const [selectedNumberInRoom, setselectedNumberInRoom] = React.useState(retrievedMachine.deviceNumberInRoom);
+    const [selectedPrice, setselectedPrice] = React.useState(retrievedMachine.price);
+    const [selectedType, setselectedType] = React.useState(retrievedMachine.machineType);
+    const [selectedActivity, setselectedActivity] = React.useState(retrievedMachine.isEnabled);
 
+
+    console.log(retrievedMachine)
+    console.log(retrievedRoom)
     const handleNumberInRoom = (number) => {
         setselectedNumberInRoom(number.target.value);
     };
     const handlePrice = (price) => {
         setselectedPrice(price.target.value);
     };
-    const handleType = (price) => {
-        setselectedType(price.target.value);
+    const handleType = (type) => {
+        setselectedType(type.target.value);
+    };
+    const handleActivity = (activity) => {
+        setselectedActivity(activity.target.value);
     };
     const handleCancel = async () => {
-        props.history.push('/roomManagement',props.location.state)
+        props.history.push('/roomManagement',retrievedRoom)
     }
-    const handleSave = async (selectedNumberInRoom, selectedPrice,selectedType) => {
+    const handleRemove = async (id) => {
+
+        try {
+            let removedMachine = await MachineService.removeMachine(id);
+        } catch (e) {
+            console.log("errorlandin");
+            console.log(e);
+        }
+        console.log(id)
+        props.history.push('/roomManagement',retrievedRoom)
+    }
+    const handleSave = async (selectedNumberInRoom, selectedPrice,selectedType,selectedActivity) => {
         console.log("BUTTON WORKED!");
-        console.log("number: " + selectedNumberInRoom + " price: " + selectedPrice + " type: " + selectedType );
+        console.log("number: " + selectedNumberInRoom + " price: " + selectedPrice + " type: " + selectedType + " Activity: " + selectedActivity  );
         let data=  {
-            "deviceRoomId": props.location.state._id,
+            "deviceRoomId": retrievedRoom._id,
             "deviceNumberInRoom": selectedNumberInRoom,
             "machineType": selectedType,
-            "isEnabled": true,
-            "operationCount": 0,
-            "price": parseFloat(selectedPrice)
+            "isEnabled": selectedActivity,
+            "operationCount": retrievedMachine.operationCount,
+            "price": parseFloat(selectedPrice),
+            "id": retrievedMachine._id
         }
+
         try {
-            let createdMachine = await MachineService.createMachine(data);
+            let updatedMachine = await MachineService.updateMachine(data);
         } catch (e) {
             console.log("errorlandin");
             console.log(e);
         }
         console.log(data)
-        props.history.push('/roomManagement',props.location.state)
+        props.history.push('/roomManagement',retrievedRoom)
     };
     const classes = useStyles();
     const [registerError, setRegisterError] = React.useState("");
@@ -98,14 +120,14 @@ function AddMachineView(props) {
             <Paper className={classes.signUpPaper} component="form">
                 <div className={classes.signUpRow}>
                     <Typography variant="body1" align="center">
-                        Add Machine
+                        Edit & Remove Machine
                     </Typography>
                 </div>
                 <div className={classes.signUpRow}>
                     <TextField
                         label="Number In Room"
                         fullWidth
-                        //value="1"
+                        defaultValue={retrievedMachine.deviceNumberInRoom}
                         onChange={handleNumberInRoom}
                     />
                 </div>
@@ -113,7 +135,7 @@ function AddMachineView(props) {
                     <TextField
                         label="Price"
                         fullWidth
-                        //value="1"
+                        defaultValue={retrievedMachine.price}
                         onChange={handlePrice}
                     />
                 </div>
@@ -121,8 +143,17 @@ function AddMachineView(props) {
                     <TextField
                         label="Machine Type"
                         fullWidth
-                        //value="washer"
-                        onChange={handleType}
+                        value={retrievedMachine.machineType}
+                        //onChange={handleType}
+
+                    />
+                </div>
+                <div className={classes.signUpRow}>
+                    <TextField
+                        label="Activity"
+                        fullWidth
+                        defaultValue={retrievedMachine.isEnabled}
+                        onChange={handleActivity}
 
                     />
                 </div>
@@ -150,12 +181,27 @@ function AddMachineView(props) {
                         // which is unwanted behaviour
                         // https://stackoverflow.com/questions/33846682/react-onclick-function-fires-on-render
                         onClick={() =>
-                            handleSave(selectedNumberInRoom,selectedPrice,selectedType)
+                            handleSave(selectedNumberInRoom,selectedPrice,selectedType,selectedActivity)
                         }
                         //disabled={recipeTitle === "" | recipePreparationSteps === ""}
                         //type="submit"
                     >
                         Save
+                    </Button>
+                    <Button
+                        className={classes.signUpButton}
+                        variant="contained"
+                        color="primary"
+                        // must be referenced with arrow function else the function onSave will be triggered on load,
+                        // which is unwanted behaviour
+                        // https://stackoverflow.com/questions/33846682/react-onclick-function-fires-on-render
+                        onClick={() =>
+                            handleRemove(retrievedMachine._id)
+                        }
+                        //disabled={recipeTitle === "" | recipePreparationSteps === ""}
+                        //type="submit"
+                    >
+                        Remove Machine
                     </Button>
                 </div>
             </Paper>
@@ -168,5 +214,5 @@ function AddMachineView(props) {
 // export default AddRecipeView;
 // connect() allows the usage of redux functionality
 export default connect(null,)(
-    AddMachineView
+    EditMachineView
 );
