@@ -74,14 +74,19 @@ function MenuRoomInfoComponent(props) {
                     <Grid id="LaundryRoomInfoGrid" container>
 
                         <Grid container id="SettingsGrid">
-                            <Grid item xs={6} id="RoomPanelGrid">
+                            <Grid item xs={8} id="RoomPanelGrid">
 
                                 <Typography variant="h4" component="h2" align="left">
-                                    {room.name} - {room.address}
+                                    {room.name}
+                                </Typography>
+                                <Typography variant="h6" component="h2" align="left">
+                                    Address: {room.address}
                                 </Typography>
                                 <br/>
                                 <Typography align="left">
                                     Number of Operating Machines: {room.machines.length}
+                                    <br/>
+                                    Operating Hours from {room.operationStartHour}:00 to {room.operationEndHour}:00
                                 </Typography>
 
                                 <br/>
@@ -122,7 +127,7 @@ function MenuRoomInfoComponent(props) {
 
                             </Grid>
                             <br/>
-                            <Grid item xs={6} id="AnnouncementsGrid">
+                            <Grid item xs={4} id="AnnouncementsGrid">
                                 <MenuAnnouncementsComponent
                                     room={room}
                                 />
