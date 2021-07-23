@@ -17,7 +17,7 @@ function MainMenu(props) {
     let isLoggedIn = !!user.user;
     let isAdmin = !!user.user ? user.user.role === "admin" : false;
 
-    let {match, getLaundryRooms, getAnnouncements, getLaundryRoom} = props;
+    let {match, getLaundryRooms} = props;
 
     const onUsageStatsClick = () => {
         // navigate to an empty mask for entering details of the new movie
@@ -39,7 +39,6 @@ function MainMenu(props) {
         let data = {
             "laundryRoomId": childData._id
         }
-        getAnnouncements(data);
         // navigate to an empty mask for entering details of the new movie
         props.history.push("/machineManagement", childData);
     };

@@ -65,16 +65,7 @@ function MachineInRoomInfoComponent(props) {
                         {/*isAdmin must be fed in from parent view as parameter*/}
                         {/*isAdmin={!!user.user ? user.user.role === "admin" : false}*/}
                         <Grid id="LaundryRoomActiveGrid" container xs={6}>
-                            <Button
-                                className={classes.addButton}
-                                variant="contained"
-                                color="primary"
-                                // onClick={onRegister}
-                                type="submit"
-                                startIcon={<AddIcon/>}
-                            >
-                                Add
-                            </Button>
+
 
                         <RadioGroup aria-label="gender" name="gender1" value={props.selectedMachineType}
                                     onChange={handleRadioChange}>

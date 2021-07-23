@@ -23,6 +23,13 @@ function RoomManagement(props) {
         getAllMachinesInRoom(theRoom._id, selectedMachineType);
     }, [match.params, selectedMachineType, theRoom._id]);
 
+    const onMachineClicked = () => {
+        props.history.push("/addMachine",theRoom); // navigates the user to the Machine Details Page
+    };
+
+    const editHandler= (machine) => {
+        props.history.push("./editMachine", [machine,theRoom]);
+    };
 
     const allMachines = useSelector((state) => state.selectMachinesInRoom.machines);
 
@@ -40,12 +47,17 @@ function RoomManagement(props) {
                     <Grid item xs={2} id="RoomInfoGrid">
                         <MachineInRoomInfoComponent selectedMachineType={selectedMachineType}
                                                     passSelectedMachineTypeToParent={setSelectedMachineType}
-                                                    theRoom={theRoom}/>
+                                                    theRoom={theRoom}
+                                                    />
 
                     </Grid>
                     <br/>
                     <Grid item xs={10} id="MachinesTable">
-                        <MachinesInRoomTableComponent theRoom={theRoom} allMachines = {allMachines}/>
+                        <MachinesInRoomTableComponent
+                            onMachineClicked = {onMachineClicked}
+                            theRoom={theRoom}
+                            allMachines = {allMachines}
+                            onClick={editHandler}/>
                     </Grid>
                 </Grid>
             </div>

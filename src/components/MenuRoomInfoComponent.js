@@ -123,7 +123,9 @@ function MenuRoomInfoComponent(props) {
                             </Grid>
                             <br/>
                             <Grid item xs={6} id="AnnouncementsGrid">
-                                <MenuAnnouncementsComponent/>
+                                <MenuAnnouncementsComponent
+                                    room={room}
+                                />
                             </Grid>
 
                         </Grid>

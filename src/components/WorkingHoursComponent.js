@@ -1,10 +1,5 @@
-/**
- * @author canberk.anar
- */
-
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
-import SaveIcon from '@material-ui/icons/Save';
 
 import {Paper, Button, Checkbox, FormControl, FormControlLabel, FormLabel, Grid, Radio, RadioGroup} from "@material-ui/core";
 import {MuiPickersUtilsProvider, TimePicker} from "@material-ui/pickers";
@@ -51,9 +46,11 @@ function WorkingHoursComponent(props) {
     // const handleChangeCheckBox = (event) => {
     //     setChecked(event.target.checked);
     // }
+    let str = new Date('2014-08-18T'+ props.room.operationStartHour +':00:00');
+    let end = new Date('2014-08-18T'+ props.room.operationEndHour +':00:00');
+    const [selectedStartDate, setSelectedStartDate] = React.useState(str);
+    const [selectedEndDate, setSelectedEndDate] = React.useState(end);
 
-    const [selectedStartDate, setSelectedStartDate] = React.useState(new Date('2014-08-18T21:11:54'));
-    const [selectedEndDate, setSelectedEndDate] = React.useState(new Date('2014-08-18T21:11:54'));
 
     const handleStartDateChange = (date) => {
         setSelectedStartDate(date);

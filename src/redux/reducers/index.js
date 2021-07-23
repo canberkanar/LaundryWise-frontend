@@ -7,6 +7,7 @@ import {selectRoom} from "./roomReducer";
 import {allAnnouncements} from "./announcementReducer";
 import {selectMachine, selectMachines,selectMachinesInRoom} from "./machineReducer";
 
+//reducers
 export default combineReducers({
     user,
     entities,

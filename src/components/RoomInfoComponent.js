@@ -52,17 +52,15 @@ function RoomInfoComponent(props) {
     let roomState = props.room.isActive;
     console.log("Room ID:", roomId);
     console.log("Room State:", roomState);
-    const [checked, setChecked] = React.useState({
-        value: props.room.isActive});
-    console.log("Value of checked: ", checked.value);
+    const [activation, setActivation] = React.useState(props.room.isActive);
     let data = null;
 
 
     const activationOnClick = () => {
         // navigate to an empty mask for entering details of the new movie
         console.log("ACTIVATION BUTTON TOGGLED");
-        data = {"isActive": !roomState};
-        roomState = !roomState;
+        data = {"isActive": !activation};
+        setActivation(!activation);
         console.log("Req Data: ", data);
         console.log("Room Id: ", roomId);
         updateLaundryRoom(roomId, data);
@@ -85,7 +83,7 @@ function RoomInfoComponent(props) {
                                     color="primary"
                                     onClick = {activationOnClick}
                                 >
-                                    {!roomState ? "Activate" : "Deactivate"}
+                                    {!activation ? "Activate" : "Deactivate"}
                                 </Button>
                             </Grid>
 
