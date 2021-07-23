@@ -40,17 +40,19 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: theme.spacing(1),
     },
 }));
-function AddMachineView(props) {
-    const user = useSelector((state) => state.user);
-/*
-    const onCancel = () => { // forward user to recipes page if they cancel adding recipe
-        props.history.push("/recipes");
-    };
 
-    const onSave = (recipe) => {
-        addRecipe(recipe);
-        props.history.push("/recipes");
-    };*/
+function EditMachineView(props) {
+
+    const user = useSelector((state) => state.user);
+    /*
+        const onCancel = () => { // forward user to recipes page if they cancel adding recipe
+            props.history.push("/recipes");
+        };
+
+        const onSave = (recipe) => {
+            addRecipe(recipe);
+            props.history.push("/recipes");
+        };*/
     const [selectedNumberInRoom, setselectedNumberInRoom] = React.useState('');
     const [selectedPrice, setselectedPrice] = React.useState('');
     const [selectedType, setselectedType] = React.useState('');
@@ -78,6 +80,7 @@ function AddMachineView(props) {
             "operationCount": 0,
             "price": parseFloat(selectedPrice)
         }
+        /*
         try {
             let createdMachine = await MachineService.createMachine(data);
         } catch (e) {
@@ -85,7 +88,7 @@ function AddMachineView(props) {
             console.log(e);
         }
         console.log(data)
-        props.history.push('/roomManagement',props.location.state)
+        props.history.push('/roomManagement',props.location.state)*/
     };
     const classes = useStyles();
     const [registerError, setRegisterError] = React.useState("");
@@ -166,5 +169,5 @@ function AddMachineView(props) {
 // export default AddRecipeView;
 // connect() allows the usage of redux functionality
 export default connect(null,)(
-    AddMachineView
+    EditMachineView
 );

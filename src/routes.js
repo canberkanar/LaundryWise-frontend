@@ -11,6 +11,7 @@ import AdminRoomReservationsView from "./views/AdminRoomReservationsView";
 import ReserveView from "./views/ReserveView";
 import MachineDetailsView from "./views/AddMachineView"
 import AddMachineView from "./views/AddMachineView";
+import EditMachineView from "./views/EditMachineView";
 // routes within the movie database example app
 // used for routing
 
@@ -83,6 +84,12 @@ const routes = [
     {
         path: "/addMachine",
         component: AddMachineView,
+        exact: true,
+
+    },
+    {
+        path: "/editMachine",
+        component: EditMachineView,
         exact: true,
 
     },
