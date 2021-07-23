@@ -1,7 +1,3 @@
-/**
- * @author canberk.anar
- */
-
 import HttpService from "./HttpService";
 export default class AnnouncementService {
 
