@@ -5,7 +5,6 @@ import {AppBar, IconButton, Toolbar, Typography} from "@material-ui/core";
 
 import MenuIcon from "@material-ui/icons/Menu";
 import LocalLaundryIcon from "@material-ui/icons/LocalLaundryService";
-import GitHubIcon from "@material-ui/icons/GitHub";
 import WbSunnyIcon from "@material-ui/icons/WbSunny";
 import Brightness3Icon from "@material-ui/icons/Brightness3";
 
@@ -30,13 +29,6 @@ function Header(props) {
 
     const [menuAnchor, setMenuAnchor] = React.useState(null);
 
-    const onClickGithub = (event) => {
-        var win = window.open(
-            "https://github.com/sebischair/seba-master-movie-frontend",
-            "_blank"
-        );
-        win.focus();
-    };
 
     return (
         <AppBar position="sticky">
@@ -48,7 +40,7 @@ function Header(props) {
             <Toolbar className={classes.toolbar}>
                 <LocalLaundryIcon
                     fontSize="large"
-                    onClick={() => props.history.push("/")}
+                    onClick={() => props.history.push("/mainMenu")}
                 />
 
                 <Typography
@@ -58,9 +50,6 @@ function Header(props) {
                 >
                     LaundryWise
                 </Typography>
-                <IconButton onClick={onClickGithub} color="inherit">
-                    <GitHubIcon/>
-                </IconButton>
                 <IconButton onClick={props.toggletheme} color="inherit">
                     {props.darkmode ? <WbSunnyIcon/> : <Brightness3Icon/>}
                 </IconButton>
