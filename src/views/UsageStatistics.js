@@ -15,8 +15,8 @@ function UsageStatistics(props) {
     let {match, getStatistics} = props;
 
     useEffect(() => {
-        
-        getStatistics("60fa0761fe8d124bba559880");
+        // trigger room load from backend
+        getStatistics(user.user._id);
         console.log("GET IN TO USAGE STATISTICS");
         console.log(stats);
     }, []);
@@ -31,6 +31,15 @@ function UsageStatistics(props) {
                 {user.user.username}
             </h1>
             <h3>
+                Total hours machines have been used:
+                {stats.value.totalCount}
+            </h3>
+            <h3>
+                Total hours washer machines have been used: 
+                {stats.value.washerCount}
+            </h3>
+            <h3>
+                Total hours dryer machines have been used:
                 {stats.value.dryerCount}
             </h3>
             <br/>
