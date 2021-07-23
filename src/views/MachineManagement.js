@@ -5,28 +5,25 @@ import {Grid} from "@material-ui/core";
 import { Helmet } from 'react-helmet';
 import {connect, useSelector} from "react-redux";
 import Loading from "../components/Loading";
-import React, {useEffect} from "react";
-import {getAnnouncements} from "../redux/actions/announcementActions";
+import React, {useEffect, useState} from "react";
+import {getAnnouncement, getAnnouncements} from "../redux/actions/announcementActions";
 import LaundryRoomService from "../services/LaundryRoomService";
 import {login} from "../redux/actions";
 import AnnouncementService from "../services/AnnouncementService";
 
 function MachineManagement(props) {
 
+    console.log("COME INSIDE TO MACHINE MANAGEMENT");
+
     const theRoom = props.location.state;
     console.log("The RRoom: ", theRoom);
-    // Talha'nın backend değişikliğinden sonra çalışacak:
-    // let ann =  AnnouncementService.getAnnouncement(theRoom.announcements);
-    // console.log(ann);
-    console.log("COME INSIDE TO MACHINE MANAGEMENT");
-    let announcement = {"title": "title", "body": "body"};
-
-    let data = {
-        "laundryRoomId": theRoom._id
-    }
+    const announcement = useSelector((state) => state.announcement);
+    let {match, getAnnouncement} = props;
+    //let announcement = {"title": "title", "body": "body"};
 
     useEffect(() => {
         // trigger room load from backend
+        getAnnouncement(theRoom._id);
     }, []);
 
 
@@ -42,10 +39,20 @@ function MachineManagement(props) {
         } catch (e) {
             console.log(e);
         }
-
     };
 
-    return (!announcement ? <Loading/> :
+    const handleAnncUpdate = async (title, body) => {
+        console.log("ANC UPDATE BUTTON WORKED!");
+        console.log(title, body);
+
+        try {
+            let updatedAnc = await AnnouncementService.updateAnnouncement(theRoom.announcements, title, body);
+        } catch (e) {
+            console.log(e);
+        }
+    };
+
+    return (!announcement.announcement ? <Loading/> :
         <div>
             <Helmet>
                 <title>LaundryWise | Machine Management</title>
@@ -65,8 +72,9 @@ function MachineManagement(props) {
                 <br/>
                 <Grid item xs={7} id="RoomAnnouncementsGrid">
                     <AnnouncementsComponent
-                        announcement={announcement}
+                        announcement={announcement.announcement}
                         room={theRoom}
+                        onClick={(title, body) => handleAnncUpdate(title, body)}
                     />
                 </Grid>
             </Grid>
@@ -75,7 +83,7 @@ function MachineManagement(props) {
 }
 
 // export default MachineManagement;
-export default connect(null, {getAnnouncements})(
+export default connect(null, {getAnnouncement})(
     MachineManagement
 );
 

@@ -38,8 +38,16 @@ function WorkingHoursComponent(props) {
 
     const classes = useStyles();
 
-    let str = new Date('2014-08-18T'+ props.room.operationStartHour +':00:00');
-    let end = new Date('2015-08-18T'+ props.room.operationEndHour +':00:00');
+    let startH = "0";
+    let endH = "0";
+    // Handle the error where when the start hour comes as 6, it makes ot 06 to concatanate in the date.
+    if(props.room.operationStartHour < 10){startH = startH + props.room.operationStartHour.toString();}
+    else{startH = props.room.operationStartHour.toString();}
+    if(props.room.operationEndHour < 10){endH = endH + props.room.operationEndHour.toString();}
+    else{endH = props.room.operationEndHour.toString();}
+
+    let str = new Date('2014-08-18T'+ startH +':00:00');
+    let end = new Date('2015-08-18T'+ endH +':00:00');
     const [selectedStartDate, setSelectedStartDate] = React.useState(str);
     const [selectedEndDate, setSelectedEndDate] = React.useState(end);
 
