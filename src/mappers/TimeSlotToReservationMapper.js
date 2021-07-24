@@ -8,7 +8,6 @@ function TimeSlotToReservationMapper(reservation, user) {
     mappedReservation.machineId = reservation.machineId;
     mappedReservation.allocatedTimeId = reservation.id;
     mappedReservation.customerId = user._id;
-    mappedReservation.serviceProviderId = "60f47d66c022a64fee0ca897"; //TODO
 
     return mappedReservation;
 }
