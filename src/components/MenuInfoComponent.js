@@ -43,7 +43,6 @@ function MenuInfoComponent(props) {
     const user = useSelector((state) => state.user);
     const allLaundryRooms = useSelector((state) => state.allLaundryRooms);
     const LR = useSelector((state) => state.allLaundryRooms.laundryRooms);
-    console.log(LR);
     let {match, getLaundryRooms} = props;
 
     useEffect(() => {
