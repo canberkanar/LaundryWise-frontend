@@ -5,7 +5,7 @@ export default class UserRentalService {
 
     static getUserRentals(data) {
         return new Promise(async (resolve, reject) => {
-            let url = `${UserRentalService.rentalURL()}/`
+            let url = `${UserRentalService.rentalURL()}/myRentals`
 
             await HttpService.post(
                 url,
