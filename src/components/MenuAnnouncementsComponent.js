@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {
     Paper,
     Grid,
@@ -45,27 +45,9 @@ const useStyles = makeStyles((theme) => ({
 
 function MenuAnnouncementsComponent(props) {
 
+    const classes = useStyles();
     let room = props.room;
     let announcement = {"title": "title", "body": "body"};
-    // const announcement = useSelector((state) => state.announcement);
-
-    const classes = useStyles();
-
-    // const getAnnc = async (id) => {
-    //     try {
-    //         let announcement = await AnnouncementService.getAnnouncement(id);
-    //         console.log("The Returned Announcement is:")
-    //         console.log(announcement);
-    //         return announcement;
-    //     } catch (e) {
-    //         console.log(e);
-    //     }
-    // };
-    // let announcement = getAnnc(room._id);
-    // console.log("The Read Announcement is:")
-    // console.log(announcement);
-
-
 
     return (!announcement.body ? <Loading/> :
 
