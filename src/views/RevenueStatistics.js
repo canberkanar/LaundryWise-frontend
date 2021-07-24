@@ -55,7 +55,7 @@ function RevenueStatistics(props) {
                             valueField="usageData"
                             argumentField="type"
                         />
-                        <Title text="Usage Statistics" />
+                        <Title text="Revenue Statistics" />
                     </Chart>
                 </Paper>
 

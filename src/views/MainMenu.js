@@ -12,12 +12,8 @@ import {getAnnouncements} from "../redux/actions/announcementActions";
 function MainMenu(props) {
 
     const user = useSelector((state) => state.user);
-    const allLaundryRooms = useSelector((state) => state.allLaundryRooms);
-
     let isLoggedIn = !!user.user;
     let isAdmin = !!user.user ? user.user.role === "admin" : false;
-
-    let {match, getLaundryRooms} = props;
 
     const onUsageStatsClick = () => {
         // navigate to an empty mask for entering details of the new movie
@@ -54,17 +50,12 @@ function MainMenu(props) {
 
     useEffect(() => {
         // trigger room load from backend
-
-        if(isLoggedIn){
-            getLaundryRooms();
-        }
-        else{
+        if(!isLoggedIn){
             props.history.push("./login");
         }
-
     }, []);
 
-    return (!allLaundryRooms.laundryRooms && !allLaundryRooms.error ? <Loading/> :
+    return (
         <div>
             <Helmet>
                 <title>LaundryWise | Main Menu</title>
@@ -81,7 +72,6 @@ function MainMenu(props) {
                         onMachineManagementClick={onMachineManagementClick}
                         onRoomManagementClick={onRoomManagementClick}
                         onReservationsClick={onReservationsClick}
-                        laundryRooms = {allLaundryRooms.laundryRooms}
                     />
                 </Grid>
                 <br/>

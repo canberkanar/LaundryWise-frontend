@@ -50,6 +50,7 @@ function SignUpComponent(props) {
     const [username, setUsername] = React.useState("");
     const [password, setPassword] = React.useState("");
     const [password2, setPassword2] = React.useState("");
+    const [laundrywiseCode, setLaundrywiseCode] = React.useState("");
     const [isAdmin, setIsAdmin] = React.useState(false);
 
     const [registerError, setRegisterError] = React.useState("");
@@ -79,6 +80,11 @@ function SignUpComponent(props) {
 
     const onChangePassword2 = (e) => {
         setPassword2(e.target.value);
+        setRegisterError("");
+    };
+
+    const onChangeLaundrywiseCode = (e) => {
+        setLaundrywiseCode(e.target.value);
         setRegisterError("");
     };
 
@@ -130,18 +136,15 @@ function SignUpComponent(props) {
                         type="password"
                     />
                 </div>
-                {/*<div className={classes.signUpRow}>*/}
-                {/*    <FormControlLabel*/}
-                {/*        control={*/}
-                {/*            <Checkbox*/}
-                {/*                checked={isAdmin}*/}
-                {/*                onChange={(e) => setIsAdmin(e.target.checked)}*/}
-                {/*                color="primary"*/}
-                {/*            />*/}
-                {/*        }*/}
-                {/*        label="Is Admin"*/}
-                {/*    />*/}
-                {/*</div>*/}
+                <div className={classes.signUpRow}>
+                    <TextField
+                        label="Laundrywise Code"
+                        fullWidth
+                        value={laundrywiseCode}
+                        onChange={onChangeLaundrywiseCode}
+                        error={registerError !== ""}
+                    />
+                </div>
                 {registerError !== "" ? (
                     <div className={classes.signUpRow}>
                         <Typography color="error">{registerError}</Typography>

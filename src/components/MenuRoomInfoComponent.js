@@ -1,18 +1,9 @@
 import React, {useEffect} from "react";
 import {
-    Paper,
-    Grid,
-    Typography,
-    FormControlLabel,
-    Switch, Button,
-
+    Paper, Grid, Typography, Button,
 } from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
-
 import {useSelector} from "react-redux";
-import MenuInfoComponent from "./MenuInfoComponent";
-import RoomInfoComponent from "./RoomInfoComponent";
-import AnnouncementsComponent from "./AnnouncementsComponent";
 import MenuAnnouncementsComponent from "./MenuAnnouncementsComponent";
 
 
@@ -48,8 +39,9 @@ const useStyles = makeStyles((theme) => ({
 function MenuRoomInfoComponent(props) {
     const classes = useStyles();
     const user = useSelector((state) => state.user);
-    const room = props.room;
-
+    let room = props.room;
+    console.log("IN MENU ROOM INFO COMPONENT");
+    console.log(room);
 
     function handleMClick(xyz) {
         props.onMachineManagementClick(xyz); // pass any argument to the callback
@@ -60,8 +52,6 @@ function MenuRoomInfoComponent(props) {
     }
 
     function handleRezClick(xyz) {
-        console.log("REZ BUTTON PRESSED")
-        console.log("THE ID IS:" + xyz)
         props.onReservationsClick(xyz); // pass any argument to the callback
     }
 
@@ -137,20 +127,19 @@ function MenuRoomInfoComponent(props) {
                                     </Button>
                                     {props.isAdmin ? (
                                         <Button
-                                            name="MyButton"
+                                            name="RoomSettingsButton"
                                             room={room.name}
-                                            onClick = {() => handleRClick(props.room)}
+                                            onClick = {() => handleRClick(room)}
                                             variant="contained"
                                             color="primary"
                                             className={classes.roomSettingsButton}
-
                                         >
                                             Room Settings
                                         </Button>
                                     ) : null}
                                     {props.isAdmin ? (
                                         <Button
-                                            onClick = {() => handleMClick(props.room)}
+                                            onClick = {() => handleMClick(room)}
                                             variant="contained"
                                             color="primary"
                                             className={classes.machineSettingsButton}
