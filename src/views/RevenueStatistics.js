@@ -2,9 +2,10 @@ import {Grid, Paper} from "@material-ui/core";
 import { Helmet } from 'react-helmet';
 import {connect, useSelector} from "react-redux";
 import {withRouter} from "react-router-dom";
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import Loading from "../components/Loading";
 import {getStatistics} from "../redux/actions";
+import {ArgumentAxis, BarSeries, Chart, Title, ValueAxis} from "@devexpress/dx-react-chart-material-ui";
 
 
 function RevenueStatistics(props) {
@@ -13,37 +14,53 @@ function RevenueStatistics(props) {
     const stats = useSelector((state) => state.statistics);
     let {match, getStatistics} = props;
 
+    let [chartData, setChartData] = useState(
+        [
+            { type: 'Washer Revenue', usageData: -1 },
+            { type: 'Dryer Revenue', usageData: -1 },
+            { type: 'Total Revenue', usageData: -1 }
+        ]
+    );
+
     useEffect(() => {
-        // trigger room load from backend
         getStatistics(user.user._id);
-        console.log("GET IN TO REVENUE STATISTICS")
-        console.log(stats);
-    }, []);
+    }, [])
+
+    useEffect(() => {
+        let xyz = [
+            { type: 'Washer Revenue', usageData: stats.value && stats.value.washerRevenue ? stats.value.washerRevenue : 0 },
+            { type: 'Dryer Revenue', usageData: stats.value && stats.value.dryerRevenue ? stats.value.dryerRevenue : 0 },
+            { type: 'Total Revenue', usageData: stats.value && stats.value.totalRevenue ? stats.value.totalRevenue : 0 }
+        ];
+
+        setChartData(xyz);
+        console.log("The Stats Are:");
+        console.log(chartData);
+    }, [stats])
 
 
-    return (!stats.value ? <Loading/> :
-        <div>
-            <Helmet>
-                <title>LaundryWise | Revenue Statistics</title>
-            </Helmet>
-            <h3>
-                Total revenue machines have been used:
-                {stats.value.totalCount}
-            </h3>
-            <h3>
-                Total revenue washer machines have been used: 
-                {stats.value.washerCount}
-            </h3>
-            <h3>
-                Total revenue dryer machines have been used:
-                {stats.value.dryerCount}
-            </h3>
-            <br/>
-            <Paper>
-                <h1>Revenue Statistics</h1>
-            </Paper>
+    return ((chartData[0].usageData === -1) ? <Loading/> :
+            <div>
+                <Helmet>
+                    <title>LaundryWise | Usage Statistics</title>
+                </Helmet>
+                <Paper>
+                    <Chart
+                        data={chartData}
+                    >
+                        <ArgumentAxis />
+                        <ValueAxis max={7} />
 
-        </div>
+                        <BarSeries
+                            valueField="usageData"
+                            argumentField="type"
+                        />
+                        <Title text="Usage Statistics" />
+                    </Chart>
+                </Paper>
+
+
+            </div>
     );
 }
 
