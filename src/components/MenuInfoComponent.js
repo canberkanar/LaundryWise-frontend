@@ -47,10 +47,13 @@ function MenuInfoComponent(props) {
 
     useEffect(() => {
         // trigger room load from backend
-        getLaundryRooms();
-    }, []);
+        if(!LR){
+            getLaundryRooms();
+        }
 
-    return (!allLaundryRooms.laundryRooms && !allLaundryRooms.error && !LR ? <Loading/> :
+    }, [LR]);
+
+    return (!LR ? <Loading/> :
 
         <div className={classes.usersignUpRoot}>
             <Paper className={classes.signUpPaper} component="form">
