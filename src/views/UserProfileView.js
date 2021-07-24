@@ -46,7 +46,6 @@ function UserProfile(props) {
             <Paper>
                 <h1>Profile</h1>
             </Paper>
-
         </div>
     );
 }
