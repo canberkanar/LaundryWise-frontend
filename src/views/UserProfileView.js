@@ -12,40 +12,40 @@ function UserProfile(props) {
 
     const user = useSelector((state) => state.user);
     console.log(user.user._id);
-    const stats = useSelector((state) => state.UserRentals);
+    const rentals = useSelector((state) => state.userRentals);
     let {match, getUserRentals} = props;
 
     useEffect(() => {
         // trigger room load from backend
         getUserRentals(user.user._id);
         console.log("GET IN TO USER RENTALS");
-        console.log(stats);
-    }, []);
+        console.log(rentals);
+    }, [rentals]);
 
 
-    return (!stats.value ? <Loading/> :
+    return (!user.user ? <Loading/> :
         <div>
             <Helmet>
-                <title>LaundryWise | Usage Statistics</title>
+                <title>LaundryWise | Profile</title>
             </Helmet>
-            <h1>
-                {user.user.username}
-            </h1>
             <h3>
-                Total hours machines have been used:
-                {stats.value.totalCount}
+                Username:{user.user.username}
             </h3>
             <h3>
-                Total hours washer machines have been used: 
-                {stats.value.washerCount}
+                Email:{user.user.email}
             </h3>
             <h3>
-                Total hours dryer machines have been used:
-                {stats.value.dryerCount}
+                Address:{user.user.address}
+            </h3>
+            <h3>
+                Mobile Number:{user.user.mobileNumber}
+            </h3>
+            <h3>
+                Laundrywise Code:{user.user.laundrywiseCode}
             </h3>
             <br/>
             <Paper>
-                <h1>Usage Statistics</h1>
+                <h1>Profile</h1>
             </Paper>
 
         </div>
