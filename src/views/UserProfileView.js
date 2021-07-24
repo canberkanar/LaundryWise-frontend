@@ -43,11 +43,9 @@ function UserProfile(props) {
             <h3>
                 Laundrywise Code:{user.user.laundrywiseCode}
             </h3>
-            <br/>
             <Paper>
                 <h1>Profile</h1>
             </Paper>
-
         </div>
     );
 }
