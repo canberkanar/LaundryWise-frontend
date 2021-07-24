@@ -53,7 +53,7 @@ function AdminRoomReservationsView(props) {
                     </Grid>
                 </Grid>
                 <br/>
-                <Grid container id="AdminReservationSchedulingGrid">
+                <Grid container id="AdminReservationSchedulingGrid"  style={{padding: 20}}>
                     <Grid item id="AdminSchedulerField" >
                         <AdminSchedulerComponent laundryroom={selectedLaundryRoom.laundryroom} selectedDate={selectedDate}/>
                     </Grid>

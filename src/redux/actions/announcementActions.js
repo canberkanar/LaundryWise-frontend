@@ -23,5 +23,28 @@ export function getAnnouncements(data) {
     };
 }
 
+export function getAnnouncement(laundryRoomId) {
+    function onSuccess(announcement) {
+        return { type: "GET_ANNOUNCEMENT", announcement: announcement };
+    }
+    // when the backend call was failed
+    function onFailure(error) {
+        // error handling
+        console.log("failed to get the announcement", error);
+    }
+
+    return async (dispatch) => {
+        try {
+            // ask for the movies in the backend
+            console.log("IT COMES IN TO THE ANNOUNCEMENT ACTION");
+            let announcement = await AnnouncementService.getAnnouncement(laundryRoomId);
+            // call onSuccess in context of redux
+            dispatch(onSuccess(announcement));
+        } catch (e) {
+            onFailure(e);
+        }
+    };
+}
+
 
 

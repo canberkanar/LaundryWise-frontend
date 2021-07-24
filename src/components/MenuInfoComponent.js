@@ -58,37 +58,31 @@ function MenuInfoComponent(props) {
                 <div className={classes.signUpRow}>
 
                     <Grid id="LaundryRoomInfoGrid" container>
-
-                        <Grid>
-                            <TableContainer>
-                                <Table>
-                                    <TableHead>
-                                        <TableRow>
-                                        </TableRow>
-                                    </TableHead>
-                                    <TableBody>
-                                        {LR.map((item, index) => {
-                                            return (
-                                                <>
-                                                <MenuRoomInfoComponent
-                                                    isLoggedIn={!!user.user}
-                                                    isAdmin={!!user.user ? user.user.role === "admin" : false}
-                                                    onMachineManagementClick={props.onMachineManagementClick}
-                                                    onRoomManagementClick={props.onRoomManagementClick}
-                                                    onReservationsClick={props.onReservationsClick}
-                                                    room={item}
-                                                />
-                                                </>
-                                            );
-                                        })}
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
-
-                        </Grid>
-
+                        <TableContainer>
+                            <Table>
+                                <TableHead>
+                                    <TableRow>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {LR.map((item, index) => {
+                                        return (
+                                            <>
+                                            <MenuRoomInfoComponent
+                                                isLoggedIn={!!user.user}
+                                                isAdmin={!!user.user ? user.user.role === "admin" : false}
+                                                onMachineManagementClick={props.onMachineManagementClick}
+                                                onRoomManagementClick={props.onRoomManagementClick}
+                                                onReservationsClick={props.onReservationsClick}
+                                                room={item}
+                                            />
+                                            </>
+                                        );
+                                    })}
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
                     </Grid>
-
                 </div>
             </Paper>
         </div>

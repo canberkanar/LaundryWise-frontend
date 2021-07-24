@@ -78,7 +78,7 @@ function AnnouncementsComponent(props) {
                         <IconButton
                             aria-label="save"
                             className={classes.margin}
-                            onClick={onSave}
+                            onClick={() => props.onClick(title,body)}
                         >
                             <SaveIcon fontSize="large"/>
                         </IconButton>

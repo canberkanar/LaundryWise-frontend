@@ -1,3 +1,7 @@
+/**
+ * @author canberk.anar
+ */
+
 import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
@@ -126,18 +130,18 @@ function SignUpComponent(props) {
                         type="password"
                     />
                 </div>
-                <div className={classes.signUpRow}>
-                    <FormControlLabel
-                        control={
-                            <Checkbox
-                                checked={isAdmin}
-                                onChange={(e) => setIsAdmin(e.target.checked)}
-                                color="primary"
-                            />
-                        }
-                        label="Is Admin"
-                    />
-                </div>
+                {/*<div className={classes.signUpRow}>*/}
+                {/*    <FormControlLabel*/}
+                {/*        control={*/}
+                {/*            <Checkbox*/}
+                {/*                checked={isAdmin}*/}
+                {/*                onChange={(e) => setIsAdmin(e.target.checked)}*/}
+                {/*                color="primary"*/}
+                {/*            />*/}
+                {/*        }*/}
+                {/*        label="Is Admin"*/}
+                {/*    />*/}
+                {/*</div>*/}
                 {registerError !== "" ? (
                     <div className={classes.signUpRow}>
                         <Typography color="error">{registerError}</Typography>

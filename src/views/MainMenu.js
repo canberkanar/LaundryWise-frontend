@@ -54,9 +54,14 @@ function MainMenu(props) {
 
     useEffect(() => {
         // trigger room load from backend
-        getLaundryRooms();
-        console.log("This is the User:")
-        console.log(user);
+
+        if(isLoggedIn){
+            getLaundryRooms();
+        }
+        else{
+            props.history.push("./login");
+        }
+
     }, []);
 
     return (!allLaundryRooms.laundryRooms && !allLaundryRooms.error ? <Loading/> :

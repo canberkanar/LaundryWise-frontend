@@ -42,31 +42,15 @@ function KebabMenu(props) {
         // close this menu
         props.onClose();
         // navigate to the home page
-        props.history.push("/");
+        props.history.push("/login");
     };
 
-    const onClickMachineManagement = () => {
-        props.history.push("/machineManagement");
+    const onClickProfile = () => {
+        //props.history.push("/profile");
     }
 
     const onClickMainMenu = () => {
         props.history.push("/mainMenu");
-    }
-
-    function onClickUsageStatistics() {
-        props.history.push("/usageStatistics");
-    }
-
-    function onClickRevenueStatistics() {
-        props.history.push("/revenueStatistics");
-    }
-
-    const onClickAdminRoomReservations = () => {
-        props.history.push("/admin/laundryroom/60e04e770625c02fc850bf1a");
-    }
-
-    const onClickReserve = () => {
-        props.history.push("/reserve/60f48d5f240f7f049053b676");
     }
 
     return (
@@ -97,6 +81,12 @@ function KebabMenu(props) {
                           <ExitToAppIcon className={classes.avatar} />
                           Logout
                       </MenuItem>,
+                    <MenuItem
+                        key = "profile" onClick={onClickProfile}
+                        className={classes.menuitem}
+                    >
+                        Profile
+                    </MenuItem>
                   ]
                 : [
                       <MenuItem
@@ -110,35 +100,13 @@ function KebabMenu(props) {
                   ]}
 
             <MenuItem
-                key = "test" onClick={onClickMachineManagement}> Machine Management
-            </MenuItem>
-            <MenuItem
                 key = "main-menu" onClick={onClickMainMenu}
-                className={classes.menuitem}>
-
+                className={classes.menuitem}
+            >
                 Main Menu
             </MenuItem>
-            <MenuItem
-                key = "usage-statistics" onClick={onClickUsageStatistics}
-                className={classes.menuitem}>
 
-                Usage Statistics
-            </MenuItem>
-            <MenuItem
-                key = "revenue-statistics" onClick={onClickRevenueStatistics}
-                className={classes.menuitem}>
-                Revenue Statistics
-            </MenuItem>
-            <MenuItem
-                key = "admin-room-reservations" onClick={onClickAdminRoomReservations}
-                className={classes.menuitem}>
-                Room Reservations (Admin)
-            </MenuItem>
-            <MenuItem
-                key = "reserve" onClick={onClickReserve}
-                className={classes.menuitem}>
-                Reserve
-            </MenuItem>
+
         </Menu>
     );
 }
