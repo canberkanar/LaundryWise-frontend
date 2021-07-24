@@ -63,5 +63,28 @@ export const updateLaundryRoom = (id, data) => {
     };
 };
 
+export function getMyLaundryRooms(code) {
+    function onSuccess(myLaundryRooms) {
+        console.log("ACTION ON SUCCESS");
+        console.log(myLaundryRooms);
+        return { type: "GET_MY_LAUNDRYROOMS", rooms: myLaundryRooms };
+    }
+    // when the backend call was failed
+    function onFailure(error) {
+        // error handling
+        console.log("failed to get my laundryRooms", error);
+    }
 
+    return async (dispatch) => {
+        try {
+            // ask for the movies in the backend
+            console.log("I have come into ACTION getMyLaundryRooms");
+            let myLaundryRooms = await LaundryRoomService.getMyLaundryRooms(code);
+            // call onSuccess in context of redux
+            dispatch(onSuccess(myLaundryRooms));
+        } catch (e) {
+            onFailure(e);
+        }
+    };
+}
 
