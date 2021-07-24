@@ -14,8 +14,12 @@ const getUser = () => {
             user: {
                 _id: userJson._id,
                 username: userJson.username,
+                email: userJson.email,
+                address: userJson.address,
+                mobileNumber: userJson.mobileNumber,
+                laundrywiseCode: userJson.laundrywiseCode,
                 role: userJson.role,
-                laundryRooms: userJson.laundryRooms
+                laundryRooms: userJson.laundryRooms,
             },
         };
     }

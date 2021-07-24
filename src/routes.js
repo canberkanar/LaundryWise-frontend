@@ -1,4 +1,3 @@
-import MovieListView from "./views/MovieListView";
 import UserLoginView from "./views/UserLoginView";
 import SignUpView from "./views/SignUpView";
 import MovieDetailsView from "./views/MovieDetailsView";
@@ -13,8 +12,10 @@ import MachineDetailsView from "./views/AddMachineView"
 import AddMachineView from "./views/AddMachineView";
 import EditMachineView from "./views/EditMachineView";
 import SuccessView from "./views/SuccessView";
-// routes within the movie database example app
-// used for routing
+import UserProfileView from "./views/UserProfileView";
+
+
+// routes
 
 const routes = [
     {
@@ -97,6 +98,11 @@ const routes = [
     {
         path: "/paymentSuccess",
         component: SuccessView,
+        exact: true,
+    },
+    {
+        path: "/profile",
+        component: UserProfileView,
         exact: true,
     },
 ];

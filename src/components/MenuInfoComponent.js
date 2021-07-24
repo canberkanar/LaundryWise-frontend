@@ -65,8 +65,7 @@ function MenuInfoComponent(props) {
                                 </TableHead>
                                 <TableBody>
                                     {LR.map((item, index) => {
-                                        return (
-                                            <>
+                                        return (  
                                             <MenuRoomInfoComponent
                                                 isLoggedIn={!!user.user}
                                                 isAdmin={!!user.user ? user.user.role === "admin" : false}
@@ -75,7 +74,6 @@ function MenuInfoComponent(props) {
                                                 onReservationsClick={props.onReservationsClick}
                                                 room={item}
                                             />
-                                            </>
                                         );
                                     })}
                                 </TableBody>
