@@ -2,7 +2,7 @@ import {combineReducers} from "redux";
 import user from "./userReducer";
 import entities from "./entitiesReducer";
 import selectedMovie from "./selectedMovieReducer";
-import {selectedLaundryRoom, allLaundryRooms, updatedRoom} from "./laundryRoomReducer";
+import {selectedLaundryRoom, allLaundryRooms, updatedRoom, myLaundryRooms} from "./laundryRoomReducer";
 import {selectRoom} from "./roomReducer";
 import {allAnnouncements, announcement} from "./announcementReducer";
 import {selectMachine, selectMachines,selectMachinesInRoom} from "./machineReducer";
@@ -27,5 +27,6 @@ export default combineReducers({
     statistics,
     announcement,
     reserveReducer,
-    userRentals
+    userRentals,
+    myLaundryRooms
 });

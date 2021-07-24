@@ -64,36 +64,29 @@ function WorkingHoursComponent(props) {
             <Paper className={classes.signUpPaper} component="form">
                 <div className={classes.signUpRow}>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <Grid container id="WorkingHoursGrid">
-
-                <Grid item xs={7} id="ActiveTimeInterval">
-
-                    <TimePicker
-                        margin="normal"
-                        id="time-from"
-                        label="From:"
-                        value={selectedStartDate}
-                        onChange={handleStartDateChange}
-                        KeyboardButtonProps={{
-                            'aria-label': 'change time',
-                        }}
-                    />
-                    <TimePicker
-                        margin="normal"
-                        id="time-to"
-                        label="To:"
-                        value={selectedEndDate}
-                        onChange={handleEndDateChange}
-                        KeyboardButtonProps={{
-                            'aria-label': 'change time',
-                        }}
-                    />
-
-                </Grid>
-            </Grid>
-
-
-            <div className={classes.signUpRow + " " + classes.signUpButtons}>
+            <div>
+                <TimePicker
+                    margin="normal"
+                    id="time-from"
+                    label="From:"
+                    value={selectedStartDate}
+                    onChange={handleStartDateChange}
+                    KeyboardButtonProps={{
+                        'aria-label': 'change time',
+                    }}
+                />
+                <TimePicker
+                    margin="normal"
+                    id="time-to"
+                    label="To:"
+                    value={selectedEndDate}
+                    onChange={handleEndDateChange}
+                    KeyboardButtonProps={{
+                        'aria-label': 'change time',
+                    }}
+                />
+            </div>
+            <div>
                 <Button
                     variant="contained"
                     color="primary"

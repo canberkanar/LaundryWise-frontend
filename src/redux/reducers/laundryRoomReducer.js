@@ -49,4 +49,16 @@ export function setRoom(state = getLaundryRoom(), action) {
     }
 }
 
+export function myLaundryRooms(state = {}, action) {
+    console.log("I have come into myRooms reducer");
+    switch (action.type) {
+        case "GET_MY_LAUNDRYROOMS":
+            console.log("Writing in to reducer");
+            console.log(action.rooms);
+            return {rooms: action.rooms};
+        default:
+            console.log("Reading initial state:");
+            return state;
+    }
+}
 

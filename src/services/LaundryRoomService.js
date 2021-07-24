@@ -67,4 +67,25 @@ export default class LaundryRoomService {
         });
     }
 
+    static getMyLaundryRooms(code) {
+        return new Promise(async (resolve, reject) => {
+            console.log("INSIDE MY LAUNDRY ROOMS SERVICE");
+            let url = `${LaundryRoomService.baseURL2()}myLaundryRooms`
+
+            let data = {
+                laundrywiseCode: code
+            }
+            await HttpService.post(
+                url,
+                data,
+                function (data) {
+                    resolve(data);
+                },
+                function (textStatus) {
+                    reject(textStatus);
+                }
+            );
+        });
+    }
+
 }

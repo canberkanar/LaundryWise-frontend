@@ -67,31 +67,22 @@ function RoomInfoComponent(props) {
     };
 
     return (
-        <div className={classes.usersignUpRoot}>
-            <Paper className={classes.signUpPaper} component="form">
-                <div className={classes.signUpRow}>
-                    <Grid id="LaundryRoomInfoGrid" container>
-                        <Grid item xs={6}>
-                            <Typography align="left">
-                                {props.room.name}
-                            </Typography>
-                            <Typography>{props.room.address}</Typography>
-                        </Grid>
-                            <Grid id="LaundryRoomActiveGrid" container xs={6}>
-                                <Button
-                                    variant="contained"
-                                    color="primary"
-                                    onClick = {activationOnClick}
-                                >
-                                    {!activation ? "Activate" : "Deactivate"}
-                                </Button>
-                            </Grid>
+        <Paper className={classes.signUpPaper} component="form">
+            <Typography align="left" variant="h4">
+                {props.room.name}
+            </Typography>
+            <Typography>{props.room.address}</Typography>
+            <br/>
+            <br/>
+            <Button
 
-                    </Grid>
-
-                </div>
-            </Paper>
-        </div>
+                variant="contained"
+                color="primary"
+                onClick = {activationOnClick}
+            >
+                {!activation ? "Activate" : "Deactivate"}
+            </Button>
+        </Paper>
 );
 }
 

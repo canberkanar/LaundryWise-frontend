@@ -47,7 +47,8 @@ function MenuAnnouncementsComponent(props) {
 
     const classes = useStyles();
     let room = props.room;
-    let announcement = {"title": "title", "body": "body"};
+    let announcement = room.theAnnouncement;
+    //let announcement = {"title": "title", "body": "body"};
 
     return (!announcement.body ? <Loading/> :
 

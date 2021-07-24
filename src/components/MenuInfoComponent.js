@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {getLaundryRooms} from "../redux/actions";
+import {getLaundryRooms, getMyLaundryRooms} from "../redux/actions";
 import Loading from "../components/Loading";
 import {
     Paper,
@@ -9,6 +9,7 @@ import {
 import {makeStyles} from "@material-ui/core/styles";
 import {connect, useSelector} from "react-redux";
 import MenuRoomInfoComponent from "./MenuRoomInfoComponent";
+import {myLaundryRooms} from "../redux/reducers/laundryRoomReducer";
 const useStyles = makeStyles((theme) => ({
     usersignUpRoot: {
         margin: "auto",
@@ -41,16 +42,21 @@ function MenuInfoComponent(props) {
 
     const classes = useStyles();
     const user = useSelector((state) => state.user);
-    const allLaundryRooms = useSelector((state) => state.allLaundryRooms);
-    const LR = useSelector((state) => state.allLaundryRooms.laundryRooms);
-    let {match, getLaundryRooms} = props;
+    //const LR = useSelector((state) => state.allLaundryRooms.laundryRooms);
+    const LR = useSelector((state) => state.myLaundryRooms.rooms);
+    let {match, getLaundryRooms, getMyLaundryRooms} = props;
 
     useEffect(() => {
         // trigger room load from backend
-        getLaundryRooms();
-    }, []);
+        if(!LR){
+            // getLaundryRooms();
+            getMyLaundryRooms(user.user.laundrywiseCode);
+        }
 
-    return (!allLaundryRooms.laundryRooms && !allLaundryRooms.error && !LR ? <Loading/> :
+    }, [LR]);
+
+    console.log("Menu Info Component LR: ", LR);
+    return (!LR ? <Loading/> :
 
         <div className={classes.usersignUpRoot}>
             <Paper className={classes.signUpPaper} component="form">
@@ -65,8 +71,10 @@ function MenuInfoComponent(props) {
                                 </TableHead>
                                 <TableBody>
                                     {LR.map((item, index) => {
-                                        return (  
+                                        return (
+                                            <>
                                             <MenuRoomInfoComponent
+                                                // CLEAN HERE LATER
                                                 isLoggedIn={!!user.user}
                                                 isAdmin={!!user.user ? user.user.role === "admin" : false}
                                                 onMachineManagementClick={props.onMachineManagementClick}
@@ -74,6 +82,8 @@ function MenuInfoComponent(props) {
                                                 onReservationsClick={props.onReservationsClick}
                                                 room={item}
                                             />
+                                            <br/>
+                                            </>
                                         );
                                     })}
                                 </TableBody>
@@ -86,6 +96,6 @@ function MenuInfoComponent(props) {
     );
 }
 
-export default connect(null, {getLaundryRooms})(
+export default connect(null, {getLaundryRooms,getMyLaundryRooms})(
     MenuInfoComponent
 );

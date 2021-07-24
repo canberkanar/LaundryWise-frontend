@@ -59,7 +59,7 @@ function MachineManagement(props) {
             </Helmet>
             <br/>
             <Grid container id="MachineManagementGrid">
-                <Grid item xs={5} id="RoomInfoGrid">
+                <Grid item xs={7} id="RoomInfoGrid">
                     <RoomInfoComponent
                         room={theRoom}
                     />
@@ -69,8 +69,7 @@ function MachineManagement(props) {
                         room={theRoom}
                     />
                 </Grid>
-                <br/>
-                <Grid item xs={7} id="RoomAnnouncementsGrid">
+                <Grid item xs={5} id="RoomAnnouncementsGrid">
                     <AnnouncementsComponent
                         announcement={announcement.announcement}
                         room={theRoom}
