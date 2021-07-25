@@ -14,7 +14,7 @@ function reserveSchedulerMapper(laundryRoom) {
 
             timeSlot.startDate = new Date(laundryRoom.machines[0].timeslots[i].startTime);
             timeSlot.endDate = new Date(laundryRoom.machines[0].timeslots[i].endTime);
-            timeSlot.machineType = laundryRoom.machines[0].machineType.charAt(0).toUpperCase() + laundryRoom.machines[0].machineType.slice(1);;
+            timeSlot.machineType = laundryRoom.machines[0].machineType.charAt(0).toUpperCase() + laundryRoom.machines[0].machineType.slice(1);
             timeSlot.title = "Out of Service";
 
             for (let j = 0; j < laundryRoom.machines.length; j++) {
@@ -23,11 +23,16 @@ function reserveSchedulerMapper(laundryRoom) {
                 timeSlot.machineId = laundryRoom.machines[j]._id;
                 timeSlot.price = laundryRoom.machines[j].price;
 
-                if (laundryRoom.machines[j].timeslots[i].status === "occupied") {
+                if (laundryRoom.machines[j].timeslots[i].status === "outOfService") {
+                    break;
+                } else if (new Date(laundryRoom.machines[j].timeslots[i].startTime) < new Date()) {
+                    timeSlot.title = "Past Timeslot";
+                    break; // Past time slot, no need to iterate further
+                } else if (laundryRoom.machines[j].timeslots[i].status === "occupied") {
                     timeSlot.title = "Occupied";
                 } else if (laundryRoom.machines[j].timeslots[i].status === "available") {
                     timeSlot.title = "Available";
-                    break; //1 available slot found, no need to iterate further
+                    break; // 1 available slot found, no need to iterate further
                 }
             }
 

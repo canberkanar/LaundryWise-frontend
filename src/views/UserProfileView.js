@@ -1,5 +1,5 @@
 import {Grid, Paper} from "@material-ui/core";
-import { Helmet } from 'react-helmet';
+import {Helmet} from 'react-helmet';
 import {connect, useSelector} from "react-redux";
 // import {withRouter} from "react-router-dom";
 import Loading from "../components/Loading";
@@ -7,7 +7,6 @@ import React, {useEffect, useState} from "react";
 import {getUserRentals} from "../redux/actions";
 import UserRentalsTableComponent from "../components/UserRentalsTableComponent";
 import UserRentalService from "../services/UserProfileService";
-
 
 
 function UserProfile(props) {
@@ -34,42 +33,43 @@ function UserProfile(props) {
         console.log("Cancel Button toggled");
         console.log(rentalId);
         UserRentalService.removeRental(rentalId).then( () => setRemoved(true));
+
     }
 
 
     return (!rentals.value ? <Loading/> :
-        <div>
-            <Helmet>
-                <title>LaundryWise | Profile</title>
-            </Helmet>       
-            <Paper>
-                <h1>Profile</h1>
-                <h3>
-                Username: {user.user.username}
-                </h3>
-                <h3>
-                    Email: {user.user.email}
-                </h3>
-                <h3>
-                    Address: {user.user.address}
-                </h3>
-                <h3>
-                    Mobile Number: {user.user.mobileNumber}
-                </h3>
-                <h3>
-                    Laundrywise Code: {user.user.laundrywiseCode}
-                </h3>
-            </Paper>
-            
+            <div style={{padding: 20}}>
+                < Helmet>
+                    < title> LaundryWise | Profile < /title>
+                </Helmet>
+                <Paper style={{padding: 20}}>
+                    <h1>Profile</h1>
+                    <h3>
+                        Username: {user.user.username}
+                    </h3>
+                    <h3>
+                        Email: {user.user.email}
+                    </h3>
+                    <h3>
+                        Address: {user.user.address}
+                    </h3>
+                    <h3>
+                        Mobile Number: {user.user.mobileNumber}
+                    </h3>
+                    <h3>
+                        Laundrywise Code: {user.user.laundrywiseCode}
+                    </h3>
+                </Paper>
 
-            {user.user.role === "customer" ? (
-                <div>
+
+                {user.user.role === "customer" ? (
                     <div>
-                        <h2>
-                        Future Rentals
-                        </h2>
-                    </div>
-                    <div>
+                        <div>
+                            <h2>
+                                Future Rentals
+                            </h2>
+                        </div>
+                        <div>
                             <UserRentalsTableComponent
                                 // onMachineClicked = {onMachineClicked}
                                 // theRoom={theRoom}
@@ -79,13 +79,13 @@ function UserProfile(props) {
                                 isRemoveNeeded={true}
                                 onClick={(rentalId) => onRemove(rentalId)}
                                 onClick={onRemove}/>
-                    </div>
-                    <div>
-                        <h2>
-                            Past Rentals
-                        </h2>
-                    </div>
-                    <div>
+                        </div>
+                        <div>
+                            <h2>
+                                Past Rentals
+                            </h2>
+                        </div>
+                        <div>
                             <UserRentalsTableComponent
                                 // onMachineClicked = {onMachineClicked}
                                 // theRoom={theRoom}
@@ -94,11 +94,11 @@ function UserProfile(props) {
                                 allRentals={rentals.value.pastRentals}
                                 isRemoveNeeded={false}
                                 onClick={onRemove}/>
+                        </div>
                     </div>
-                </div>
-                       
-            ) : null}
-        </div>
+
+                ) : null}
+            </div>
     );
 }
 

@@ -18,7 +18,7 @@ import 'date-fns';
 
 import React from "react";
 import {withStyles} from "@material-ui/core/styles";
-import {common, green, red} from "@material-ui/core/colors";
+import {common, green, purple, red} from "@material-ui/core/colors";
 import TableCell from "@material-ui/core/TableCell";
 import reserveSchedulerMapper from "../mappers/ReserveSchedulerMapper";
 
@@ -35,7 +35,7 @@ function ReserveSchedulerComponent(props) {
                 {id: 'Available', text: 'Available', color: green},
                 {id: 'Full', text: 'Full', color: red},
                 {id: 'Out of Service', text: 'Out of Service', color: common.black},
-
+                {id: 'Past Timeslot', text: 'Past Timeslot', color: purple}
             ],
         },
     ];
