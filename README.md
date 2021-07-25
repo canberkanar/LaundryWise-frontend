@@ -97,3 +97,14 @@ npm start
 ```
 
 Now browse to the app at `http://localhost:3000`.
+
+### Sample Admin Credidentials
+
+Username: Grammar-Immobilien
+Password: 123456
+
+### Sample Customer Credidentials
+
+Username: Laura-Paul
+Password: 123456
+
