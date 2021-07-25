@@ -5,6 +5,8 @@ import {
 import {makeStyles} from "@material-ui/core/styles";
 import {useSelector} from "react-redux";
 import MenuAnnouncementsComponent from "./MenuAnnouncementsComponent";
+import {MuiPickersUtilsProvider, TimePicker} from "@material-ui/pickers";
+import DateFnsUtils from "@date-io/date-fns";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -55,6 +57,17 @@ function MenuRoomInfoComponent(props) {
         props.onReservationsClick(xyz); // pass any argument to the callback
     }
 
+    let startH = "0";
+    let endH = "0";
+    // Handle the error where when the start hour comes as 6, it makes ot 06 to concatanate in the date.
+    if(props.room.operationStartHour < 10){startH = startH + props.room.operationStartHour.toString();}
+    else{startH = props.room.operationStartHour.toString();}
+    if(props.room.operationEndHour < 10){endH = endH + props.room.operationEndHour.toString();}
+    else{endH = props.room.operationEndHour.toString();}
+
+    let str = new Date('2014-08-18T'+ startH +':00:00');
+    let end = new Date('2015-08-18T'+ endH +':00:00');
+
 
     return (
 
@@ -75,10 +88,31 @@ function MenuRoomInfoComponent(props) {
                                 </Typography>
                                 <br/>
                                 <Typography align="left">
-                                    Number of Operating Machines: {room.machines.length}
+                                    <strong>Number of Operating Machines:</strong> {room.machines.length}
                                     <br/>
-                                    Operating Hours from {room.operationStartHour}:00 to {room.operationEndHour}:00
+                                    <strong>Operating Hours:</strong>
                                 </Typography>
+
+                                <div>
+                                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                    <TimePicker
+                                        margin="normal"
+                                        id="time-from"
+                                        label="From:"
+                                        value={str}
+                                        readOnly
+
+                                    />
+                                    <TimePicker
+                                        margin="normal"
+                                        id="time-to"
+                                        label="To:"
+                                        value={end}
+                                        readOnly
+                                    />
+                                    </MuiPickersUtilsProvider>
+
+                                </div>
 
                                 <Grid container id="ButtonsGrid">
                                     <Button
