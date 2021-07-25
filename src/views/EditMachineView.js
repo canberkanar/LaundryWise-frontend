@@ -14,6 +14,12 @@ import PropTypes from "prop-types";
 import LaundryRoomService from "../services/LaundryRoomService";
 import MachineService from "../services/MachineService";
 
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+
 const useStyles = makeStyles((theme) => ({
     usersignUpRoot: {
         margin: "auto",
@@ -38,6 +44,13 @@ const useStyles = makeStyles((theme) => ({
     },
     signUpButton: {
         marginLeft: theme.spacing(1),
+    },
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120,
+    },
+    selectEmpty: {
+        marginTop: theme.spacing(2),
     },
 }));
 
@@ -148,15 +161,23 @@ function EditMachineView(props) {
 
                     />
                 </div>
-                <div className={classes.signUpRow}>
-                    <TextField
-                        label="Activity"
-                        fullWidth
-                        defaultValue={retrievedMachine.isEnabled}
+                <FormControl className={classes.formControl}>
+                    <InputLabel shrink id="demo-simple-select-placeholder-label-label">
+                        Activity
+                    </InputLabel>
+                    <Select
+                        labelId="demo-simple-select-placeholder-label-label"
+                        id="demo-simple-select-placeholder-label"
+                        value={selectedActivity}
                         onChange={handleActivity}
+                        displayEmpty
+                        className={classes.selectEmpty}
+                    >
+                        <MenuItem value={'true'}>True</MenuItem>
+                        <MenuItem value={'false'}>False</MenuItem>
+                    </Select>
 
-                    />
-                </div>
+                </FormControl>
                 {registerError !== "" ? (
                     <div className={classes.signUpRow}>
                         <Typography color="error">{registerError}</Typography>
