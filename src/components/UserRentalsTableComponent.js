@@ -36,8 +36,13 @@ function UserRentalsTableComponent(props) {
                 <TableHead>
                     <TableRow>
                         <TableCell>Date</TableCell>
-                        <TableCell>Machine Number</TableCell>
-                        <TableCell>Machine Type</TableCell>
+                        {props.isFuture ? (
+                            <>
+                                <TableCell>Machine Number</TableCell>
+                                <TableCell>Machine Type</TableCell>
+                            </>
+
+                            ): null}
                         <TableCell>Price</TableCell>
                         <TableCell></TableCell>
                     </TableRow>
@@ -48,17 +53,22 @@ function UserRentalsTableComponent(props) {
                             <TableCell component="th" scope="row">
                                 {Date(rental.date).toString()}
                             </TableCell>
-                            <TableCell component="th" scope="row">
-                                {rental.machineNumber}
-                            </TableCell>
-                            <TableCell component="th" scope="row">
-                                {rental.machineType}
-                            </TableCell>
+                            {props.isFuture ? (
+                                <>
+                                    <TableCell component="th" scope="row">
+                                        {rental.machineNumber}
+                                    </TableCell>
+                                    <TableCell component="th" scope="row">
+                                        {rental.machineType}
+                                    </TableCell>
+                                </>
+
+                                ): null}
                             <TableCell component="th" scope="row">
                                 {rental.price}
                             </TableCell>
                             <TableCell>
-                            {props.isRemoveNeeded ? (
+                            {props.isFuture ? (
                                 <Button
                                     color="primary"
                                     onClick={() => props.onClick(rental._id)}

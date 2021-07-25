@@ -71,14 +71,9 @@ function UserProfile(props) {
                         </div>
                         <div>
                             <UserRentalsTableComponent
-                                // onMachineClicked = {onMachineClicked}
-                                // theRoom={theRoom}
-                                // allMachines = {allMachines}
-                                // onClick={editHandler}
                                 allRentals={rentals.value.futureRentals}
-                                isRemoveNeeded={true}
-                                onClick={(rentalId) => onRemove(rentalId)}
-                                onClick={onRemove}/>
+                                isFuture={true}
+                                onClick={(rentalId) => onRemove(rentalId)}/>
                         </div>
                         <div>
                             <h2>
@@ -87,12 +82,8 @@ function UserProfile(props) {
                         </div>
                         <div>
                             <UserRentalsTableComponent
-                                // onMachineClicked = {onMachineClicked}
-                                // theRoom={theRoom}
-                                // allMachines = {allMachines}
-                                // onClick={editHandler}
                                 allRentals={rentals.value.pastRentals}
-                                isRemoveNeeded={false}
+                                isFuture={false}
                                 onClick={onRemove}/>
                         </div>
                     </div>
