@@ -21,18 +21,16 @@ const useStyles = makeStyles({
 });
 
 
-
-
 function UserRentalsTableComponent(props) {
-    // const machines = props.theRoom.machines;
     const classes = useStyles();
-    // console.log(machines);
 
     let allRentals = props.allRentals;
-    console.log("AAAAAAAAA");
+    console.log("User Rentals Table Component");
     console.log(props);
     console.log(allRentals);
+
     return ( !allRentals ? <Loading/> :
+
         <TableContainer component={Paper}>
             <Table className={classes.table} aria-label="simple table">
                 <TableHead>
@@ -73,7 +71,7 @@ function UserRentalsTableComponent(props) {
                             {props.isFuture ? (
                                 <Button
                                     color="primary"
-                                    onClick={() => props.onClick(rental)}
+                                    onClick={() => props.onClick(rental._id)}
                                 >
                                     Cancel
                                 </Button>
