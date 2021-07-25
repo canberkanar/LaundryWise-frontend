@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {
-    Paper, Grid, Typography, Button,
+    Paper, Grid, Typography, Button, Divider,
 } from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import {useSelector} from "react-redux";
@@ -83,8 +83,11 @@ function MenuRoomInfoComponent(props) {
                                 <Typography variant="h4" component="h2" align="left">
                                     {room.name}
                                 </Typography>
+                                <Divider variant="middle" />
                                 <Typography variant="h6" component="h2" align="left">
-                                    Address: {room.address}
+                                    <strong>Address:</strong>
+                                    <br/>
+                                    {room.address}
                                 </Typography>
                                 <br/>
                                 <Typography align="left">

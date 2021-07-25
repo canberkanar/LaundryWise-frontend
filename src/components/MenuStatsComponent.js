@@ -49,6 +49,7 @@ function MenuStatsComponent(props) {
                             onClick={props.onUsageStatsClick}
                             variant="contained"
                             color="primary"
+                            fullWidth
                             className={classes.roomSettingsButton}
                         >
                             Usage Statistics
@@ -61,6 +62,7 @@ function MenuStatsComponent(props) {
                             onClick={props.onRevenueStatsClick}
                             variant="contained"
                             color="primary"
+                            fullWidth
                             className={classes.roomSettingsButton}
                         >
                             Revenue Statistics
