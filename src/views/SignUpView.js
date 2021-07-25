@@ -19,8 +19,8 @@ function SignUpView(props) {
         }
     }, [user, props.history]);
 
-    const onRegister = (username, password, isAdmin) => {
-        props.dispatch(register(username, password, isAdmin));
+    const onRegister = (username, password, isAdmin, laundrywiseCode) => {
+        props.dispatch(register(username, password, isAdmin, laundrywiseCode));
     };
 
     const onCancel = () => {

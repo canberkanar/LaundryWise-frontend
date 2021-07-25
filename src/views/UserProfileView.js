@@ -61,7 +61,7 @@ function UserProfile(props) {
                 <div>
                     <div>
                         <h2>
-                            Past Rentals
+                        Future Rentals
                         </h2>
                     </div>
                     <div>
@@ -76,7 +76,7 @@ function UserProfile(props) {
                     </div>
                     <div>
                         <h2>
-                            Future Rentals
+                            Past Rentals
                         </h2>
                     </div>
                     <div>
