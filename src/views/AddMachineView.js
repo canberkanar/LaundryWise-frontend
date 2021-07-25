@@ -14,6 +14,12 @@ import PropTypes from "prop-types";
 import LaundryRoomService from "../services/LaundryRoomService";
 import MachineService from "../services/MachineService";
 
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+
 const useStyles = makeStyles((theme) => ({
     usersignUpRoot: {
         margin: "auto",
@@ -39,6 +45,13 @@ const useStyles = makeStyles((theme) => ({
     signUpButton: {
         marginLeft: theme.spacing(1),
     },
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120,
+    },
+    selectEmpty: {
+        marginTop: theme.spacing(2),
+    },
 }));
 function AddMachineView(props) {
     const user = useSelector((state) => state.user);
@@ -55,7 +68,8 @@ function AddMachineView(props) {
     };*/
     const [selectedNumberInRoom, setselectedNumberInRoom] = React.useState('');
     const [selectedPrice, setselectedPrice] = React.useState('');
-    const [selectedType, setselectedType] = React.useState('');
+    const [selectedType, setselectedType] = React.useState('washer');
+
 
     const handleNumberInRoom = (number) => {
         setselectedNumberInRoom(number.target.value);
@@ -117,15 +131,23 @@ function AddMachineView(props) {
                         onChange={handlePrice}
                     />
                 </div>
-                <div className={classes.signUpRow}>
-                    <TextField
-                        label="Machine Type"
-                        fullWidth
-                        //value="washer"
+                <FormControl className={classes.formControl}>
+                    <InputLabel shrink id="demo-simple-select-placeholder-label-label">
+                        Machine Type
+                    </InputLabel>
+                    <Select
+                        labelId="demo-simple-select-placeholder-label-label"
+                        id="demo-simple-select-placeholder-label"
+                        value={selectedType}
                         onChange={handleType}
+                        displayEmpty
+                        className={classes.selectEmpty}
+                    >
+                        <MenuItem value={'washer'}>Washer</MenuItem>
+                        <MenuItem value={'dryer'}>Dryer</MenuItem>
+                    </Select>
 
-                    />
-                </div>
+                </FormControl>
                 {registerError !== "" ? (
                     <div className={classes.signUpRow}>
                         <Typography color="error">{registerError}</Typography>
