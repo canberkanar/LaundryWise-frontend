@@ -32,37 +32,19 @@ function UserRentalsTableComponent(props) {
     console.log("AAAAAAAAA");
     console.log(props);
     console.log(allRentals);
-    // let allRentals = [
-    //     {
-    //         "_id": "60fc0dc531098d80d159eb83",
-    //         "machine": "60fc0dc031098d80d159b314",
-    //         "machineType": "washer",
-    //         "allocatedTime": "60fc0dbf31098d80d159ad76",
-    //         "payment": "60fc0dc531098d80d159eb81",
-    //         "customer": "60fc0dbf31098d80d159ad53",
-    //         "serviceProvider": "60fc0dbf31098d80d159ad4d",
-    //         "__v": 0
-    //     },
-    //     {
-    //         "_id": "60fc0dc531098d80d159eb8a",
-    //         "machine": "60fc0dc031098d80d159b314",
-    //         "machineType": "washer",
-    //         "allocatedTime": "60fc0dbf31098d80d159ad76",
-    //         "payment": "60fc0dc531098d80d159eb88",
-    //         "customer": "60fc0dbf31098d80d159ad53",
-    //         "serviceProvider": "60fc0dbf31098d80d159ad4d",
-    //         "__v": 0
-    //     }
-    // ]
     return ( !allRentals ? <Loading/> :
-    // return ( 
         <TableContainer component={Paper}>
             <Table className={classes.table} aria-label="simple table">
                 <TableHead>
                     <TableRow>
                         <TableCell>Date</TableCell>
-                        <TableCell>Machine Number</TableCell>
-                        <TableCell>Machine Type</TableCell>
+                        {props.isFuture ? (
+                            <>
+                                <TableCell>Machine Number</TableCell>
+                                <TableCell>Machine Type</TableCell>
+                            </>
+
+                            ): null}
                         <TableCell>Price</TableCell>
                         <TableCell></TableCell>
                     </TableRow>
@@ -73,17 +55,22 @@ function UserRentalsTableComponent(props) {
                             <TableCell component="th" scope="row">
                                 {Date(rental.date).toString()}
                             </TableCell>
-                            <TableCell component="th" scope="row">
-                                {rental.machineNumber}
-                            </TableCell>
-                            <TableCell component="th" scope="row">
-                                {rental.machineType}
-                            </TableCell>
+                            {props.isFuture ? (
+                                <>
+                                    <TableCell component="th" scope="row">
+                                        {rental.machineNumber}
+                                    </TableCell>
+                                    <TableCell component="th" scope="row">
+                                        {rental.machineType}
+                                    </TableCell>
+                                </>
+
+                                ): null}
                             <TableCell component="th" scope="row">
                                 {rental.price}
                             </TableCell>
                             <TableCell>
-                            {props.isRemoveNeeded ? (
+                            {props.isFuture ? (
                                 <Button
                                     color="primary"
                                     onClick={() => props.onClick(rental)}
