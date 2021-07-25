@@ -133,7 +133,7 @@ function MenuRoomInfoComponent(props) {
                                             color="primary"
                                             className={classes.roomSettingsButton}
                                         >
-                                            Room Settings
+                                            Machine Settings
                                         </Button>
                                     ) : null}
                                     {props.isAdmin ? (
@@ -143,7 +143,7 @@ function MenuRoomInfoComponent(props) {
                                             color="primary"
                                             className={classes.machineSettingsButton}
                                         >
-                                            Machine Setings
+                                            Room Settings
                                         </Button>
                                     ) : null}
                                 </Grid>

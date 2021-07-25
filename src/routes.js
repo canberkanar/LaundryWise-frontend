@@ -1,11 +1,11 @@
 import UserLoginView from "./views/UserLoginView";
 import SignUpView from "./views/SignUpView";
 import MovieDetailsView from "./views/MovieDetailsView";
-import MachineManagementView from "./views/MachineManagement";
+import RoomSettings from "./views/RoomSettings";
 import MainMenu from "./views/MainMenu";
 import UsageStatistics from "./views/UsageStatistics";
 import RevenueStatistics from "./views/RevenueStatistics";
-import RoomManagement from "./views/RoomManagement";
+import MachineSettings from "./views/MachineSettings";
 import AdminRoomReservationsView from "./views/AdminRoomReservationsView";
 import ReserveView from "./views/ReserveView";
 import MachineDetailsView from "./views/AddMachineView"
@@ -42,14 +42,14 @@ const routes = [
 
     },
     {
-        path: "/machineManagement",
-        component: MachineManagementView,
+        path: "/roomSettings",
+        component: RoomSettings,
         exact: true,
 
     },
     {
-        path: "/roomManagement",
-        component: RoomManagement,
+        path: "/machineSettings",
+        component: MachineSettings,
         exact: true,
 
     },

@@ -89,7 +89,7 @@ function EditMachineView(props) {
         setselectedActivity(activity.target.value);
     };
     const handleCancel = async () => {
-        props.history.push('/roomManagement',retrievedRoom)
+        props.history.push('/machineSettings',retrievedRoom)
     }
     const handleRemove = async (id) => {
 
@@ -100,7 +100,7 @@ function EditMachineView(props) {
             console.log(e);
         }
         console.log(id)
-        props.history.push('/roomManagement',retrievedRoom)
+        props.history.push('/machineSettings',retrievedRoom)
     }
     const handleSave = async (selectedNumberInRoom, selectedPrice,selectedType,selectedActivity) => {
         console.log("BUTTON WORKED!");
@@ -122,7 +122,7 @@ function EditMachineView(props) {
             console.log(e);
         }
         console.log(data)
-        props.history.push('/roomManagement',retrievedRoom)
+        props.history.push('/machineSettings',retrievedRoom)
     };
     const classes = useStyles();
     const [registerError, setRegisterError] = React.useState("");
