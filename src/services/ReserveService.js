@@ -6,7 +6,7 @@ import HttpService from "./HttpService";
 
 export default class ReserveService {
     static baseURL() {
-        return "http://localhost:4000/rental";
+        return "http://localhost:4000/rental/new";
     }
 
     static createReservations(reservations) {
