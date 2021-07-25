@@ -36,7 +36,10 @@ function ReserveView(props) {
             return;
         }
 
-        if (reservation.title != "Available") {
+        if(reservation.title == "Past Timeslot"){
+            alert("This timeslot has passed! Please choose one of the future timeslots which are displayed as \"Available\".");
+        }
+        else if (reservation.title != "Available") {
             alert("Please choose an Available timeslot!");
             return;
         }

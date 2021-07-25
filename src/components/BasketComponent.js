@@ -61,6 +61,10 @@ function BasketComponent(props) {
                         <br/>
                         <br/>
                         Do you authorize the payment for the selected reservations?
+                        <br/>
+                        <br/>
+                        <u>Note</u><br/>
+                        SEPA Direct Debit transactions can take up to 3 business days until they are processed and reflected to your bank account.
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
