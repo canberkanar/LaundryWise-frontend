@@ -46,7 +46,7 @@ function KebabMenu(props) {
     };
 
     const onClickProfile = () => {
-        //props.history.push("/profile");
+        props.history.push("/profile");
     }
 
     const onClickMainMenu = () => {

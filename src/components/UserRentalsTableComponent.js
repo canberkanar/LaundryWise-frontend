@@ -7,10 +7,9 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import MachineInRoomInfoComponent from "./MachineInRoomInfoComponent";
 import MachineService from "../services/MachineService";
 import {connect, useSelector} from "react-redux";
-import {getAllMachines,getAllMachinesInRoom, getLaundryRooms, getMachine, getRoom} from "../redux/actions";
+import {getUserRentals} from "../redux/actions";
 import Loading from "./Loading";
 import {Button} from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
@@ -24,63 +23,75 @@ const useStyles = makeStyles({
 
 
 
-function MachinesInRoomTableComponent(props) {
-    const machines = props.theRoom.machines;
+function UserRentalsTableComponent(props) {
+    // const machines = props.theRoom.machines;
     const classes = useStyles();
-    console.log(machines);
+    // console.log(machines);
 
-
-    let {allMachines} = props;
-
-
-    console.log(allMachines);
-
-    return ( !allMachines ? <Loading/> :
-
+    let allRentals = props.allRentals;
+    console.log("AAAAAAAAA");
+    console.log(props);
+    console.log(allRentals);
+    // let allRentals = [
+    //     {
+    //         "_id": "60fc0dc531098d80d159eb83",
+    //         "machine": "60fc0dc031098d80d159b314",
+    //         "machineType": "washer",
+    //         "allocatedTime": "60fc0dbf31098d80d159ad76",
+    //         "payment": "60fc0dc531098d80d159eb81",
+    //         "customer": "60fc0dbf31098d80d159ad53",
+    //         "serviceProvider": "60fc0dbf31098d80d159ad4d",
+    //         "__v": 0
+    //     },
+    //     {
+    //         "_id": "60fc0dc531098d80d159eb8a",
+    //         "machine": "60fc0dc031098d80d159b314",
+    //         "machineType": "washer",
+    //         "allocatedTime": "60fc0dbf31098d80d159ad76",
+    //         "payment": "60fc0dc531098d80d159eb88",
+    //         "customer": "60fc0dbf31098d80d159ad53",
+    //         "serviceProvider": "60fc0dbf31098d80d159ad4d",
+    //         "__v": 0
+    //     }
+    // ]
+    return ( !allRentals ? <Loading/> :
+    // return ( 
         <TableContainer component={Paper}>
             <Table className={classes.table} aria-label="simple table">
                 <TableHead>
-                    <Button
-                        className={classes.addButton}
-                        variant="contained"
-                        color="primary"
-                        // onClick={onRegister}
-                        onClick={props.onMachineClicked}
-                        startIcon={<AddIcon/>}
-                    >
-                        Add New Machine
-                    </Button>
                     <TableRow>
+                        <TableCell>Date</TableCell>
                         <TableCell>Machine Number</TableCell>
+                        <TableCell>Machine Type</TableCell>
                         <TableCell>Price</TableCell>
-                        <TableCell>Type</TableCell>
-                        <TableCell>Activity</TableCell>
+                        <TableCell></TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {allMachines.map((machine) => (
+                    {allRentals.map((rental) => (
                         <TableRow key="test">
                             <TableCell component="th" scope="row">
-                                No: {machine.deviceNumberInRoom}
+                                {Date(rental.date).toString()}
                             </TableCell>
                             <TableCell component="th" scope="row">
-                                {machine.price}
+                                {rental.machineNumber}
                             </TableCell>
                             <TableCell component="th" scope="row">
-                                {machine.machineType}
+                                {rental.machineType}
                             </TableCell>
                             <TableCell component="th" scope="row">
-                                {machine.isEnabled.toString()}
+                                {rental.price}
                             </TableCell>
-
                             <TableCell>
+                            {props.isRemoveNeeded ? (
                                 <Button
-                                    onClick={() => props.onClick(machine)}
+                                    color="primary"
+                                    onClick={() => props.onClick(rental)}
                                 >
-                                    Edit
+                                    Cancel
                                 </Button>
+                            ): null}
                             </TableCell>
-
                         </TableRow>
                     ))}
                 </TableBody>
@@ -90,6 +101,6 @@ function MachinesInRoomTableComponent(props) {
 }
 
 
-export default connect(null, {getMachine, getAllMachines,getAllMachinesInRoom})(
-    MachinesInRoomTableComponent
+export default connect(null, {getUserRentals})(
+    UserRentalsTableComponent
 );
