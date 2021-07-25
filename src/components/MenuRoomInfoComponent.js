@@ -122,7 +122,7 @@ function MenuRoomInfoComponent(props) {
                                         onClick = {() => handleRezClick(room._id)}
                                         variant="contained"
                                     >
-                                        Reservations
+                                        {props.isAdmin ? "Reservations" : "Reserve"}
                                     </Button>
                                     {props.isAdmin ? (
                                         <Button
