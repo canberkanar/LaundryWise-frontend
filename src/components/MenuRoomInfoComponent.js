@@ -1,10 +1,12 @@
 import React, {useEffect} from "react";
 import {
-    Paper, Grid, Typography, Button,
+    Paper, Grid, Typography, Button, Divider,
 } from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import {useSelector} from "react-redux";
 import MenuAnnouncementsComponent from "./MenuAnnouncementsComponent";
+import {MuiPickersUtilsProvider, TimePicker} from "@material-ui/pickers";
+import DateFnsUtils from "@date-io/date-fns";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -55,6 +57,17 @@ function MenuRoomInfoComponent(props) {
         props.onReservationsClick(xyz); // pass any argument to the callback
     }
 
+    let startH = "0";
+    let endH = "0";
+    // Handle the error where when the start hour comes as 6, it makes ot 06 to concatanate in the date.
+    if(props.room.operationStartHour < 10){startH = startH + props.room.operationStartHour.toString();}
+    else{startH = props.room.operationStartHour.toString();}
+    if(props.room.operationEndHour < 10){endH = endH + props.room.operationEndHour.toString();}
+    else{endH = props.room.operationEndHour.toString();}
+
+    let str = new Date('2014-08-18T'+ startH +':00:00');
+    let end = new Date('2015-08-18T'+ endH +':00:00');
+
 
     return (
 
@@ -70,53 +83,39 @@ function MenuRoomInfoComponent(props) {
                                 <Typography variant="h4" component="h2" align="left">
                                     {room.name}
                                 </Typography>
+                                <Divider variant="middle" />
                                 <Typography variant="h6" component="h2" align="left">
-                                    Address: {room.address}
+                                    <strong>Address:</strong>
+                                    <br/>
+                                    {room.address}
                                 </Typography>
                                 <br/>
                                 <Typography align="left">
-                                    Number of Operating Machines: {room.machines.length}
+                                    <strong>Number of Operating Machines:</strong> {room.machines.length}
                                     <br/>
-                                    Operating Hours from {room.operationStartHour}:00 to {room.operationEndHour}:00
+                                    <strong>Operating Hours:</strong>
                                 </Typography>
 
-                                {/*<Grid container id="ButtonsGrid">*/}
-                                {/*    <Grid item xs={4} id="ReservationsButton">*/}
-                                {/*        <Button*/}
-                                {/*            onClick = {() => handleRezClick(room._id)}*/}
-                                {/*            variant="contained"*/}
-                                {/*        >*/}
-                                {/*            Reservations*/}
-                                {/*        </Button>*/}
-                                {/*    </Grid>*/}
-                                {/*    <Grid item xs={4} id="RoomSettingsButton">*/}
-                                {/*        {props.isAdmin ? (*/}
-                                {/*            <Button*/}
-                                {/*                name="MyButton"*/}
-                                {/*                room={room.name}*/}
-                                {/*                onClick = {() => handleRClick(props.room)}*/}
-                                {/*                variant="contained"*/}
-                                {/*                color="primary"*/}
-                                {/*                className={classes.roomSettingsButton}*/}
+                                <div>
+                                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                    <TimePicker
+                                        margin="normal"
+                                        id="time-from"
+                                        label="From:"
+                                        value={str}
+                                        readOnly
 
-                                {/*            >*/}
-                                {/*                Room Settings*/}
-                                {/*            </Button>*/}
-                                {/*        ) : null}*/}
-                                {/*    </Grid>*/}
-                                {/*    <Grid item xs={4} id="MachineSettingsButton">*/}
-                                {/*        {props.isAdmin ? (*/}
-                                {/*            <Button*/}
-                                {/*                onClick = {() => handleMClick(props.room)}*/}
-                                {/*                variant="contained"*/}
-                                {/*                color="primary"*/}
-                                {/*                className={classes.machineSettingsButton}*/}
-                                {/*            >*/}
-                                {/*                Machine Setings*/}
-                                {/*            </Button>*/}
-                                {/*        ) : null}*/}
-                                {/*    </Grid>*/}
-                                {/*</Grid>*/}
+                                    />
+                                    <TimePicker
+                                        margin="normal"
+                                        id="time-to"
+                                        label="To:"
+                                        value={end}
+                                        readOnly
+                                    />
+                                    </MuiPickersUtilsProvider>
+
+                                </div>
 
                                 <Grid container id="ButtonsGrid">
                                     <Button
@@ -152,7 +151,7 @@ function MenuRoomInfoComponent(props) {
                             </Grid>
                             <br/>
                             <Grid item xs={6} id="AnnouncementsGrid">
-                                <Typography variant="h6" component="h2">
+                                <Typography variant="h5" component="h2" align="right" color="primary">
                                     Announcement:
                                 </Typography>
                                 <MenuAnnouncementsComponent

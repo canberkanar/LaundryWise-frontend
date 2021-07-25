@@ -75,16 +75,18 @@ function MainMenu(props) {
                     />
                 </Grid>
                 <br/>
-                <Grid item xs={2} id="StatisticsGrid">
 
-                    <MenuStatsComponent
-                        isLoggedIn={isLoggedIn}
-                        isAdmin={isAdmin}
-                        onUsageStatsClick={onUsageStatsClick}
-                        onRevenueStatsClick={onRevenueStatsClick}
-                    />
+                {isAdmin ? (
+                    <Grid item xs={2} id="StatisticsGrid">
+                        <MenuStatsComponent
+                            isLoggedIn={isLoggedIn}
+                            isAdmin={isAdmin}
+                            onUsageStatsClick={onUsageStatsClick}
+                            onRevenueStatsClick={onRevenueStatsClick}
+                        />
+                    </Grid>
+                    ) : null}
 
-                </Grid>
             </Grid>
         </div>
     );

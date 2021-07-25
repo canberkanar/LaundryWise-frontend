@@ -48,7 +48,7 @@ function MenuInfoComponent(props) {
 
     useEffect(() => {
         // trigger room load from backend
-        if(!LR){
+        if(!LR && props.isLoggedIn){
             // getLaundryRooms();
             getMyLaundryRooms(user.user.laundrywiseCode);
         }
