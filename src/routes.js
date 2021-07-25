@@ -1,6 +1,5 @@
 import UserLoginView from "./views/UserLoginView";
 import SignUpView from "./views/SignUpView";
-import MovieDetailsView from "./views/MovieDetailsView";
 import RoomSettings from "./views/RoomSettings";
 import MainMenu from "./views/MainMenu";
 import UsageStatistics from "./views/UsageStatistics";
@@ -8,7 +7,6 @@ import RevenueStatistics from "./views/RevenueStatistics";
 import MachineSettings from "./views/MachineSettings";
 import AdminRoomReservationsView from "./views/AdminRoomReservationsView";
 import ReserveView from "./views/ReserveView";
-import MachineDetailsView from "./views/AddMachineView"
 import AddMachineView from "./views/AddMachineView";
 import EditMachineView from "./views/EditMachineView";
 import SuccessView from "./views/SuccessView";
@@ -32,12 +30,6 @@ const routes = [
     {
         path: "/register",
         component: SignUpView,
-        exact: true,
-
-    },
-    {
-        path: "/movie/:id",
-        component: MovieDetailsView,
         exact: true,
 
     },
