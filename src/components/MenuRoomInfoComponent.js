@@ -80,44 +80,6 @@ function MenuRoomInfoComponent(props) {
                                     Operating Hours from {room.operationStartHour}:00 to {room.operationEndHour}:00
                                 </Typography>
 
-                                {/*<Grid container id="ButtonsGrid">*/}
-                                {/*    <Grid item xs={4} id="ReservationsButton">*/}
-                                {/*        <Button*/}
-                                {/*            onClick = {() => handleRezClick(room._id)}*/}
-                                {/*            variant="contained"*/}
-                                {/*        >*/}
-                                {/*            Reservations*/}
-                                {/*        </Button>*/}
-                                {/*    </Grid>*/}
-                                {/*    <Grid item xs={4} id="RoomSettingsButton">*/}
-                                {/*        {props.isAdmin ? (*/}
-                                {/*            <Button*/}
-                                {/*                name="MyButton"*/}
-                                {/*                room={room.name}*/}
-                                {/*                onClick = {() => handleRClick(props.room)}*/}
-                                {/*                variant="contained"*/}
-                                {/*                color="primary"*/}
-                                {/*                className={classes.roomSettingsButton}*/}
-
-                                {/*            >*/}
-                                {/*                Room Settings*/}
-                                {/*            </Button>*/}
-                                {/*        ) : null}*/}
-                                {/*    </Grid>*/}
-                                {/*    <Grid item xs={4} id="MachineSettingsButton">*/}
-                                {/*        {props.isAdmin ? (*/}
-                                {/*            <Button*/}
-                                {/*                onClick = {() => handleMClick(props.room)}*/}
-                                {/*                variant="contained"*/}
-                                {/*                color="primary"*/}
-                                {/*                className={classes.machineSettingsButton}*/}
-                                {/*            >*/}
-                                {/*                Machine Setings*/}
-                                {/*            </Button>*/}
-                                {/*        ) : null}*/}
-                                {/*    </Grid>*/}
-                                {/*</Grid>*/}
-
                                 <Grid container id="ButtonsGrid">
                                     <Button
                                         onClick = {() => handleRezClick(room._id)}
@@ -152,7 +114,7 @@ function MenuRoomInfoComponent(props) {
                             </Grid>
                             <br/>
                             <Grid item xs={6} id="AnnouncementsGrid">
-                                <Typography variant="h6" component="h2">
+                                <Typography variant="h5" component="h2" align="right" color="primary">
                                     Announcement:
                                 </Typography>
                                 <MenuAnnouncementsComponent

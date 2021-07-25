@@ -56,20 +56,13 @@ function MenuAnnouncementsComponent(props) {
             <Paper className={classes.signUpPaper} component="form">
                 <div className={classes.signUpRow}>
 
-                    <Grid id="MenuAnnouncementsGrid" container>
-
-                        <Grid>
-                            <Typography align="left">
-                                {announcement.title}
-                            </Typography>
-                            <br/>
-                            <Typography>
-                                {announcement.body}
-                            </Typography>
-
-                        </Grid>
-
-                    </Grid>
+                    <Typography align="right" variant="h6">
+                        {announcement.title}
+                    </Typography>
+                    <br/>
+                    <Typography align="right">
+                        {announcement.body}
+                    </Typography>
 
                 </div>
             </Paper>
