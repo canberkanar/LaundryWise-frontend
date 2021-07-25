@@ -11,7 +11,7 @@ import LaundryRoomService from "../services/LaundryRoomService";
 import {login} from "../redux/actions";
 import AnnouncementService from "../services/AnnouncementService";
 
-function MachineManagement(props) {
+function RoomSettings(props) {
 
     console.log("COME INSIDE TO MACHINE MANAGEMENT");
 
@@ -81,9 +81,9 @@ function MachineManagement(props) {
     );
 }
 
-// export default MachineManagement;
+// export default RoomSettings;
 export default connect(null, {getAnnouncement})(
-    MachineManagement
+    RoomSettings
 );
 
 

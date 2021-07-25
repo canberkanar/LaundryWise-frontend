@@ -24,10 +24,10 @@ function MainMenu(props) {
         props.history.push("/revenueStatistics");
     };
     const onRoomManagementClick = (childData) => {
-        console.log("The passed data childData to RoomManagement:")
+        console.log("The passed data childData to MachineSettings:")
         console.log(childData);
         // navigate to an empty mask for entering details of the new movie
-        props.history.push("/roomManagement", childData);
+        props.history.push("/machineSettings", childData);
     };
     const onMachineManagementClick = (childData) => {
         console.log("The passed data childData to MachineManagement:")
@@ -36,7 +36,7 @@ function MainMenu(props) {
             "laundryRoomId": childData._id
         }
         // navigate to an empty mask for entering details of the new movie
-        props.history.push("/machineManagement", childData);
+        props.history.push("/roomSettings", childData);
     };
     const onReservationsClick = (childData) => {
         // navigate to an empty mask for entering details of the new movie

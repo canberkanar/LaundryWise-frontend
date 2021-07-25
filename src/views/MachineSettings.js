@@ -8,7 +8,7 @@ import {getAllMachinesInRoom, getLaundryRooms, getRoom} from "../redux/actions";
 import Loading from "../components/Loading";
 
 
-function RoomManagement(props) {
+function MachineSettings(props) {
 
 
     const user = useSelector((state) => state.user);
@@ -66,6 +66,6 @@ function RoomManagement(props) {
 
 // export default MachineManagement;
 export default connect(null, {getLaundryRooms, getRoom, getAllMachinesInRoom})(
-    RoomManagement
+    MachineSettings
 );
 

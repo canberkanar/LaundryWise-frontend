@@ -81,7 +81,7 @@ function AddMachineView(props) {
         setselectedType(price.target.value);
     };
     const handleCancel = async () => {
-        props.history.push('/roomManagement',props.location.state)
+        props.history.push('/machineSettings',props.location.state)
     }
     const handleSave = async (selectedNumberInRoom, selectedPrice,selectedType) => {
         console.log("BUTTON WORKED!");
@@ -101,7 +101,7 @@ function AddMachineView(props) {
             console.log(e);
         }
         console.log(data)
-        props.history.push('/roomManagement',props.location.state)
+        props.history.push('/machineSettings',props.location.state)
     };
     const classes = useStyles();
     const [registerError, setRegisterError] = React.useState("");
