@@ -57,7 +57,7 @@ function BasketComponent(props) {
                     <DialogContentText id="alert-dialog-description">
                         Please check and make sure that your reservations are correct. Once you approve, the fees will
                         automatically be charged to your German Bank Account in the form of SEPA Direct Debit (SDD) and
-                        there is no way to cancel and initiate a refund.
+                        in case of cancel reservation, we will initiate the refund process in the next 14 days. 
                         <br/>
                         <br/>
                         Do you authorize the payment for the selected reservations?
