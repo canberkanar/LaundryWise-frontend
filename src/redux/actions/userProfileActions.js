@@ -12,7 +12,7 @@ export function getUserRentals(id)  {
 
     return async (dispatch) => {
         try {
-            console.log("User Rental action")
+            console.log("User Rental action with ID:", id);
             let data = {customerId: id}
         
             let rentals = await UserRentalService.getUserRentals(data);

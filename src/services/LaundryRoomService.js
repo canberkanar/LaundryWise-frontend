@@ -54,7 +54,7 @@ export default class LaundryRoomService {
         return new Promise(async (resolve, reject) => {
             let url = `${LaundryRoomService.baseURL2()}${id}`
 
-            HttpService.put(
+            await HttpService.put(
                 url,
                 data,
                 function (data) {

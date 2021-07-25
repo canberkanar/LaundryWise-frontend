@@ -21,41 +21,16 @@ const useStyles = makeStyles({
 });
 
 
-
-
 function UserRentalsTableComponent(props) {
-    // const machines = props.theRoom.machines;
     const classes = useStyles();
-    // console.log(machines);
 
     let allRentals = props.allRentals;
-    console.log("AAAAAAAAA");
+    console.log("User Rentals Table Component");
     console.log(props);
     console.log(allRentals);
-    // let allRentals = [
-    //     {
-    //         "_id": "60fc0dc531098d80d159eb83",
-    //         "machine": "60fc0dc031098d80d159b314",
-    //         "machineType": "washer",
-    //         "allocatedTime": "60fc0dbf31098d80d159ad76",
-    //         "payment": "60fc0dc531098d80d159eb81",
-    //         "customer": "60fc0dbf31098d80d159ad53",
-    //         "serviceProvider": "60fc0dbf31098d80d159ad4d",
-    //         "__v": 0
-    //     },
-    //     {
-    //         "_id": "60fc0dc531098d80d159eb8a",
-    //         "machine": "60fc0dc031098d80d159b314",
-    //         "machineType": "washer",
-    //         "allocatedTime": "60fc0dbf31098d80d159ad76",
-    //         "payment": "60fc0dc531098d80d159eb88",
-    //         "customer": "60fc0dbf31098d80d159ad53",
-    //         "serviceProvider": "60fc0dbf31098d80d159ad4d",
-    //         "__v": 0
-    //     }
-    // ]
+
     return ( !allRentals ? <Loading/> :
-    // return ( 
+
         <TableContainer component={Paper}>
             <Table className={classes.table} aria-label="simple table">
                 <TableHead>
@@ -86,7 +61,7 @@ function UserRentalsTableComponent(props) {
                             {props.isRemoveNeeded ? (
                                 <Button
                                     color="primary"
-                                    onClick={() => props.onClick(rental)}
+                                    onClick={() => props.onClick(rental._id)}
                                 >
                                     Cancel
                                 </Button>

@@ -3,9 +3,10 @@ import { Helmet } from 'react-helmet';
 import {connect, useSelector} from "react-redux";
 // import {withRouter} from "react-router-dom";
 import Loading from "../components/Loading";
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {getUserRentals} from "../redux/actions";
 import UserRentalsTableComponent from "../components/UserRentalsTableComponent";
+import UserRentalService from "../services/UserProfileService";
 
 
 
@@ -13,22 +14,26 @@ function UserProfile(props) {
 
     const user = useSelector((state) => state.user);
     console.log(user.user._id);
-    var rentals = useSelector((state) => state.userRentals);
+    const rentals = useSelector((state) => state.userRentals);
+    let [removed, setRemoved] = useState(false);
 
     let {match, getUserRentals} = props;
 
     useEffect(() => {
         // trigger room load from backend
         // getUserRentals(user.user._id);
-        if (!rentals.value) {
+        if (!rentals.value | removed) {
             console.log("IN USE EFFECT USER PROFILE VIEW")
             console.log(rentals)
             getUserRentals(user.user._id);
+            setRemoved(false);
         }  
-    }, [rentals]);
+    }, [rentals, removed]);
 
-    const onRemove =  () => {
-    
+    const onRemove = (rentalId) => {
+        console.log("Cancel Button toggled");
+        console.log(rentalId);
+        UserRentalService.removeRental(rentalId).then( () => setRemoved(true));
     }
 
 
@@ -72,6 +77,7 @@ function UserProfile(props) {
                                 // onClick={editHandler}
                                 allRentals={rentals.value.futureRentals}
                                 isRemoveNeeded={true}
+                                onClick={(rentalId) => onRemove(rentalId)}
                                 onClick={onRemove}/>
                     </div>
                     <div>
