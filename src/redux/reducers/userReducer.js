@@ -32,6 +32,8 @@ export default function user(state = getUser(), action) {
             return { user: action.user };
         case "LOGIN_FAILURE":
             return { error: "Password or username incorrect." };
+        case "WRONG_LAUNDRYWISE_CODE":
+            return { error: "The laundrywise code is not valid." };
         case "LOGIN_RESET":
             return {};
         case "LOGOUT":

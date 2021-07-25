@@ -27,17 +27,20 @@ export function loginReset() {
     return { type: "LOGIN_RESET" };
 }
 
-export function register(username, password, isAdmin) {
+export function register(username, password, isAdmin, laundrywiseCode) {
     function onSuccess(user) {
         return { type: "LOGIN_SUCCESS", user: user };
     }
     function onFailure(error) {
         return { type: "LOGIN_FAILURE", error: error };
     }
+    function onFailure(error) {
+        return { type: "WRONG_LAUNDRYWISE_CODE", error: error };
+    }
 
     return async (dispatch) => {
         try {
-            let resp = await UserService.register(username, password, isAdmin);
+            let resp = await UserService.register(username, password, isAdmin, laundrywiseCode);
             dispatch(onSuccess(resp.user));
         } catch (e) {
             dispatch(onFailure(e));

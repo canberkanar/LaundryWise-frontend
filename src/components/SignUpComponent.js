@@ -52,7 +52,6 @@ function SignUpComponent(props) {
     const [password2, setPassword2] = React.useState("");
     const [laundrywiseCode, setLaundrywiseCode] = React.useState("");
     const [isAdmin, setIsAdmin] = React.useState(false);
-
     const [registerError, setRegisterError] = React.useState("");
 
     useEffect(() => {
@@ -65,7 +64,7 @@ function SignUpComponent(props) {
 
     const onRegister = (e) => {
         e.preventDefault();
-        props.onRegister(username, password, isAdmin);
+        props.onRegister(username, password, isAdmin, laundrywiseCode);
     };
 
     const onChangeUsername = (e) => {
