@@ -13,7 +13,8 @@ export default class UserService {
                     username: user,
                     password: pass,
                     isAdmin: isAdmin,
-                    laundrywiseCode: laundrywiseCode
+                    laundrywiseCode: laundrywiseCode,
+                    role: "customer"
                 },
                 function (data) {
                     resolve(data);

@@ -64,6 +64,7 @@ function SignUpComponent(props) {
 
     const onRegister = (e) => {
         e.preventDefault();
+        console.log("laundrywisecode",laundrywiseCode);
         props.onRegister(username, password, isAdmin, laundrywiseCode);
     };
 
