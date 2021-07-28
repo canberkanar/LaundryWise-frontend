@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -22,6 +22,9 @@ const useStyles = makeStyles({
 
 
 function UserRentalsTableComponent(props) {
+
+    const daysOfWeek = ["Sunday", "Monday", "Tuesday", " Wednesday", "Thursday", "Friday", "Saturday"];
+
     const classes = useStyles();
 
     let allRentals = props.allRentals;
@@ -29,59 +32,66 @@ function UserRentalsTableComponent(props) {
     console.log(props);
     console.log(allRentals);
 
-    return ( !allRentals ? <Loading/> :
+    return (!allRentals ? <Loading/> :
 
-        <TableContainer component={Paper}>
-            <Table className={classes.table} aria-label="simple table">
-                <TableHead>
-                    <TableRow>
-                        <TableCell>Date</TableCell>
-                        {props.isFuture ? (
-                            <>
-                                <TableCell>Machine Number</TableCell>
-                                <TableCell>Machine Type</TableCell>
-                            </>
-
-                            ): null}
-                        <TableCell>Price</TableCell>
-                        <TableCell></TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {allRentals.map((rental) => (
-                        <TableRow key="test">
-                            <TableCell component="th" scope="row">
-                                {Date(rental.date).toString()}
-                            </TableCell>
+            <TableContainer component={Paper}>
+                <Table className={classes.table} aria-label="simple table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Date</TableCell>
                             {props.isFuture ? (
                                 <>
-                                    <TableCell component="th" scope="row">
-                                        {rental.machineNumber}
-                                    </TableCell>
-                                    <TableCell component="th" scope="row">
-                                        {rental.machineType}
-                                    </TableCell>
+                                    <TableCell>Machine Number</TableCell>
+                                    <TableCell>Machine Type</TableCell>
                                 </>
 
-                                ): null}
-                            <TableCell component="th" scope="row">
-                                {rental.price}
-                            </TableCell>
-                            <TableCell>
-                            {props.isFuture ? (
-                                <Button
-                                    color="primary"
-                                    onClick={() => props.onClick(rental._id)}
-                                >
-                                    Cancel
-                                </Button>
-                            ): null}
-                            </TableCell>
+                            ) : null}
+                            <TableCell>Price</TableCell>
+                            <TableCell></TableCell>
                         </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </TableContainer>
+                    </TableHead>
+                    <TableBody>
+                        {allRentals.map((rental) => (
+                            <TableRow key="test">
+                                <TableCell component="th" scope="row">
+                                    {daysOfWeek[new Date(rental.date).getDay()]} {new Date(rental.date).toLocaleString('en-US', {
+                                    day: 'numeric',
+                                    month: 'numeric',
+                                    year: 'numeric',
+                                    hour: 'numeric',
+                                    minute: 'numeric',
+                                    hour12: true
+                                })}
+                                </TableCell>
+                                {props.isFuture ? (
+                                    <>
+                                        <TableCell component="th" scope="row">
+                                            {rental.machineNumber}
+                                        </TableCell>
+                                        <TableCell component="th" scope="row">
+                                            {rental.machineType}
+                                        </TableCell>
+                                    </>
+
+                                ) : null}
+                                <TableCell component="th" scope="row">
+                                    {rental.price}
+                                </TableCell>
+                                <TableCell>
+                                    {props.isFuture ? (
+                                        <Button
+                                            color="primary"
+                                            onClick={() => props.onClick(rental._id)}
+                                        >
+                                            Cancel
+                                        </Button>
+                                    ) : null}
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
     );
 }
 
