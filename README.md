@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="resources/logo.PNG" width="850" height="300" />
+  <img src="resources/logo.png" width="850" height="300" />
 </p>
 
 # LaundryWise
