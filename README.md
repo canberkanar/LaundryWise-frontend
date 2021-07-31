@@ -4,7 +4,7 @@
 
 # laundrywise-frontend application
 
-LaundryWise application based on React. Backend can be found [here](https://github.com/canberkanar/LaundryWise-backend)
+LaundryWise application based on React. Backend can be found [here](https://github.com/canberkanar/LaundryWise-backend).
 
 ## Prerequisites
 
