@@ -2,7 +2,9 @@
   <img src="resources/logo.png" width="850" height="300" />
 </p>
 
-# LaundryWise
+# LaundryWise-fronend application
+
+LaundryWise-backend application can be found [here](https://github.com/canberkanar/LaundryWise-backend)
 
 LaundryWise is a web application which connects laundry service providers, its customers and the laundry devices, in order to find available machines, make reservations and pay online.
 
