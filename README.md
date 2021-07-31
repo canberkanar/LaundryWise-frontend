@@ -100,7 +100,7 @@ Now browse to the app at `http://localhost:3000`.
 
 ### Sample Admin Credidentials
 
-Username: Grammar-Immobilien 
+Username: Immobilien-Company
 
 Password: 123456
 
