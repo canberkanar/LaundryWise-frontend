@@ -2,36 +2,36 @@
   <img src="resources/logo.png" width="850" height="300" />
 </p>
 
-# laundrywise-frontend application
+# laundrywise-client-side
 
 LaundryWise application based on React. Backend can be found [here](https://github.com/canberkanar/LaundryWise-backend).
 
 ## Prerequisites
 
-Both for the frontend and the backend:
+Both for the client and the server:
 
 -   nodejs [official website](https://nodejs.org/en/) - nodejs includes [npm](https://www.npmjs.com/) (node package manager)
 
 ## Getting Started
 
-To get you started you can simply clone the [seba-master-laundrywise-frontend](https://gitlab.lrz.de/seba-master-2021/team-39/frontend) repository and install all its dependencies:
+To get you started you can simply clone the [seba-master-laundrywise-client](https://gitlab.lrz.de/seba-master-2021/team-39/frontend) repository and install all its dependencies:
 
 ### Prerequisites
 
-You need git to clone the [seba-master-laundrywise-frontend](https://gitlab.lrz.de/seba-master-2021/team-39/frontend) repository. You can get git from [http://git-scm.com/](http://git-scm.com/).
+You need git to clone the [seba-master-laundrywise-client](https://gitlab.lrz.de/seba-master-2021/team-39/frontend) repository. You can get git from [http://git-scm.com/](http://git-scm.com/).
 
-We also use a number of node.js tools to initialize and test [seba-master-laundrywise-frontend](https://gitlab.lrz.de/seba-master-2021/team-39/frontend) . You must have node.js and its package manager (npm) installed. You can get them from [http://nodejs.org/](http://nodejs.org/).
+We also use a number of node.js tools to initialize and test [seba-master-laundrywise-client](https://gitlab.lrz.de/seba-master-2021/team-39/frontend) . You must have node.js and its package manager (npm) installed. You can get them from [http://nodejs.org/](http://nodejs.org/).
 
 ### Clone Laundrywise Project
 
-Clone the [seba-master-laundrywise-frontend](https://gitlab.lrz.de/seba-master-2021/team-39/frontend.git) repository using [git](http://git-scm.com/):
+Clone the [seba-master-laundrywise-client](https://gitlab.lrz.de/seba-master-2021/team-39/frontend.git) repository using [git](http://git-scm.com/):
 
 ```
 git clone https://gitlab.lrz.de/seba-master-2021/team-39/frontend.git
 cd seba-master-laundrywise-frontend
 ```
 
-If you just want to start a new project without the [seba-master-laundrywise-frontend](https://gitlab.lrz.de/seba-master-2021/team-39/frontend.git) commit history then you can do:
+If you just want to start a new project without the [seba-master-laundrywise-client](https://gitlab.lrz.de/seba-master-2021/team-39/frontend.git) commit history then you can do:
 
 ```bash
 git clone --depth=1 https://gitlab.lrz.de/seba-master-2021/team-39/frontend.git <your-project-name>
